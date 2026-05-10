@@ -1,0 +1,11 @@
+{
+  "appId": "com.wenyanwen.shici",
+  "appName": "文言文实词",
+  "webDir": "www",
+  "server": {
+    "cleartext": true,
+    "allowNavigation": [
+      "*.supabase.co"
+    ]
+  }
+}
