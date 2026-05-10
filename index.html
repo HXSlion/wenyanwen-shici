@@ -567,7 +567,8 @@ header {
   .ch-grid-item { min-height:72px; padding:12px 6px; }
 }
 @media(max-width:480px) {
-  .sub-nav { gap:2px; padding:0 8px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .sub-nav { gap:2px; padding:0 8px; }
+  .sub-nav .hdr-btns { overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap; flex-shrink:0; }
   .sub-nav .hdr-btns { gap:2px; flex-wrap:nowrap; }
   .btn { padding:4px 10px; font-size:.72rem; white-space:nowrap; }
   header { padding:0 10px; }
