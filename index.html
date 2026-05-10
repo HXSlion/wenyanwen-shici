@@ -239,7 +239,9 @@ function syncDownload() {
   --example-color: #b8b0a0;
 }
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-body {
+*:focus { outline:none; }
+*:active { -webkit-tap-highlight-color:transparent; }
+button, a { -webkit-tap-highlight-color:transparent !important; -webkit-touch-callout:none; -webkit-user-select:none; user-select:none; }body {
   font-family:var(--sans); background:var(--bg); color:var(--text);
   min-height:100vh; display:flex; flex-direction:column;
 }
