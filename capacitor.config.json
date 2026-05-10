@@ -3,9 +3,10 @@
   "appName": "文言文实词",
   "webDir": "www",
   "server": {
+    "url": "https://hxslion.github.io/wenyanwen-shici",
     "cleartext": true,
     "allowNavigation": [
       "*.supabase.co"
     ]
-  }
+  },
 }
