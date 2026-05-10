@@ -8,5 +8,5 @@
     "allowNavigation": [
       "*.supabase.co"
     ]
-  },
+  }
 }
