@@ -2628,7 +2628,7 @@ function enterExamReview() {
   ex.style.display = 'flex';
   
   // Load key sentences
-  if (!window.KEY_SENTENCES || KEY_SENTENCES.length === 0) {
+  if (typeof KEY_SENTENCES === 'undefined' || !KEY_SENTENCES || KEY_SENTENCES.length === 0) {
     document.getElementById('pex-body').innerHTML = '<div style="padding:40px;text-align:center;color:var(--soft)">暂无数据</div>';
     return;
   }
