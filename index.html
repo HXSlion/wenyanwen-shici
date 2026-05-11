@@ -2698,6 +2698,7 @@ function pexNext() {
   
   var item = d.items[d.idx];
   var body = document.getElementById('pex-body');
+  pexData._locked = false;
   
   if (item.type === 'sentence') {
     pexShowSentence(item.data, d.idx);
