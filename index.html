@@ -2765,6 +2765,7 @@ function pexShowSentence(s, idx) {
   html += '<div class="pex-feedback" id="pex-fb"></div>';
   html += '<div class="pex-btns"><button class="pex-btn secondary" onclick="pexNext()" id="pex-skip-btn" style="display:none">下一题 →</button></div>';
   
+  var body = document.getElementById('pex-body');
   body.innerHTML = html;
   
   // Store for keyboard
