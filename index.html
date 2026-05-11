@@ -2807,7 +2807,11 @@ function pexSubmitSentence() {
     pexData.wrong++;
     fb.innerHTML = '<span style="color:var(--accent)">✗ ' + msgs.join(' · ') + '</span>';
     if (inp) inp.classList.add('wrong');
-    if (authorInput && !authorOk) authorInput.style.color = 'var(--accent)';
+    if (authorInput && !authorOk) {
+      authorInput.style.color = 'var(--accent)';
+      // Show correct author in the input
+      authorInput.value = pexData._author;
+    }
   }
   
   pexData.idx++;
