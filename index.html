@@ -2721,7 +2721,7 @@ function pexShowSentence(s, idx) {
   html += '<span>' + s.title + '</span>';
   html += '<span style="color:var(--soft)">' + s.dynasty + '</span>';
   if (hideAuthor) {
-    html += '<input id="pex-author-input" placeholder="作者" style="width:4em;padding:0 4px;border:none;border-bottom:2px solid var(--accent);font-size:.78rem;background:transparent;color:var(--text);text-align:center;outline:none">';
+    html += '<input id="pex-author-input" placeholder="" style="width:4em;padding:0 4px;border:none;border-bottom:2px solid var(--accent);font-size:.78rem;background:transparent;color:var(--text);text-align:center;outline:none">';
   } else {
     html += '<span>' + s.author + '</span>';
   }
@@ -2775,18 +2775,22 @@ function pexSubmitSentence() {
   var val = inp ? inp.value.trim() : '';
   var authorVal = authorInput ? authorInput.value.trim() : '';
   
-  // If both are empty, don't submit
-  if (!val && !authorVal) return;
+  // If both are completely empty, don't submit
+  if (!val && (!authorInput || !authorVal)) return;
   
   pexData._locked = true;
   
   // Check main answer
-  var normInput = val.replace(/[\u300a\u300b\u300c\u300d\u201c\u201d\uff0c\u3002\uff01\uff1f\uff1b\u3001\uff1a\uff08\uff09\n\r\t ,.;:!?]/g, '').trim();
-  var normCorrect = correct.replace(/[\u300a\u300b\u300c\u300d\u201c\u201d\uff0c\u3002\uff01\uff1f\uff1b\u3001\uff1a\uff08\uff09\n\r\t ,.;:!?]/g, '').trim();
-  var mainOk = val && (normInput === normCorrect || normCorrect.indexOf(normInput) >= 0);
+  var mainOk = false;
+  if (val) {
+    var normInput = val.replace(/[\u300a\u300b\u300c\u300d\u201c\u201d\uff0c\u3002\uff01\uff1f\uff1b\u3001\uff1a\uff08\uff09\n\r\t ,.;:!?]/g, '').trim();
+    var normCorrect = correct.replace(/[\u300a\u300b\u300c\u300d\u201c\u201d\uff0c\u3002\uff01\uff1f\uff1b\u3001\uff1a\uff08\uff09\n\r\t ,.;:!?]/g, '').trim();
+    mainOk = normInput === normCorrect || normCorrect.indexOf(normInput) >= 0;
+  }
   
   // Check author
   var authorOk = !authorInput || authorVal === pexData._author;
+  console.log('authorCheck:', 'inputVal="'+authorVal+'"', 'expected="'+pexData._author+'"', 'ok='+authorOk);
   
   // Build feedback message
   var msgs = [];
@@ -2797,10 +2801,12 @@ function pexSubmitSentence() {
     pexData.correct++;
     fb.innerHTML = '<span style="color:#27ae60">✓ 正确</span>';
     if (inp) inp.classList.add('correct');
+    if (authorInput) authorInput.style.color = '#27ae60';
   } else {
     pexData.wrong++;
     fb.innerHTML = '<span style="color:var(--accent)">✗ ' + msgs.join(' · ') + '</span>';
     if (inp) inp.classList.add('wrong');
+    if (authorInput && !authorOk) authorInput.style.color = 'var(--accent)';
   }
   
   pexData.idx++;
