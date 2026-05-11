@@ -2629,7 +2629,13 @@ function enterExamReview() {
   
   // Load key sentences - defined in main script
   var sentences = [];
-  try { sentences = KEY_SENTENCES || []; } catch(e) { sentences = []; }
+  try {
+    sentences = KEY_SENTENCES || [];
+    console.log('KEY_SENTENCES loaded:', sentences.length);
+  } catch(e) {
+    console.log('KEY_SENTENCES error:', e.message);
+    sentences = [];
+  }
   if (!sentences || sentences.length === 0) {
     document.getElementById('pex-body').innerHTML = '<div style="padding:40px;text-align:center;color:var(--soft)">暂无数据</div>';
     return;
