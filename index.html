@@ -2627,15 +2627,17 @@ function enterExamReview() {
   var ex = document.getElementById('pt-exam');
   ex.style.display = 'flex';
   
-  // Load key sentences
-  if (typeof KEY_SENTENCES === 'undefined' || !KEY_SENTENCES || KEY_SENTENCES.length === 0) {
+  // Load key sentences - defined in main script
+  var sentences = [];
+  try { sentences = KEY_SENTENCES || []; } catch(e) { sentences = []; }
+  if (!sentences || sentences.length === 0) {
     document.getElementById('pex-body').innerHTML = '<div style="padding:40px;text-align:center;color:var(--soft)">暂无数据</div>';
     return;
   }
   
   // Build question pool: mix sentence pairs with understanding dictation
   var pool = [];
-  KEY_SENTENCES.forEach(function(s) {
+  sentences.forEach(function(s) {
     pool.push({type:'sentence', data:s});
   });
   // Add understanding dictation questions
@@ -2722,7 +2724,9 @@ function pexShowSentence(s, idx) {
   // Choices (4 options including correct)
   var correct = giveUpper ? s.lower : s.upper;
   var distractorPool = [];
-  KEY_SENTENCES.forEach(function(other) {
+  var allSentences = [];
+  try { allSentences = KEY_SENTENCES || []; } catch(e) { allSentences = []; }
+  allSentences.forEach(function(other) {
     if (other.title !== s.title && distractorPool.length < 20) {
       var otherAns = other.lower;
       if (otherAns !== correct && distractorPool.indexOf(otherAns) < 0) {
