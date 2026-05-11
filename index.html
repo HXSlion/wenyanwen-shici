@@ -2721,7 +2721,7 @@ function pexShowSentence(s, idx) {
   html += '<span>' + s.title + '</span>';
   html += '<span style="color:var(--soft)">' + s.dynasty + '</span>';
   if (hideAuthor) {
-    html += '<input id="pex-author-input" placeholder="作者" style="width:4em;padding:2px 4px;border-radius:4px;border:1.5px solid var(--border);font-size:.78rem;background:var(--bg);color:var(--text);text-align:center">';
+    html += '<input id="pex-author-input" placeholder="作者" style="width:4em;padding:0 4px;border:none;border-bottom:2px solid var(--accent);font-size:.78rem;background:transparent;color:var(--text);text-align:center;outline:none">';
   } else {
     html += '<span>' + s.author + '</span>';
   }
@@ -2768,53 +2768,44 @@ function pexShowSentence(s, idx) {
 function pexSubmitSentence() {
   if (pexData._locked) return;
   var inp = document.getElementById('pex-input');
-  if (!inp) return;
-  var val = inp.value.trim();
-  if (!val) return;
+  var fb = document.getElementById('pex-fb');
+  var authorInput = document.getElementById('pex-author-input');
+  var correct = pexData._correct;
+  
+  var val = inp ? inp.value.trim() : '';
+  var authorVal = authorInput ? authorInput.value.trim() : '';
+  
+  // If both are empty, don't submit
+  if (!val && !authorVal) return;
   
   pexData._locked = true;
-  var correct = pexData._correct;
-  var fb = document.getElementById('pex-fb');
   
-  // Check author if author was hidden
-  var authorOk = true;
-  var authorInput = document.getElementById('pex-author-input');
-  if (authorInput) {
-    var authorVal = authorInput.value.trim();
-    authorOk = authorVal === pexData._author;
-    if (!authorOk && !val) {
-      // If only author was wrong and main answer is empty, show author error
-      fb.innerHTML = '<span style="color:var(--accent)">✗ 作者应为：' + pexData._author + '</span>';
-      pexData.wrong++;
-      pexData.idx++;
-      document.getElementById('pex-skip-btn').style.display = 'block';
-      inp.style.pointerEvents = 'none';
-      authorInput.style.pointerEvents = 'none';
-      return;
-    }
-  }
-  
-  // Normalize both for comparison
+  // Check main answer
   var normInput = val.replace(/[\u300a\u300b\u300c\u300d\u201c\u201d\uff0c\u3002\uff01\uff1f\uff1b\u3001\uff1a\uff08\uff09\n\r\t ,.;:!?]/g, '').trim();
   var normCorrect = correct.replace(/[\u300a\u300b\u300c\u300d\u201c\u201d\uff0c\u3002\uff01\uff1f\uff1b\u3001\uff1a\uff08\uff09\n\r\t ,.;:!?]/g, '').trim();
+  var mainOk = val && (normInput === normCorrect || normCorrect.indexOf(normInput) >= 0);
   
-  var isCorrect = normInput === normCorrect || normCorrect.indexOf(normInput) >= 0;
+  // Check author
+  var authorOk = !authorInput || authorVal === pexData._author;
   
-  if (isCorrect && authorOk) {
+  // Build feedback message
+  var msgs = [];
+  if (!mainOk) msgs.push('正确答案：' + correct);
+  if (!authorOk) msgs.push('作者：' + pexData._author);
+  
+  if (mainOk && authorOk) {
     pexData.correct++;
     fb.innerHTML = '<span style="color:#27ae60">✓ 正确</span>';
-    inp.classList.add('correct');
+    if (inp) inp.classList.add('correct');
   } else {
     pexData.wrong++;
-    var msg = '✗ 正确答案：' + correct;
-    if (!authorOk) msg += ' · 作者：' + pexData._author;
-    fb.innerHTML = '<span style="color:var(--accent)">' + msg + '</span>';
-    inp.classList.add('wrong');
+    fb.innerHTML = '<span style="color:var(--accent)">✗ ' + msgs.join(' · ') + '</span>';
+    if (inp) inp.classList.add('wrong');
   }
   
   pexData.idx++;
   document.getElementById('pex-skip-btn').style.display = 'block';
-  inp.style.pointerEvents = 'none';
+  if (inp) inp.style.pointerEvents = 'none';
   if (authorInput) authorInput.style.pointerEvents = 'none';
 }
 
