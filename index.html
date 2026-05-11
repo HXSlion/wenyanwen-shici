@@ -2789,8 +2789,9 @@ function pexSubmitSentence() {
   }
   
   // Check author
+  console.log('authorCheck:', 'inputExists=' + (authorInput ? 'yes' : 'no'), 'inputVal="' + authorVal + '"', 'expected="' + pexData._author + '"');
   var authorOk = !authorInput || authorVal === pexData._author;
-  console.log('authorCheck:', 'inputVal="'+authorVal+'"', 'expected="'+pexData._author+'"', 'ok='+authorOk);
+  console.log('authorOk=' + authorOk, 'msgs before:', JSON.stringify(msgs));
   
   // Build feedback message
   var msgs = [];
