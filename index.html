@@ -2809,8 +2809,6 @@ function pexSubmitSentence() {
     if (inp) inp.classList.add('wrong');
     if (authorInput && !authorOk) {
       authorInput.style.color = 'var(--accent)';
-      // Show correct author in the input
-      authorInput.value = pexData._author;
     }
   }
   
@@ -2825,9 +2823,13 @@ function pexRevealSentence() {
   pexData._locked = true;
   var inp = document.getElementById('pex-input');
   var fb = document.getElementById('pex-fb');
+  var authorInput = document.getElementById('pex-author-input');
   if (inp) inp.style.pointerEvents = 'none';
+  if (authorInput) authorInput.style.pointerEvents = 'none';
   pexData.wrong++;
-  fb.innerHTML = '<span style="color:var(--accent)">答案：' + pexData._correct + '</span>';
+  var msg = '答案：' + pexData._correct;
+  if (authorInput) msg += ' · 作者：' + pexData._author;
+  fb.innerHTML = '<span style="color:var(--accent)">' + msg + '</span>';
   pexData.idx++;
   document.getElementById('pex-skip-btn').style.display = 'block';
 }
