@@ -2624,7 +2624,8 @@ var pexData = null; // {items: [...], currentIdx, correct, wrong, total, mode}
 function enterExamReview() {
   document.getElementById('pth').style.display = 'none';
   document.getElementById('ptv').style.display = 'none';
-  document.getElementById('pt-home').style.display = 'none';
+  var home = document.querySelector('.pt-home');
+  if (home) home.style.display = 'none';
   var ex = document.getElementById('pt-exam');
   ex.style.display = 'flex';
   
@@ -2662,7 +2663,8 @@ function enterExamReview() {
 
 function closeExamReview() {
   document.getElementById('pt-exam').style.display = 'none';
-  document.getElementById('pt-home').style.display = 'block';
+  var home = document.querySelector('.pt-home');
+  if (home) home.style.display = 'block';
 }
 
 function restartExamReview() {
@@ -2795,6 +2797,7 @@ function pexShowDictation(q, poemTitle, idx) {
   html += '<div class="pex-btns"><button class="pex-btn" onclick="pexSubmitInput()">提交</button>';
   html += '<button class="pex-btn secondary" onclick="pexSkipInput()" id="pex-skip-btn2" style="display:none">下一题 →</button></div>';
   
+  var body = document.getElementById('pex-body');
   body.innerHTML = html;
   document.getElementById('pex-input').focus();
   
