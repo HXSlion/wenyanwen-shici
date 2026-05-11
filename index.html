@@ -2711,6 +2711,8 @@ function pexShowSentence(s, idx) {
   var giveUpper = Math.random() < 0.5;
   var hideAuthor = Math.random() < 0.33; // ~1/3 chance
   
+  var correct = giveUpper ? s.lower : s.upper;
+  
   var html = '<div class="pex-question">';
   html += '<div class="pex-q-title">';
   html += '<span>' + s.title + '</span>';
@@ -2723,74 +2725,72 @@ function pexShowSentence(s, idx) {
   html += '</div>';
   html += '<div class="pex-q-text">';
   if (giveUpper) {
-    html += s.upper + '，<span class="blank" id="pex-answer-area"></span>';
+    html += '<span>' + s.upper + '</span>，<span class="blank" id="pex-answer-area"></span>';
   } else {
-    html += '<span class="blank" id="pex-answer-area"></span>' + '，' + s.lower;
+    html += '<span class="blank" id="pex-answer-area"></span>，<span>' + s.lower + '</span>';
   }
   html += '</div></div>';
   
-  // Choices (4 options including correct)
-  var correct = giveUpper ? s.lower : s.upper;
-  var distractorPool = [];
-  var allSentences = [];
-  try { allSentences = KEY_SENTENCES || []; } catch(e) { allSentences = []; }
-  allSentences.forEach(function(other) {
-    if (other.title !== s.title && distractorPool.length < 20) {
-      var otherAns = other.lower;
-      if (otherAns !== correct && distractorPool.indexOf(otherAns) < 0) {
-        distractorPool.push(otherAns);
-      }
-      otherAns = other.upper;
-      if (otherAns !== correct && distractorPool.indexOf(otherAns) < 0) {
-        distractorPool.push(otherAns);
-      }
-    }
-  });
-  // Shuffle and pick 3 distractors
-  for (var i = distractorPool.length - 1; i > 0; i--) {
-    var jj = Math.floor(Math.random() * (i + 1));
-    var tmp = distractorPool[i]; distractorPool[i] = distractorPool[jj]; distractorPool[jj] = tmp;
-  }
-  var opts = [correct].concat(distractorPool.slice(0, 3));
-  for (var i = opts.length - 1; i > 0; i--) {
-    var ji = Math.floor(Math.random() * (i + 1));
-    var tmp = opts[i]; opts[i] = opts[ji]; opts[ji] = tmp;
-  }
-  
-  html += '<div class="pex-choices">';
-  opts.forEach(function(o) {
-    html += '<div class="pex-choice" onclick="pexPick(this,\'' + o.replace(/'/g, "\\'") + '\',\'' + correct.replace(/'/g, "\\'") + '\')">' + o + '</div>';
-  });
-  html += '</div>';
+  // Input area instead of choices
+  html += '<textarea class="pex-input" id="pex-input" placeholder="输入答案..." rows="1"></textarea>';
   html += '<div class="pex-feedback" id="pex-fb"></div>';
-  html += '<div class="pex-btns"><button class="pex-btn secondary" onclick="pexNext()" id="pex-skip-btn" style="display:none">下一题 →</button></div>';
+  html += '<div class="pex-btns">';
+  html += '<button class="pex-btn" onclick="pexSubmitSentence()">提交</button>';
+  html += '<button class="pex-btn secondary" onclick="pexRevealSentence()">显示答案</button>';
+  html += '<button class="pex-btn secondary" onclick="pexNext()" id="pex-skip-btn" style="display:none">下一题 →</button>';
+  html += '</div>';
   
   var body = document.getElementById('pex-body');
   body.innerHTML = html;
   
-  // Store for keyboard
+  // Focus input
+  var inp = document.getElementById('pex-input');
+  if (inp) setTimeout(function() { inp.focus(); }, 50);
+  
   pexData._correct = correct;
+  pexData._locked = false;
 }
 
-function pexPick(el, chosen, correct) {
+function pexSubmitSentence() {
   if (pexData._locked) return;
+  var inp = document.getElementById('pex-input');
+  if (!inp) return;
+  var val = inp.value.trim();
+  if (!val) return;
+  
   pexData._locked = true;
+  var correct = pexData._correct;
+  var fb = document.getElementById('pex-fb');
   
-  document.querySelectorAll('.pex-choice').forEach(function(b) { b.style.pointerEvents = 'none'; });
+  // Normalize both for comparison
+  var normInput = val.replace(/[\u300a\u300b\u300c\u300d\u201c\u201d\uff0c\u3002\uff01\uff1f\uff1b\u3001\uff1a\uff08\uff09\n\r\t ,.;:!?]/g, '').trim();
+  var normCorrect = correct.replace(/[\u300a\u300b\u300c\u300d\u201c\u201d\uff0c\u3002\uff01\uff1f\uff1b\u3001\uff1a\uff08\uff09\n\r\t ,.;:!?]/g, '').trim();
   
-  if (chosen === correct) {
+  var isCorrect = normInput === normCorrect || normCorrect.indexOf(normInput) >= 0;
+  
+  if (isCorrect) {
     pexData.correct++;
-    el.classList.add('correct');
-    document.getElementById('pex-fb').innerHTML = '<span style="color:#27ae60">✓ 正确</span>';
+    fb.innerHTML = '<span style="color:#27ae60">✓ 正确</span>';
+    inp.classList.add('correct');
   } else {
     pexData.wrong++;
-    el.classList.add('wrong');
-    document.querySelectorAll('.pex-choice').forEach(function(b) {
-      if (b.textContent.trim() === correct) b.classList.add('correct');
-    });
-    document.getElementById('pex-fb').innerHTML = '<span style="color:var(--accent)">✗ 正确答案：' + correct + '</span>';
+    fb.innerHTML = '<span style="color:var(--accent)">✗ 正确答案：' + correct + '</span>';
+    inp.classList.add('wrong');
   }
   
+  pexData.idx++;
+  document.getElementById('pex-skip-btn').style.display = 'block';
+  inp.style.pointerEvents = 'none';
+}
+
+function pexRevealSentence() {
+  if (pexData._locked) return;
+  pexData._locked = true;
+  var inp = document.getElementById('pex-input');
+  var fb = document.getElementById('pex-fb');
+  if (inp) inp.style.pointerEvents = 'none';
+  pexData.wrong++;
+  fb.innerHTML = '<span style="color:var(--accent)">答案：' + pexData._correct + '</span>';
   pexData.idx++;
   document.getElementById('pex-skip-btn').style.display = 'block';
 }
