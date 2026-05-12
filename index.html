@@ -2670,7 +2670,12 @@ function enterExamReview() {
 }
 
 function closeExamReview() {
-  document.getElementById('pt-exam').style.display = 'none';
+  var ex = document.getElementById('pt-exam');
+  ex.style.display = 'none';
+  // Clear exam content to prevent leftover DOM
+  document.getElementById('pex-body').innerHTML = '';
+  document.getElementById('pex-result').style.display = 'none';
+  document.getElementById('pex-main').style.display = 'block';
   var home = document.querySelector('.pt-home');
   if (home) home.style.display = 'block';
 }
