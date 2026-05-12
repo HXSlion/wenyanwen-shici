@@ -2672,12 +2672,17 @@ function enterExamReview() {
 function closeExamReview() {
   var ex = document.getElementById('pt-exam');
   ex.style.display = 'none';
-  // Clear exam content to prevent leftover DOM
   document.getElementById('pex-body').innerHTML = '';
   document.getElementById('pex-result').style.display = 'none';
-  document.getElementById('pex-main').style.display = 'block';
-  var home = document.querySelector('.pt-home');
-  if (home) home.style.display = 'block';
+  // Restore poetry home
+  document.getElementById('pth').style.display = 'flex';
+  // Switch to poetry sub-nav
+  document.getElementById('sub-nav-c').style.display = 'none';
+  document.getElementById('sub-nav-p').style.display = 'flex';
+  // Activate poetry main tab
+  document.querySelectorAll('.main-tab').forEach(function(b) {
+    b.classList.toggle('act', b.dataset.main === 'p');
+  });
 }
 
 function restartExamReview() {
