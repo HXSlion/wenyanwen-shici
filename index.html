@@ -2672,9 +2672,8 @@ function enterExamReview() {
 function closeExamReview() {
   var ex = document.getElementById('pt-exam');
   ex.style.display = 'none';
-  document.getElementById('pex-body').innerHTML = '';
-  document.getElementById('pex-result').style.display = 'none';
-  // Restore poetry home
+  // Completely clear all exam content
+  ex.innerHTML = '';
   document.getElementById('pth').style.display = 'flex';
   // Switch to poetry sub-nav
   document.getElementById('sub-nav-c').style.display = 'none';
