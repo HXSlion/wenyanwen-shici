@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>EAP 101A 口语训练工具卡</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1f232c; --border:#2a2f3a;
+    --text:#e6e9ef; --muted:#9aa3b2; --accent:#5b8cff; --accent2:#36c6a0;
+    --warn:#ffb454; --danger:#ff6b6b; --ok:#36c6a0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.7;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:30px 22px 60px}
+  h1{font-size:25px;margin:0 0 4px}
+  .sub{color:var(--muted);margin:0 0 18px;font-size:14px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin:18px 0}
+  .card h2{font-size:18px;margin:0 0 6px;color:var(--accent2)}
+  .card .hint{color:var(--muted);font-size:13px;margin:0 0 14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+  .tpl{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+  .tpl .fn{font-size:12px;color:var(--accent);font-weight:600;margin-bottom:6px;letter-spacing:.3px}
+  .tpl .en{font-size:14.5px;color:var(--text);margin:3px 0}
+  .tpl .en b{color:var(--warn);font-weight:600}
+  .tpl .cn{font-size:12px;color:var(--muted);margin-top:5px}
+  .blank{display:inline-block;border-bottom:1.5px solid var(--warn);min-width:60px;color:var(--warn);padding:0 4px}
+  .timeline{display:grid;grid-template-columns:90px 1fr;gap:10px;align-items:start;margin:10px 0}
+  .tl-time{background:var(--accent);color:#fff;border-radius:8px;padding:6px 8px;text-align:center;font-weight:700;font-size:13px;flex:none}
+  .tl-box{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size:13.5px}
+  .tl-box .role{color:var(--accent2);font-weight:600}
+  .tl-box .fill{color:var(--muted);font-size:12.5px;margin-top:4px}
+  .checklist{list-style:none;margin:8px 0;padding:0}
+  .checklist li{position:relative;padding:5px 0 5px 28px;border-bottom:1px dashed #232833;font-size:13.5px}
+  .checklist li:last-child{border:none}
+  .checklist li::before{content:"";position:absolute;left:3px;top:9px;width:15px;height:15px;border:2px solid var(--muted);border-radius:4px}
+  .topics{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .topic{background:var(--panel2);border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-size:13px}
+  .topic b{color:var(--accent2)}
+  .drill{background:#1a1d24;border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;margin:12px 0;font-size:13.5px}
+  .drill b{color:var(--text)}
+  .pillrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .pill{background:var(--panel2);border:1px solid var(--border);border-radius:20px;padding:6px 13px;font-size:13px}
+  .pill b{color:var(--accent)}
+  .btn{position:fixed;right:22px;bottom:22px;background:var(--accent);color:#fff;border:none;border-radius:10px;
+    padding:11px 18px;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+  footer{color:var(--muted);font-size:12px;text-align:center;margin-top:24px}
+  @media print{body{background:#fff;color:#111}.card{background:#fff;border:1px solid #ccc}.tpl,.tl-box,.topic,.pill{background:#f5f5f5;border-color:#ccc}
+    .btn{display:none}.sub{color:#555}.tpl .cn,.card .hint,.tl-box .fill{color:#666}.tpl .en b,.blank,.pill b,.topic b,.tl-box .role{color:#b5651d}}
+
+  /* ===== 移动端 / 窄屏适配（手机 & iPad 竖屏） ===== */
+  @media (max-width:640px){
+    body{font-size:15px}
+    .wrap{padding:22px 14px 48px}
+    h1{font-size:22px}
+    .card{padding:16px 15px}
+    .card h2{font-size:16px}
+    li{padding-left:26px}
+    table{display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    th,td{padding:8px 9px;white-space:normal;min-width:90px}
+    .weights,.meta{grid-template-columns:1fr}
+    .wbox .pct{font-size:21px}
+  }
+  @media print{
+    body{background:#fff;color:#111}
+    .card,.wbox,.meta div{background:#fff;border-color:#ccc}
+    a.card{display:none}
+  }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>EAP 101A 口语训练工具卡</h1>
+  <p class="sub">两张可反复使用的卡片：① 口头句型速查卡（练"30 秒观点+多论据"）② 2 分钟 mini-presentation 模板（按 Keys Ch.24 结构）｜ 配合录音回听效果最佳</p>
+
+  <!-- 卡片一 -->
+  <div class="card">
+    <h2>① 口头句型速查卡（Spoken Sentence Patterns）</h2>
+    <p class="hint">来源：They Say / I Say 的"学术对话模板"。把下面句型当成<b>口头骨架</b>——看到论题，先套骨架，再填自己的内容，避免卡壳。每个 ___ 处填一个词/短语。</p>
+    <div class="grid">
+      <div class="tpl"><div class="fn">引入他人观点</div>
+        <div class="en">A common view is that <span class="blank">___</span>.</div>
+        <div class="en">According to X, <span class="blank">___</span>.</div>
+        <div class="cn">先说出"别人怎么说"，给自己的立场铺垫。</div></div>
+      <div class="tpl"><div class="fn">直接亮明立场</div>
+        <div class="en">My own view is that <span class="blank">___</span> because <span class="blank">___</span>.</div>
+        <div class="en">In my experience, <span class="blank">___</span>.</div>
+        <div class="cn">30 秒训练的核心句：观点 + 一个原因。</div></div>
+      <div class="tpl"><div class="fn">同意但补充</div>
+        <div class="en">X is right that <span class="blank">___</span>, but I would add that <span class="blank">___</span>.</div>
+        <div class="cn">展示"多角度"：先接住对方，再补新角度。</div></div>
+      <div class="tpl"><div class="fn">不同意 + 理由</div>
+        <div class="en">I disagree with X because <span class="blank">___</span> overlooks <span class="blank">___</span>.</div>
+        <div class="en">X's claim rests on the assumption that <span class="blank">___</span>, but <span class="blank">___</span>.</div>
+        <div class="cn">反驳要有理有据，指出对方前提漏洞。</div></div>
+      <div class="tpl"><div class="fn">同时同意又不同意</div>
+        <div class="en">Although I agree with X to a point, I cannot accept <span class="blank">___</span> because <span class="blank">___</span>.</div>
+        <div class="cn">学术讨论最吃香的" nuanced"表态。</div></div>
+      <div class="tpl"><div class="fn">多角度展开</div>
+        <div class="en">On the one hand, X argues <span class="blank">___</span>. On the other hand, Y contends <span class="blank">___</span>.</div>
+        <div class="en">My own view is <span class="blank">___</span>.</div>
+        <div class="cn">一正一反 + 自己立场 = 完整的"多论据"。</div></div>
+      <div class="tpl"><div class="fn">预设反对者</div>
+        <div class="en">A skeptic might object that <span class="blank">___</span>, but <span class="blank">___</span>.</div>
+        <div class="cn">主动抛反方再击破，显得思考周全（Keys/TSIS 通用）。</div></div>
+      <div class="tpl"><div class="fn">举例支撑</div>
+        <div class="en">For instance, <span class="blank">___</span>.</div>
+        <div class="en">A good example is <span class="blank">___</span>.</div>
+        <div class="cn">每个论点配一个具体例子，避免空泛。</div></div>
+      <div class="tpl"><div class="fn">解释重要性</div>
+        <div class="en">This matters because <span class="blank">___</span>.</div>
+        <div class="en">Why this is important is <span class="blank">___</span>.</div>
+        <div class="cn">结尾回答"so what"，让发言有重量。</div></div>
+      <div class="tpl"><div class="fn">过渡 / 换角度</div>
+        <div class="en">Let me give another example.</div>
+        <div class="en">To put it another way, <span class="blank">___</span>.</div>
+        <div class="en">In short, <span class="blank">___</span>.</div>
+        <div class="cn">口语衔接词，避免"然后…然后…"。</div></div>
+      <div class="tpl"><div class="fn">缓和语气</div>
+        <div class="en">It seems to me that <span class="blank">___</span>.</div>
+        <div class="en">I'm inclined to think that <span class="blank">___</span>.</div>
+        <div class="cn">学术语气更稳妥，不把话说死。</div></div>
+      <div class="tpl"><div class="fn">总结收尾</div>
+        <div class="en">So, to sum up, I believe <span class="blank">___</span>.</div>
+        <div class="cn">收束发言，重申立场。</div></div>
+    </div>
+    <div class="drill">
+      <b>30 秒训练法（每日 1 题）：</b>随机抽一个论题 → 计时 30 秒，用这条最小骨架说出完整观点：
+      <b>"On the one hand… (他人观点). On the other hand… (另一角度). My own view is… because… For instance…"</b>
+      说完录音，回听是否覆盖"立场 + 至少 2 个角度 + 1 个例子"。
+    </div>
+  </div>
+
+  <!-- 卡片二 -->
+  <div class="card">
+    <h2>② 2 分钟 Mini-Presentation 练习模板</h2>
+    <p class="hint">结构依据 Keys for Writers 第 24 章 "Oral and Multimedia Presentations"。总时长约 2 分钟，右侧为每段的"角色"与"待填内容"。</p>
+    <div class="timeline">
+      <div class="tl-time">0:00–0:20</div>
+      <div class="tl-box"><span class="role">开场（Hook + Thesis）</span><br>打招呼 + 点题 + 直接亮立场。
+        <div class="fill">"Today I'd like to talk about <span class="blank">话题</span>. My position is that <span class="blank">立场</span>."</div></div>
+      <div class="tl-time">0:20–0:50</div>
+      <div class="tl-box"><span class="role">论点 1 + 例子</span><br>第一个角度，配具体例子/细节。
+        <div class="fill">"First, <span class="blank">论点1</span>. For instance, <span class="blank">例子</span>."</div></div>
+      <div class="tl-time">0:50–1:20</div>
+      <div class="tl-box"><span class="role">论点 2（另一角度）</span><br>第二个角度，体现"多论据"。
+        <div class="fill">"Second, from another angle, <span class="blank">论点2</span>. This is important because <span class="blank">原因</span>."</div></div>
+      <div class="tl-time">1:20–1:45</div>
+      <div class="tl-box"><span class="role">预设反方 + 回应</span><br>用 TSIS naysayer 模板，展示周全。
+        <div class="fill">"A skeptic might object that <span class="blank">反对意见</span>, but <span class="blank">反驳</span>."</div></div>
+      <div class="tl-time">1:45–2:00</div>
+      <div class="tl-box"><span class="role">结论（重申 + So-what）</span><br>收束，回到立场并点明意义。
+        <div class="fill">"So, to sum up, I believe <span class="blank">立场</span>. This matters because <span class="blank">意义</span>."</div></div>
+    </div>
+    <p style="color:var(--muted);font-size:13px;margin:6px 0 4px"><b style="color:var(--text)">上台前 checklist（Keys Ch.24 要点）</b></p>
+    <ul class="checklist">
+      <li>开头 1 句就说出立场，不要绕。</li>
+      <li>用 signposting 词："First / Second / On the other hand / In short" 帮听众跟上。</li>
+      <li>不看稿：只列关键词提纲，照读会扣分。</li>
+      <li>音量、眼神接触、停顿（讲完一点停 1 秒）。</li>
+      <li>每个论点都有例子，避免纯抽象。</li>
+      <li>预留 2–3 个可能被问到的问题，提前想好回答。</li>
+    </ul>
+    <p style="color:var(--muted);font-size:13px;margin:10px 0 4px"><b style="color:var(--text)">录音回听检查表</b></p>
+    <ul class="checklist">
+      <li>是否覆盖了"立场 + ≥2 角度 + 1 例子 + 反方"？</li>
+      <li>填充词（um / 那个 / you know）是否过多？</li>
+      <li>语法准确度：时态、单复数、冠词是否稳定？</li>
+      <li>有没有用上至少 3 个句型卡里的框架句？</li>
+    </ul>
+  </div>
+
+  <!-- 论题库 -->
+  <div class="card">
+    <h2>③ 随机论题库（贴合课程主题）</h2>
+    <p class="hint">每天抽 1 题做 30 秒训练 / 每周抽 1 题做 2 分钟 presentation。课程主题类直接对应 EAP 101A 的口语与论文话题。</p>
+    <p style="color:var(--accent2);font-size:13px;font-weight:600;margin:6px 0 2px">课程主题类（语言学习 / 身份 / EMI）</p>
+    <div class="topics">
+      <div class="topic"><b>Q</b> 大学是否应以英语授课（EMI）为默认？</div>
+      <div class="topic"><b>Q</b> 多语能力对身份认同是优势还是负担？</div>
+      <div class="topic"><b>Q</b> AI 工具助力语言学习，还是阻碍它？</div>
+      <div class="topic"><b>Q</b> 犯错是语言学习中必需的吗？</div>
+      <div class="topic"><b>Q</b> 母语会塑造一个人的思维方式吗？</div>
+      <div class="topic"><b>Q</b> 留学/海外经历是"全球视野"的必要条件吗？</div>
+    </div>
+    <p style="color:var(--accent2);font-size:13px;font-weight:600;margin:14px 0 2px">通用类（教育 / 科技 / 文化）</p>
+    <div class="topics">
+      <div class="topic"><b>Q</b> 社交媒体有利于批判性思维吗？</div>
+      <div class="topic"><b>Q</b> 大学应更侧重实用技能还是通识教育？</div>
+      <div class="topic"><b>Q</b> 失败比成功更有教育意义吗？</div>
+      <div class="topic"><b>Q</b> 远程学习能替代线下课堂吗？</div>
+      <div class="topic"><b>Q</b> 标准化考试能衡量真实能力吗？</div>
+    </div>
+  </div>
+
+  <div class="pillrow">
+    <div class="pill"><b>用法</b> 卡片①练"即时组织"</div>
+    <div class="pill"><b>用法</b> 卡片②练"结构化演讲"</div>
+    <div class="pill"><b>用法</b> 题库③提供燃料</div>
+    <div class="pill"><b>关键</b> 全部配合录音回听</div>
+  </div>
+
+  <footer>配合《EAP 101A 课前准备方案》使用 ｜ 句型来源 They Say / I Say；演讲结构来源 Keys for Writers Ch.24 ｜ 仅供参考，以教师要求为准</footer>
+</div>
+<button class="btn" onclick="window.print()">打印 / 存 PDF</button>
+</body>
+</html>
