@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>EAP 101A 课前系统性准备方案</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1f232c; --border:#2a2f3a;
+    --text:#e6e9ef; --muted:#9aa3b2; --accent:#5b8cff; --accent2:#36c6a0;
+    --warn:#ffb454; --danger:#ff6b6b; --ok:#36c6a0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.7;font-size:15px}
+  .wrap{max-width:980px;margin:0 auto;padding:32px 22px 64px}
+  h1{font-size:26px;margin:0 0 6px;letter-spacing:.5px}
+  .sub{color:var(--muted);margin:0 0 22px;font-size:14px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin:18px 0}
+  .card h2{font-size:18px;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+  .num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;
+    background:var(--accent);color:#fff;font-weight:700;font-size:14px;flex:none}
+  .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:4px}
+  .meta div{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size:13.5px}
+  .meta b{color:var(--accent2)}
+  ul{list-style:none;margin:0;padding:0}
+  li{position:relative;padding:7px 0 7px 30px;border-bottom:1px dashed #232833}
+  li:last-child{border-bottom:none}
+  li::before{content:"";position:absolute;left:4px;top:12px;width:16px;height:16px;border:2px solid var(--muted);
+    border-radius:4px;background:transparent}
+  li.done::before{background:var(--ok);border-color:var(--ok)}
+  .tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:20px;margin-left:6px;vertical-align:middle;
+    border:1px solid var(--border);color:var(--muted)}
+  .tag.h{color:var(--danger);border-color:#5a2b2b}
+  .tag.w{color:var(--warn);border-color:#5a452b}
+  .tag.g{color:var(--ok);border-color:#2b5a4d}
+  .weights{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:6px 0 4px}
+  .wbox{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .wbox .pct{font-size:24px;font-weight:800;color:var(--accent)}
+  .wbox .nm{font-size:13px;color:var(--muted);margin-top:2px}
+  .note{background:#1a1d24;border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0;font-size:13.5px;color:var(--muted)}
+  .note b{color:var(--text)}
+  .alert{background:#241a1a;border-left:3px solid var(--danger);border-radius:8px;padding:12px 14px;margin:14px 0;font-size:13.5px}
+  .alert b{color:var(--danger)}
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13.5px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--border)}
+  th{color:var(--accent2);font-weight:600}
+  .prio{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .pill{background:var(--panel2);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:13px}
+  .pill b{color:var(--accent)}
+  footer{color:var(--muted);font-size:12.5px;margin-top:26px;text-align:center}
+  .checksum{font-size:13px;color:var(--muted);margin-top:10px}
+
+  /* ===== 移动端 / 窄屏适配（手机 & iPad 竖屏） ===== */
+  @media (max-width:640px){
+    body{font-size:15px}
+    .wrap{padding:22px 14px 48px}
+    h1{font-size:22px}
+    .card{padding:16px 15px}
+    .card h2{font-size:16px}
+    li{padding-left:26px}
+    table{display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    th,td{padding:8px 9px;white-space:normal;min-width:90px}
+    .weights,.meta{grid-template-columns:1fr}
+    .wbox .pct{font-size:21px}
+  }
+  @media print{
+    body{background:#fff;color:#111}
+    .card,.wbox,.meta div{background:#fff;border-color:#ccc}
+    a.card{display:none}
+  }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>EAP 101A 课前系统性准备方案</h1>
+  <p class="sub">目标：在开课前打基础，为后续取得优异总评（A / A- 区间）铺路 ｜ 依据课程 Syllabus (PW F26) 整理</p>
+
+  <!-- 课程基本信息 -->
+  <div class="card">
+    <h2><span class="num">i</span>课程基本信息（先确认）</h2>
+    <div class="meta">
+      <div><b>课程</b><br>EAP 101A · Writing about Language: Learning: New Environments and Learner Identities</div>
+      <div><b>学期</b><br>Fall 2026 Session 1 · 2026/8/24 – 10/15（7周，2学分，Seminar）</div>
+      <div><b>教师</b><br>Peter Wergin · peterjohn.wergin@dukekunshan.edu.cn · 办公室 AB 2059</div>
+      <div><b>办公时间</b><br>周一–周四 7:30–8:30、周一 13:00–14:00、周三 13:00–14:00</div>
+      <div><b>主平台</b><br>Canvas（每日查）+ DKU 邮箱（每日查）+ 微信群（入群码 0001）</div>
+      <div><b>指定教材</b><br>They Say / I Say (6th, 2024) · Keys for Writers (9th, 2025)</div>
+    </div>
+    <p class="checksum">⏱ 当前距开课（8/24）仅约 3 天——第一、四部分为"本周末必须完成"，其余为持续习惯。</p>
+  </div>
+
+  <!-- 0 能力映射 -->
+  <div class="card">
+    <h2><span class="num">0</span>你的能力画像 × 评分板块映射（决定优先级）</h2>
+    <p style="margin:0 0 10px;color:var(--muted);font-size:13.5px">自述：上海高考英语 133 ｜ 雅思写作 6.5–7 ｜ 词汇高考–四级之间 ｜ 口语弱——看到论题难在 30 秒内产出"观点+多角度论据"。据此把四项板块重排如下。</p>
+    <table>
+      <tr><th>板块（权重）</th><th>你的相对位置</th><th>风险</th><th>课前投入重点</th></tr>
+      <tr><td>短写作 35%</td><td>书面基础扎实（高考133+雅思写作6.5–7）；落差在学术 summary 规范、paraphrase/citation 合规</td><td><span class="tag w">中</span> 规范非能力</td><td>预习教材第1–2章框架；练 citation / paraphrasing 防 plagiarism</td></tr>
+      <tr><td>课程论文 35%</td><td>立场+论据+例子的议论文是强项；增量为"原创声音/地道性/基于反馈修订"</td><td><span class="tag g">低</span> 上限看修订</td><td>熟悉写作六步流程；预演 peer / instructor 反馈后的修订</td></tr>
+      <tr><td>口语 20%</td><td>明显短板：30秒内难组织观点+多论据；口语为现场表现，直接拉低总评</td><td><span class="tag h">高</span> 关键变量</td><td>每日限时口语训练（见下方清单）</td></tr>
+      <tr><td>参与 10%</td><td>与口语强相关（课堂/小组发言、讨论帖）；但可凭出勤+准备+office hour+讨论帖稳定拉满，不依赖即兴天赋</td><td><span class="tag g">低</span> 可执行</td><td>用"准备"补足"即兴"；靠讨论帖与 office hour 拿满</td></tr>
+    </table>
+
+    <p style="margin:14px 0 6px;color:var(--muted);font-size:13.5px"><b style="color:var(--text)">重新排序后的行动优先级</b></p>
+    <div class="prio">
+      <div class="pill"><b>首要杠杆</b> 口语 20% — 30秒观点+多论据训练（最高风险、最易提分）</div>
+      <div class="pill"><b>守住上限</b> 写作 70% — 用规范与修订质量锁 A/A-</div>
+      <div class="pill"><b>拉满保底</b> 参与 10% — 准备+office hour+讨论帖，不让口语弱项拖累</div>
+      <div class="pill"><b>规避红线</b> 迟交 + AI 违规</div>
+    </div>
+
+    <p style="margin:14px 0 6px;color:var(--muted);font-size:13.5px"><b style="color:var(--text)">课前口语训练清单（做什么）</b></p>
+    <ul>
+      <li>每日 10–15 分钟限时口语：随机抽论题（教育 / 科技 / 文化 / 多语身份），30 秒倒计时先逼出 1 个立场，再用 1 分钟补 2–3 个角度论据。</li>
+      <li>建立"论据素材库"：按课程主题（语言学习、身份认同、EMI/英语授课环境）预存 3–5 个可用例子与视角，降低现场编造压力。</li>
+      <li>英语自言自语 / 录音回听，练"想到就能说"的流利度；对照雅思口语 6.5–7 标准校准。</li>
+      <li>找同伴 / 学习小组做 2 分钟英文 mini-presentation 并互给反馈（呼应大纲"rehearse presentations"建议）。</li>
+      <li>预热课程主题（Jay Walker TED、Lin 2010 English and Me、Galloway 2017 EMI），先想好你对"多语身份 / 语言学习挑战"的立场。</li>
+    </ul>
+    <div class="note">💡 词汇无需大规模扩充：高考–四级区间已足以应对课程。针对性补<b>学术写作高频搭配</b>（They Say / I Say 模板句、academic chunks）比背单词性价比更高。</div>
+    <div class="note">📚 <b>两本书与口语的关系</b>：<b>Keys for Writers</b> 第 24 章 "Oral and Multimedia Presentations" 是专门的口语/演讲章节，可直接照练；其 Part IX（多语写作者语法）也能提升口语准确度。<b>They Say / I Say</b> 本身无口语章节（纯写作书），但它的模板句（"On the one hand… on the other hand… my own view is…""I disagree because…"）正是学术对话的话术骨架——把它们当"口头句型"朗读+即兴填空，正好练 30 秒观点+多论据。</div>
+  </div>
+
+  <!-- 一 -->
+  <div class="card">
+    <h2><span class="num">1</span>提前了解大纲 / 先修知识 / 考核方式</h2>
+    <ul>
+      <li>通读 Syllabus 全文，重点标记：课程目标、每周 schedule、评分政策、AI 政策、迟交政策。</li>
+      <li>确认先修要求：大纲明确写"无先修课程（No prerequisite courses required）"——但仍需自查下列能力基线。</li>
+      <li>对照"课程学习成果"自查先修能力缺口：
+        <ul>
+          <li>能否较流畅阅读英文学术文本并提炼论点；</li>
+          <li>能否用英语写 summary 与 response（引用 / 转述 / 注明出处）；</li>
+          <li>能否用英语写"立场清晰 + 论据支撑 + 例子"的短文；</li>
+          <li>能否在课堂 / 小组中用英语参与讨论。</li>
+        </ul>
+      </li>
+      <li>熟记四项考核板块与权重（见第 4 部分），建立"分数地图"。</li>
+      <li>记录关键节点：开课 8/24、SW1 截止 9/7（据 schedule），以及各 draft / final 截止日。</li>
+      <li>熟悉 DKU 成绩量表：A 93–97、A- 90–92、B+ 87–89、B 83–86…（目标锁定 A / A-）。</li>
+    </ul>
+  </div>
+
+  <!-- 二 -->
+  <div class="card">
+    <h2><span class="num">2</span>针对薄弱环节补充基础学习资源</h2>
+    <ul>
+      <li>采购 / 借阅两本指定教材，开课前到手：They Say / I Say (6th) 与 Keys for Writers (9th)。</li>
+      <li>学术阅读偏弱 → 预习 They Say / I Say 第 1–2 章"他人说 / 我说"框架，练 skim + 抓主旨。</li>
+      <li>学术写作 / summary 偏弱 → 用 Keys for Writers 熟悉引用、paraphrase、避免 plagiarism 规范。</li>
+      <li>英语表达 / 语法准确性偏弱 → 注册 WLS（Writing and Language Studio）账号，了解可预约服务（论文、语言点、口语练习、演讲彩排、阅读策略）。</li>
+      <li>口语 / 课堂讨论偏弱 → 找同伴做英文主题对谈；预热课程将用到的 Jay Walker TED、Lin (2010) English and Me 等材料。</li>
+      <li>浏览 LCC Writing and Language Studio 网站，收藏常用资源页备用。</li>
+    </ul>
+  </div>
+
+  <!-- 三 -->
+  <div class="card">
+    <h2><span class="num">3</span>建立课前预习与笔记习惯</h2>
+    <ul>
+      <li>开课前熟悉 Canvas 课程站结构（每周一个 section，含学习材料与任务），建立"每周清单"跟踪。</li>
+      <li>采用大纲明确建议的<b>主动阅读法</b>：读前看问题 → 读中标记主旨与视角 → 读后记录疑问 → 准备课堂 / 论坛发言。</li>
+      <li>固定一套阅读笔记模板：每篇记"核心论点 / 作者视角 / 我的疑问 / 可引用句"。</li>
+      <li>建立写作流程习惯（大纲建议）：thinking → pre-writing → drafting → 获取反馈 → revising → editing，提前演练。</li>
+      <li>养成"每日查 Canvas + 邮箱"习惯，避免错过公告与截止。</li>
+      <li>为每次作业预留"反思 cover sheet"草稿栏，记录写作过程与课堂反思。</li>
+    </ul>
+  </div>
+
+  <!-- 四 -->
+  <div class="card">
+    <h2><span class="num">4</span>明确权重与高分标准</h2>
+    <div class="weights">
+      <div class="wbox"><div class="pct">35%</div><div class="nm">Short Writing Assignments（短写作）</div></div>
+      <div class="wbox"><div class="pct">35%</div><div class="nm">Course Paper（课程论文）</div></div>
+      <div class="wbox"><div class="pct">20%</div><div class="nm">Oral Assignments（口语）</div></div>
+      <div class="wbox"><div class="pct">10%</div><div class="nm">Engagement（准备+参与）</div></div>
+    </div>
+    <table>
+      <tr><th>板块</th><th>高分标准（取自大纲学习成果）</th></tr>
+      <tr><td>短写作 35%</td><td>简洁、有效地 summary 文本并突出最重要观点；体现学术诚信。</td></tr>
+      <tr><td>课程论文 35%</td><td>立场清晰；有解释与支撑；有例子与具体细节；英语准确地道、有原创声音；基于同伴 / 教师反馈修订。</td></tr>
+      <tr><td>口语 20%</td><td>有效参与学术对话、清晰口头表达观点（两次 oral report / 组织化讨论）。</td></tr>
+      <tr><td>参与 10%</td><td>出勤 + 准备 + 参与；讨论帖；office hour（大纲要求 ≥3 次预约）；团队任务；可选活动。</td></tr>
+    </table>
+    <div class="alert">
+      <b>⚠ 三条红线（直接影响高分，须提前心里有数）：</b><br>
+      ① <b>迟交</b>：每迟 1 天扣 5 分，超 3 天不收；draft 迟交额外扣 Engagement 分且可能无反馈。<br>
+      ② <b>AI / 学术诚信</b>：未经明确许可使用 AI 写作 / 翻译 / 润色 = 首次 0%（可重写封顶 D/60%），二次 0% 并上报。课程论文（Course Paper）按 Sample 封面与 APA 指南<b>严格禁止</b>用 AI 生成 / 检查 / 翻译——以最严口径为准。<br>
+      ③ <b>WLS 预约本身不计分</b>，但需邮件向教师提交报告以体现投入。
+    </div>
+  </div>
+
+  <!-- 五 -->
+  <div class="card">
+    <h2><span class="num">5</span>规划时间管理与沟通渠道</h2>
+    <p style="margin:0 0 8px;color:var(--muted);font-size:13.5px"><b style="color:var(--text)">时间管理（做什么）</b></p>
+    <ul>
+      <li>按"10 小时 / 周 异步投入"预留固定时段（如每周 2–3 个固定 block 做阅读 + 写作）。</li>
+      <li>以 Canvas 每周 section 为节奏单位，按"布置顺序"按时完成任务，不积压。</li>
+      <li>为每次写作任务预留完整流程时间（构思 → 草稿 → 反馈 → 修订 → 编辑），避免压线提交。</li>
+      <li>用日历标注所有 due date 与 draft 节点，自设提前 1–2 天的个人截止线。</li>
+    </ul>
+    <p style="margin:14px 0 8px;color:var(--muted);font-size:13.5px"><b style="color:var(--text)">沟通渠道（做什么）</b></p>
+    <ul>
+      <li>入微信群（码 0001）；课程问题发群而非私信教师。</li>
+      <li>预约并完成教师 office hour <b>≥3 次</b>（大纲硬性建议，影响 Engagement 分）。</li>
+      <li>注册并预约 WLS 教练，就论文 / 语言点 / 口语 / 演讲彩排获取反馈（需邮件向教师提交报告）。</li>
+      <li>组建 3–4 人学习小组，定期讨论阅读与 topics、互相激励、演练口语。</li>
+      <li>善用 DKU 邮箱与 Canvas 消息；教师周一至五 24h 内回复，周末回复慢。</li>
+      <li>联系往届学生：通过 DKU 学生社群 / 同乡会 / 课程群了解真实经验与评分偏好。<span class="tag">注</span></li>
+      <li>遇技术 / 特殊情况：IT 支持 400-816-7100；紧急情况提前联系教师。</li>
+    </ul>
+    <div class="note">📌 <b>关于"助教"</b>：本版 Syllabus 未列明 TA；主沟通渠道为<b>教师 office hour + WLS 教练</b>。入学后可在 Canvas / 微信群确认是否有 TA，并以教师公布为准。</div>
+  </div>
+
+  <!-- 优先级 -->
+  <div class="card">
+    <h2><span class="num">★</span>执行优先级（系统性排序）</h2>
+    <div class="prio">
+      <div class="pill"><b>P0 本周末</b> 通读大纲 · 确认无先修但自查缺口 · 到手两本教材 · 记熟权重与红线</div>
+      <div class="pill"><b>P1 开课前</b> 建立 Canvas/邮箱/微信群跟踪 · 预习教材第1–2章 · 注册 WLS</div>
+      <div class="pill"><b>P2 每周持续</b> 主动阅读笔记 · 写作流程习惯 · office hour≥3次 · 学习小组</div>
+      <div class="pill"><b>P3 全程</b> 日历截止线 · 远离 AI 红线 · 讨论帖与参与拉满 10%</div>
+    </div>
+    <div class="note">💡 <b>核心逻辑</b>：35%+35% 的写作两大板块决定总评上限，10% 的参与是最易"拉满"的保底分；把时间优先投向短写作与课程论文的过程质量，同时用 Engagement 与按时提交守住下限。</div>
+  </div>
+
+  <footer>依据 EAP 101A Syllabus (PW F26) 与课程配套文档整理 · 仅供课前规划参考，具体以教师开学后公布为准</footer>
+</div>
+</body>
+</html>
