@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>EAP 101A 课程评分因素结构化总结</title>
+<style>
+  :root{
+    --bg:#0f1117; --panel:#171a23; --panel2:#1e222e; --border:#2a2f3d;
+    --text:#e6e9ef; --muted:#9aa3b2; --accent:#5b8cff; --accent2:#37c2a8;
+    --red:#ff6b6b; --green:#3ddc84; --amber:#ffb454;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.65;padding:32px 20px 64px}
+  .wrap{max-width:980px;margin:0 auto}
+  h1{font-size:26px;margin:0 0 6px}
+  h2{font-size:20px;margin:36px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--accent)}
+  h3{font-size:16px;margin:22px 0 10px;color:var(--accent2)}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 4px}
+  .meta{color:var(--muted);font-size:12.5px;background:var(--panel);border:1px solid var(--border);
+    border-radius:10px;padding:12px 16px;margin:14px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:var(--panel);
+    border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border)}
+  th{background:var(--panel2);color:var(--muted);font-weight:600}
+  tr:last-child td{border-bottom:none}
+  .pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:600}
+  .w35{background:rgba(91,140,255,.18);color:#9bb6ff}
+  .w20{background:rgba(55,194,168,.18);color:#7fe3d2}
+  .w10{background:rgba(255,180,84,.18);color:#ffcd8a}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin:14px 0}
+  .rank{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border)}
+  .rank:last-child{border-bottom:none}
+  .num{flex:0 0 30px;height:30px;border-radius:8px;background:var(--panel2);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+  .rbody{flex:1}
+  .rbody b{color:var(--text)}
+  .rbody .note{color:var(--muted);font-size:12.5px;display:block;margin-top:2px}
+  .neg{color:var(--red)} .pos{color:var(--green)} .warn{color:var(--amber)}
+  .tag{font-size:11.5px;padding:1px 7px;border-radius:6px;margin-right:6px}
+  .t-neg{background:rgba(255,107,107,.15);color:#ff9a9a}
+  .t-pos{background:rgba(61,220,132,.15);color:#7df0ad}
+  .callout{background:var(--panel2);border-left:3px solid var(--amber);border-radius:8px;
+    padding:12px 16px;margin:14px 0;font-size:13px;color:#ffe2b0}
+  .callout b{color:var(--amber)}
+  ul{margin:8px 0;padding-left:20px} li{margin:5px 0}
+  .foot{color:var(--muted);font-size:12px;margin-top:30px;border-top:1px solid var(--border);padding-top:14px}
+
+  /* ===== 移动端 / 窄屏适配（手机 & iPad 竖屏） ===== */
+  @media (max-width:640px){
+    body{font-size:15px}
+    .wrap{padding:22px 14px 48px}
+    h1{font-size:22px}
+    .card{padding:16px 15px}
+    .card h2{font-size:16px}
+    li{padding-left:26px}
+    table{display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    th,td{padding:8px 9px;white-space:normal;min-width:90px}
+    .weights,.meta{grid-template-columns:1fr}
+    .wbox .pct{font-size:21px}
+  }
+  @media print{
+    body{background:#fff;color:#111}
+    .card,.wbox,.meta div{background:#fff;border-color:#ccc}
+    a.card{display:none}
+  }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>EAP 101A 课程评分因素结构化总结</h1>
+  <p class="sub">依据课程打分结构，对全部评分相关因素分类，并在类别内按对最终成绩的影响由高到低排序。</p>
+  <div class="meta">
+    <b>数据来源（共 11 个文件，全部已遍历读取）：</b><br>
+    文档：assessment.docx · learmning goals.docx · 介绍.docx · team learning.docx · syllabus PDF (10页) · ai-use-term.docx<br>
+    AI-use 目录：A Guide to Using and Referencing AI tools in APA Style.pdf · APA citation guide (7th ed.) AI-Generated Content.pdf · Are You a Student Thinking About Using Generated AI.pdf · Sample - AI Use for Reference &amp; Appendixes Page.pdf<br>
+    <b>课程：</b>EAP 101A Writing about Language Learning（Fall 2026, Session 1）｜ Instructor：Peter Wergin
+  </div>
+
+  <h2>一、评分总结构（打分框架）</h2>
+  <p class="sub">四大计分板块及其权重，加 DKU 标准成绩换算。权重本身即代表该板块对最终成绩的影响程度。</p>
+  <table>
+    <thead><tr><th>板块</th><th>权重</th><th>构成说明</th></tr></thead>
+    <tbody>
+      <tr><td>Short Writing Assignments (SW)</td><td><span class="pill w35">35%</span></td><td>多次短写作任务（SW1 / SW2 / Response Paper 等）</td></tr>
+      <tr><td>Course Paper</td><td><span class="pill w35">35%</span></td><td>构思—大纲—草稿全过程 + 封面声明（Cover Sheet）</td></tr>
+      <tr><td>Oral Assignments</td><td><span class="pill w20">20%</span></td><td>两次口语作业（OA1 / OA2，含 fishbowl 等）</td></tr>
+      <tr><td>Engagement（准备 + 参与）</td><td><span class="pill w10">10%</span></td><td>出勤、准备、参与、讨论帖、office hour 等</td></tr>
+    </tbody>
+  </table>
+  <p class="sub"><b>成绩换算（DKU 标准）：</b>
+    A+ 98–100｜A 93–97｜A− 90–92｜B+ 87–89｜B 83–86｜B− 80–82｜
+    C+ 77–79｜C 73–76｜C− 70–72｜D+ 67–69｜D 63–66｜D− 60–62｜F ≤ 59<br>
+    <b>能力等级对应：</b>A = Bridging｜B = Extending｜C = Emerging｜D = Developing｜F = Fail。</p>
+
+  <h2>二、按打分结构分类的评分因素</h2>
+  <p class="sub">主分类 = 四大计分板块（整体已按权重排序）。因权重等于影响程度，板块顺序为 SW(35%) = Course Paper(35%) &gt; Oral(20%) &gt; Engagement(10%)。每个板块内部再按影响排序。</p>
+
+  <div class="card">
+    <h3>A1 · Short Writing Assignments — 35%（与课程论文并列最高）</h3>
+    <div class="rank"><div class="num">1</div><div class="rbody"><b>各次短写作任务的完成质量</b>
+      <span class="note">SW1、SW2、Response Paper/SW 等（课表至少 3 次），构成该 35% 的全部载体，影响最大。</span></div></div>
+    <div class="rank"><div class="num">2</div><div class="rbody"><b>学术写作规范与诚信</b>
+      <span class="note">摘要能力、引用 / paraphrase、避免抄袭、体现学术诚信——既是评分维度，一旦违规直接 0%。</span></div></div>
+    <div class="rank"><div class="num">3</div><div class="rbody"><b>按时提交</b>
+      <span class="note">迟交按"每迟 1 天扣 5 分"惩罚，最多接受迟交 3 天。</span></div></div>
+  </div>
+
+  <div class="card">
+    <h3>A2 · Course Paper — 35%（与 SW 并列最高）</h3>
+    <div class="rank"><div class="num">1</div><div class="rbody"><b>最终草稿（Drafting）质量</b>
+      <span class="note">评分主体，决定该板块绝大部分得分。</span></div></div>
+    <div class="rank"><div class="num">2</div><div class="rbody"><b>大纲与构思（Outlining / Brainstorming）过程表现</b>
+      <span class="note">过程分，体现写作流程的掌握。</span></div></div>
+    <div class="rank"><div class="num">3</div><div class="rbody"><b>基于反馈的修订质量</b>
+      <span class="note">同伴评阅、教师反馈、WLS 指导的吸收与改进。</span></div></div>
+    <div class="rank"><div class="num">4</div><div class="rbody"><b>封面声明与过程反思（Cover Sheet）</b>
+      <span class="note">含草稿数、rhetorical context、writing process、文本标注（annotations）、AI 使用声明；既是过程记录也关乎合规。</span></div></div>
+    <div class="rank"><div class="num">5</div><div class="rbody"><b>AI 使用合规（红线）</b>
+      <span class="note warn">课程论文严格禁止用 AI 生成 / 检查 / 翻译任何内容（Sample 封面 &amp; APA 指南明确），违规即 0%。</span></div></div>
+    <div class="rank"><div class="num">6</div><div class="rbody"><b>及时提交</b>
+      <span class="note">Draft due 10/5，Final due 10/19；迟交草稿额外扣 Engagement 分。</span></div></div>
+  </div>
+
+  <div class="card">
+    <h3>A3 · Oral Assignments — 20%</h3>
+    <div class="rank"><div class="num">1</div><div class="rbody"><b>两次口语作业（OA1、OA2）的现场表现</b>
+      <span class="note">该 20% 的主体计分对象。</span></div></div>
+    <div class="rank"><div class="num">2</div><div class="rbody"><b>学术口语表达质量</b>
+      <span class="note">清晰、逻辑、论证、举例与具体细节。</span></div></div>
+    <div class="rank"><div class="num">3</div><div class="rbody"><b>准备与日常讨论参与</b>
+      <span class="note">部分同时计入 Engagement 板块。</span></div></div>
+  </div>
+
+  <div class="card">
+    <h3>A4 · Engagement — 10%</h3>
+    <div class="rank"><div class="num">1</div><div class="rbody"><b>出勤 + 课堂准备 + 课堂参与（in-class &amp; outside class）</b>
+      <span class="note">主体；缺勤直接削弱参与能力，进而影响该 10%。</span></div></div>
+    <div class="rank"><div class="num">2</div><div class="rbody"><b>讨论帖 / 反思 / 同伴 / 个人评阅</b>
+      <span class="note">每项 10 分，属 low-assessment 任务，易得，可拉升 Engagement。</span></div></div>
+    <div class="rank"><div class="num">3</div><div class="rbody"><b>Office hour 到访</b>
+      <span class="note">要求本 session 至少 3 次，直接影响 Engagement 分。</span></div></div>
+    <div class="rank"><div class="num">4</div><div class="rbody"><b>团队任务与合作</b>
+      <span class="note">study team 的 homework 讨论任务、每周例会，间接体现投入。</span></div></div>
+    <div class="rank"><div class="num">5</div><div class="rbody"><b>可选 engagement 活动</b>
+      <span class="note">酌情在总评中考虑。</span></div></div>
+    <div class="rank"><div class="num">6</div><div class="rbody"><b>WLS 预约</b>
+      <span class="note">无学分，但需邮件向教师报告，间接体现投入。</span></div></div>
+  </div>
+
+  <h2>三、横向调节因素（跨板块，按对最终成绩影响由高到低排序）</h2>
+  <p class="sub">下列因素不归属单一板块，而是在板块得分之上做加减，故单列并整体排序。</p>
+
+  <div class="card">
+    <div class="rank"><div class="num">1</div><div class="rbody">
+      <span class="tag t-neg">最严重 · 负向</span><b>学术诚信 / AI 违规</b>
+      <span class="note neg">首次：该作业 0%，可获重写机会（封顶 D / 60%）。<br>
+      二次：该作业 0%，无重写，并上报 DKU 学术审查委员会。<br>
+      可令一个 35% 板块直接归零，是单点影响最大的因素。<br>
+      触发：AI 代写、文本篡改、非英语翻译冒用、AI 润色（未获允许）、AI 生成引用未核实；以及未在封面 / 参考文献中声明 AI 使用。</span></div></div>
+    <div class="rank"><div class="num">2</div><div class="rbody">
+      <span class="tag t-neg">负向</span><b>迟交惩罚</b>
+      <span class="note neg">计分项作业：每迟 1 天扣 5 分，超过截止 3 天不予接收。<br>
+      草稿（draft）迟交：额外扣 Engagement 分，且未经事先批准超过 1 天不收；迟交者可能得不到反馈。<br>
+      注：原文"5 points"未明确是作业内分值还是总百分比，执行以教师口径为准。</span></div></div>
+    <div class="rank"><div class="num">3</div><div class="rbody">
+      <span class="tag t-pos">正向 · 幅度较小</span><b>加分项</b>
+      <span class="note pos">讨论帖 / 反思 / 同伴 / 个人评阅：每项 10 分（计入 Engagement）。<br>
+      Office hour 到访、可选 engagement 活动：可在总评中酌情提升 Engagement。<br>
+      效果：主要拉升 10% 的 Engagement 板块，对总成绩为边际正向。</span></div></div>
+  </div>
+
+  <h2>四、关键提示与需澄清处</h2>
+  <div class="callout">
+    <b>① AI 政策口径差异：</b>大纲"一般规则"称经教师明确许可可在限定用途（如头脑风暴、修订）使用 AI 并须声明；但 Sample 封面与 APA 指南对"本次作业（课程论文）"写明<strong>严格禁止</strong>用 AI 生成 / 检查 / 翻译。执行上以最严格口径为准，任何不确定务必先问教师。
+  </div>
+  <div class="callout">
+    <b>② "5 points / 天"的基数</b>未明确，建议向教师确认是作业内分值还是总成绩百分点。
+  </div>
+  <div class="callout">
+    <b>③ 团队任务</b>虽未被单独计分，但通过讨论任务、同伴反馈与课堂参与间接影响 Engagement 与作业质量。
+  </div>
+  <ul>
+    <li>板块内排序中标注"（过程分 / 合规 / 及时提交）"者，因文件未给出板块内精确子权重，排序依据为"对板块得分的逻辑贡献"而非量化比例。</li>
+    <li>所有四类板块合计 100%；横向调节因素在其上做加减，最终映射至 DKU 成绩换算表。</li>
+  </ul>
+
+  <div class="foot">
+    本总结由对 11 个源文件的逐页 / 逐段提取与交叉核对生成，可用于备考与成绩规划参考。如需将某一板块拆解为更细的评分量规（rubric），可进一步处理。
+  </div>
+</div>
+</body>
+</html>
