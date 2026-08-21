@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>EAP 101A 课前资料中心</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1f232c; --border:#2a2f3a;
+    --text:#e6e9ef; --muted:#9aa3b2; --accent:#5b8cff; --accent2:#36c6a0;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.7;font-size:16px;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .wrap{max-width:920px;margin:0 auto;padding:34px 18px 56px}
+  h1{font-size:25px;margin:0 0 6px;letter-spacing:.4px}
+  .sub{color:var(--muted);margin:0 0 24px;font-size:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  a.card{display:block;background:var(--panel);border:1px solid var(--border);border-radius:16px;
+    padding:22px 20px;text-decoration:none;color:var(--text);transition:.18s transform,.18s border-color}
+  a.card:active{transform:scale(.98)}
+  a.card:hover{border-color:var(--accent)}
+  .card .badge{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:20px;font-weight:800;margin-bottom:12px}
+  .card h2{font-size:17px;margin:0 0 8px}
+  .card p{color:var(--muted);font-size:13.5px;margin:0}
+  .card .go{margin-top:14px;font-size:13px;color:var(--accent);font-weight:600}
+  .note{background:#1a1d24;border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;margin:22px 0 0;font-size:13px;color:var(--muted)}
+  .note b{color:var(--text)}
+  footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
+  @media (max-width:560px){
+    .wrap{padding:26px 14px 48px}
+    h1{font-size:22px}
+    .card{padding:18px 16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>EAP 101A 课前资料中心</h1>
+  <p class="sub">DKU 2026 Fall · 手机 / iPad 自适应 · 依据课程 Syllabus (PW F26) 与配套文档整理</p>
+
+  <div class="grid">
+    <a class="card" href="scoring.html">
+      <div class="badge">①</div>
+      <h2>评分因素结构化总结</h2>
+      <p>四大板块权重、各板块内按影响排序的因素、跨板块调节项（迟交 / AI 红线 / 加分）。</p>
+      <div class="go">查看 →</div>
+    </a>
+    <a class="card" href="prep.html">
+      <div class="badge">②</div>
+      <h2>课前系统性准备方案</h2>
+      <p>能力画像映射、了解大纲 / 补基础 / 笔记习惯 / 权重高分标准 / 时间管理与沟通渠道。</p>
+      <div class="go">查看 →</div>
+    </a>
+    <a class="card" href="oral.html">
+      <div class="badge">③</div>
+      <h2>口语训练工具卡</h2>
+      <p>口头句型速查 + 2 分钟演讲模板 + 随机论题库，专治 30 秒观点 + 多论据短板。</p>
+      <div class="go">查看 →</div>
+    </a>
+  </div>
+
+  <div class="note">📌 本资料中心为课前规划参考，具体评分与政策以教师开学后公布为准。三份材料的原始版本分别位于 <b>D:\dku\EAP\评分标准\</b> 与 <b>D:\dku\EAP\</b>。</div>
+
+  <footer>EAP 101A · 课前资料 · 响应式版本</footer>
+</div>
+</body>
+</html>
