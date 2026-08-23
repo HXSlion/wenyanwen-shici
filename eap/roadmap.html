@@ -1,0 +1,451 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EAP 101A · 7 周课程学习地图</title>
+<style>
+:root{
+  --bg:#0f1419; --card:#17202b; --card2:#1b2733; --line:#26323f;
+  --txt:#e6edf3; --mut:#9fb0c0; --acc:#4cc2ff; --acc2:#ffd166; --ok:#7ee787; --warn:#ff7b72;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6;padding:0 0 60px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+header{padding:34px 18px 22px;background:linear-gradient(160deg,#13212e,#0f1419);border-bottom:1px solid var(--line)}
+header h1{margin:0 0 6px;font-size:26px;letter-spacing:.5px}
+header .sub{color:var(--mut);font-size:14px}
+.tag{display:inline-block;background:var(--card2);border:1px solid var(--line);color:var(--acc);padding:2px 9px;border-radius:20px;font-size:12px;margin:3px 4px 0 0}
+h2{font-size:20px;margin:34px 0 12px;border-left:4px solid var(--acc);padding-left:12px}
+h3{font-size:16px;color:var(--acc2);margin:18px 0 8px}
+.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--acc);padding:12px 14px;border-radius:8px;color:var(--mut);font-size:13.5px;margin:10px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 8px;margin:16px 0}
+.weekhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:6px}
+.weekhead .num{background:var(--acc);color:#06222e;font-weight:700;border-radius:10px;padding:3px 12px;font-size:15px}
+.weekhead .wt{font-size:18px;font-weight:600}
+.weekhead .dr{color:var(--mut);font-size:13px}
+.goal{color:var(--mut);font-size:14px;margin:2px 0 10px}
+.lesson{border-top:1px dashed var(--line);padding:12px 0 6px;margin-top:8px}
+.lesson .lh{font-weight:600;color:var(--ok)}
+.lesson .lf{font-size:14px;margin:4px 0 8px}
+.secrow{display:grid;grid-template-columns:120px 1fr;gap:8px;margin:7px 0;align-items:start}
+.secrow .k{color:var(--acc);font-size:13px;font-weight:600;padding-top:2px}
+.secrow .v{font-size:13.5px}
+ul.t{margin:4px 0 6px;padding-left:18px}
+ul.t li{margin:3px 0;font-size:13.5px}
+.lnk{color:var(--acc);text-decoration:none;border-bottom:1px dotted var(--acc);word-break:break-all}
+.lnk:hover{background:rgba(76,194,255,.12)}
+.miss{color:var(--warn);font-size:13px}
+.miss em{color:var(--mut);font-style:normal;font-size:12px}
+.mile{background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.3);color:var(--acc2);border-radius:8px;padding:8px 12px;font-size:13px;margin:8px 0 2px}
+.mile b{color:#fff}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}.secrow{grid-template-columns:96px 1fr}}
+.obj{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:760px){.obj{grid-template-columns:1fr}}
+.obj .o{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13.5px}
+.phase{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.ph{flex:1;min-width:200px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px}
+.ph b{color:var(--acc2)}
+.ext{color:var(--mut);font-size:12px}
+footer{color:var(--mut);font-size:12.5px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
+
+/* ---- calendar ---- */
+.cal-toggle{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 6px}
+.cal-toggle button{background:var(--card2);border:1px solid var(--line);color:var(--mut);
+ padding:8px 14px;border-radius:10px;font-size:13.5px;cursor:pointer;font-weight:600}
+.cal-toggle button.active{background:var(--acc);color:#06222e;border-color:var(--acc)}
+.cal-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--mut);margin:8px 0 4px}
+.cal-legend span{display:inline-flex;align-items:center;gap:5px}
+.lg{width:13px;height:13px;border-radius:3px;display:inline-block}
+.lg.has{background:var(--ok)} .lg.makeup{background:var(--acc)} .lg.holiday{background:#3a4654}
+.lg.due{background:var(--acc2)}
+.cal-months{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
+@media(max-width:900px){.cal-months{grid-template-columns:1fr}}
+.cal-month{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
+.cal-mt{font-weight:700;color:var(--acc2);font-size:14px;margin-bottom:8px;text-align:center}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-head{margin-bottom:4px}
+.cal-head div{text-align:center;font-size:11px;color:var(--mut);padding:2px 0}
+.cal-day{background:var(--card2);border:1px solid var(--line);border-radius:7px;min-height:52px;
+ padding:3px;font-size:11px;color:var(--mut);overflow:hidden}
+.cal-day.empty{background:transparent;border:none}
+.cal-day .dn{font-weight:700;color:var(--txt);font-size:12px}
+.cal-day.has{background:rgba(126,231,135,.13);border-color:rgba(126,231,135,.4)}
+.cal-day.makeup{background:rgba(76,194,255,.16);border-color:rgba(76,194,255,.5)}
+.cal-day.holiday{background:#202a35}
+.cal-day.due{border-color:rgba(255,209,102,.6)}
+.cal-day .cl{display:block;color:var(--ok);font-weight:700;text-decoration:none;font-size:11.5px;margin:1px 0}
+.cal-day.makeup .cl{color:var(--acc)}
+.cal-day .ct{font-size:10.5px;line-height:1.25;color:var(--mut)}
+.cal-day .badge{display:block;background:rgba(255,209,102,.18);color:var(--acc2);
+ border-radius:4px;padding:1px 3px;font-size:10px;margin-top:2px}
+.cal-note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--warn);
+ padding:10px 13px;border-radius:8px;font-size:12.5px;color:var(--mut);margin:12px 0}
+.cal-note b{color:var(--warn)}
+</style></head><body>
+<header><div class="wrap">
+<h1>EAP 101A · 7 周课程学习地图</h1>
+<div class="sub">Writing about Language: New Environments and Learner Identities &nbsp;|&nbsp; Fall 2026, Session 1 &nbsp;|&nbsp; 8/24 – 10/19 &nbsp;|&nbsp; 2 学分 · Seminar</div>
+<div style="margin-top:8px">
+<span class="tag">每周 2 节（共 14 节）</span>
+<span class="tag">短写作 35%</span><span class="tag">课程论文 35%</span>
+<span class="tag">口语 20%</span><span class="tag">参与 10%</span>
+<span class="tag">教师 Peter Wergin</span>
+</div>
+</div></header><div class="wrap">
+<h2>一、课程总体主题与目标</h2>
+<div class="note">数据来源：课程 Syllabus（F26）、Canvas 离线导出包（media/，共 234 份文件）、Tentative Assignment Due Dates。本页基于真实文件逐项绑定“点击即打开”的本地材料链接；大纲提及但导出包未含的讲义，已如实标注。</div>
+<div class="card">
+<h3>课程定位</h3>
+<div class="goal">EAP 101 分为两阶段：<b>EAP 101A（Session 1，前 7 周）</b>聚焦学术阅读、摘要与回应写作；<b>EAP 101B（Session 2）</b>在此基础上升级到结构化段落与短文写作。本地图覆盖 101A 的 7 周。</div>
+<h3>总体主题</h3>
+<div class="goal">“在一个全英语新环境（DKU）中，如何面对并适应语言挑战”——围绕<b>语言学习、多语身份认同、EMI（英语授课）环境</b>三条主线展开阅读、讨论与写作。</div>
+<h3>课程描述（原文意译）</h3>
+<div class="goal">你将阅读并讨论“学习挑战、策略与多语身份”相关概念，形成自己的应对策略，在新环境中站稳脚跟；同时提升英语学术阅读能力、用英语写课程论文的能力，以及“学术思维”——分析他人观点、提出回应、清晰而有说服力地表达。</div>
+<h3>学习目标（结课应能做到）</h3>
+<div class="obj">
+<div class="o">① 高效阅读英文学术文本，理解并分析其中的观点。</div>
+<div class="o">② 撰写文本摘要与回应，并恰当使用材料（引用、转述、标注、避免抄袭）。</div>
+<div class="o">③ 写出立场清晰、论据充分、有例子与细节、语言准确的课程论文。</div>
+<div class="o">④ 有效参与课堂与小组讨论，口头贡献学术对话。</div>
+</div>
+<h3>你将做的五件事</h3>
+<div class="goal">阅读（Readings）→ 课堂讨论（Discussions）→ 短写作（Short Writing）→ 课程论文（Course Paper）→ 口语作业（Oral Assignments）。其中短写作与课程论文合计占 70%，是“守上限”板块；口语占 20%，是本课最需提前练的杠杆。</div>
+<h3>先修要求</h3>
+<div class="goal">无（No prerequisite courses required）。但需自查四项能力基线：学术英语阅读、summary/response 写作、立场式短论、课堂讨论参与。</div>
+</div>
+<h2>二、进度递进逻辑（四阶段）</h2>
+<div class="phase">
+<div class="ph"><b>阶段 1 · W1–2｜输入与基础</b><br>语言自我认知 + 摘要写作入门 + 学术规范与反馈意识。产出：SW1。</div>
+<div class="ph"><b>阶段 2 · W3–4｜转向与回应</b><br>EMI 环境认知 + APA 引用 + 回应文文体 + 阅读策略。产出：SW2、OA1。</div>
+<div class="ph"><b>阶段 3 · W5–6｜产出与展示</b><br>课程论文规划/草稿 + 论点句段落 + OA2 课堂展示 + 写作流畅度。产出：论文草稿、OA2。</div>
+<div class="ph"><b>阶段 4 · W7｜修订整合</b><br>同伴反馈修订 + 终稿反思 + 全技能整合，过渡到 101B。产出：论文终稿。</div>
+</div>
+<h2>📅 课程日历（按班次）</h2>
+<div class="note">日历依据 Syllabus Table 1 与大纲两条明确调整推算：① <b>周四班 9/18（周五）补课</b>（替代原 Thu 9/17）；② <b>国庆 10/1–10/11 停课</b>。作业截止日按 Syllabus 标注的绝对日期显示（SW1 9/7、SW2 9/21、论文草稿 10/5、论文终稿 10/19）；002 班次的截止日通常顺延 1 天，<b>以 Canvas 公布为准</b>。点击带 “Wx·Lx” 的格子可跳转到对应周次。</div>
+<div class="cal-toggle">
+  <button id="btn002" class="active" onclick="showSec('002')">002 · 周二/周四（我的班次）</button>
+  <button id="btn001" onclick="showSec('001')">001 / 003 · 周一/周三</button>
+</div>
+<div class="cal-legend">
+  <span><i class="lg has"></i> 上课日</span>
+  <span><i class="lg makeup"></i> 补课日</span>
+  <span><i class="lg holiday"></i> 国庆停课</span>
+  <span><i class="lg due"></i> 作业截止</span>
+</div>
+<div id="sec002" class="cal-months"><div class="cal-month"><div class="cal-mt">2026 月 8</div><div class="cal-grid cal-head"><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div></div><div class="cal-grid"><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day"><div class="dn">1</div></div><div class="cal-day"><div class="dn">2</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">3</div></div><div class="cal-day"><div class="dn">4</div></div><div class="cal-day"><div class="dn">5</div></div><div class="cal-day"><div class="dn">6</div></div><div class="cal-day"><div class="dn">7</div></div><div class="cal-day"><div class="dn">8</div></div><div class="cal-day"><div class="dn">9</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">10</div></div><div class="cal-day"><div class="dn">11</div></div><div class="cal-day"><div class="dn">12</div></div><div class="cal-day"><div class="dn">13</div></div><div class="cal-day"><div class="dn">14</div></div><div class="cal-day"><div class="dn">15</div></div><div class="cal-day"><div class="dn">16</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">17</div></div><div class="cal-day"><div class="dn">18</div></div><div class="cal-day"><div class="dn">19</div></div><div class="cal-day"><div class="dn">20</div></div><div class="cal-day"><div class="dn">21</div></div><div class="cal-day"><div class="dn">22</div></div><div class="cal-day"><div class="dn">23</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">24</div></div><div class="cal-day has"><div class="dn">25</div><a class="cl" href="#w1">W1·L1</a><div class="ct">课程导论 · English and You</div></div><div class="cal-day"><div class="dn">26</div></div><div class="cal-day has"><div class="dn">27</div><a class="cl" href="#w1">W1·L2</a><div class="ct">摘要写作入门</div></div><div class="cal-day"><div class="dn">28</div></div><div class="cal-day"><div class="dn">29</div></div><div class="cal-day"><div class="dn">30</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">31</div></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div></div></div><div class="cal-month"><div class="cal-mt">2026 月 9</div><div class="cal-grid cal-head"><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div></div><div class="cal-grid"><div class="cal-day empty"></div><div class="cal-day has"><div class="dn">1</div><a class="cl" href="#w2">W2·L3</a><div class="ct">语言叙事 · 摘要技巧</div></div><div class="cal-day"><div class="dn">2</div></div><div class="cal-day has"><div class="dn">3</div><a class="cl" href="#w2">W2·L4</a><div class="ct">文体规范 · 学术诚信 · 反馈</div></div><div class="cal-day"><div class="dn">4</div></div><div class="cal-day"><div class="dn">5</div></div><div class="cal-day"><div class="dn">6</div></div></div><div class="cal-grid"><div class="cal-day due"><div class="dn">7</div><div class="badge">📌 SW1 截止</div></div><div class="cal-day has"><div class="dn">8</div><a class="cl" href="#w3">W3·L5</a><div class="ct">转向 EMI · APA · 论点句</div></div><div class="cal-day"><div class="dn">9</div></div><div class="cal-day has"><div class="dn">10</div><a class="cl" href="#w3">W3·L6</a><div class="ct">OA1 口语讨论</div></div><div class="cal-day"><div class="dn">11</div></div><div class="cal-day"><div class="dn">12</div></div><div class="cal-day"><div class="dn">13</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">14</div></div><div class="cal-day has"><div class="dn">15</div><a class="cl" href="#w4">W4·L7</a><div class="ct">EMI 挑战 · Heng(2018)</div></div><div class="cal-day"><div class="dn">16</div></div><div class="cal-day"><div class="dn">17</div></div><div class="cal-day makeup"><div class="dn">18</div><a class="cl" href="#w4">🔁 补课 W4·L8</a><div class="ct">EMI 策略 · 阅读策略 · Ou&Gu</div></div><div class="cal-day"><div class="dn">19</div></div><div class="cal-day"><div class="dn">20</div></div></div><div class="cal-grid"><div class="cal-day due"><div class="dn">21</div><div class="badge">📌 SW2 截止</div></div><div class="cal-day has"><div class="dn">22</div><a class="cl" href="#w5">W5·L9</a><div class="ct">写作过程 · 论文规划</div></div><div class="cal-day"><div class="dn">23</div></div><div class="cal-day has"><div class="dn">24</div><a class="cl" href="#w5">W5·L10</a><div class="ct">论点句 · 段落结构</div></div><div class="cal-day"><div class="dn">25</div></div><div class="cal-day"><div class="dn">26</div></div><div class="cal-day"><div class="dn">27</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">28</div></div><div class="cal-day has"><div class="dn">29</div><a class="cl" href="#w6">W6·L11</a><div class="ct">学术写作流畅度 · 开头与论点</div></div><div class="cal-day"><div class="dn">30</div></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div></div></div><div class="cal-month"><div class="cal-mt">2026 月 10</div><div class="cal-grid cal-head"><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div></div><div class="cal-grid"><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day holiday"><div class="dn">1</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">2</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">3</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">4</div><div class="ct">国庆·停课</div></div></div><div class="cal-grid"><div class="cal-day due holiday"><div class="dn">5</div><div class="badge">📌 论文草稿截止</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">6</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">7</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">8</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">9</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">10</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">11</div><div class="ct">国庆·停课</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">12</div></div><div class="cal-day has"><div class="dn">13</div><a class="cl" href="#w7">W7·L13</a><div class="ct">论文修订 · 同伴反馈</div></div><div class="cal-day"><div class="dn">14</div></div><div class="cal-day has"><div class="dn">15</div><a class="cl" href="#w7">W7·L14</a><div class="ct">论文整合 · 收尾过渡</div></div><div class="cal-day"><div class="dn">16</div></div><div class="cal-day"><div class="dn">17</div></div><div class="cal-day"><div class="dn">18</div></div></div><div class="cal-grid"><div class="cal-day due"><div class="dn">19</div><div class="badge">📌 论文终稿截止</div></div><div class="cal-day"><div class="dn">20</div></div><div class="cal-day"><div class="dn">21</div></div><div class="cal-day"><div class="dn">22</div></div><div class="cal-day"><div class="dn">23</div></div><div class="cal-day"><div class="dn">24</div></div><div class="cal-day"><div class="dn">25</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">26</div></div><div class="cal-day"><div class="dn">27</div></div><div class="cal-day"><div class="dn">28</div></div><div class="cal-day"><div class="dn">29</div></div><div class="cal-day"><div class="dn">30</div></div><div class="cal-day"><div class="dn">31</div></div><div class="cal-day empty"></div></div></div></div>
+<div id="sec001" class="cal-months" style="display:none"><div class="cal-month"><div class="cal-mt">2026 月 8</div><div class="cal-grid cal-head"><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div></div><div class="cal-grid"><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day"><div class="dn">1</div></div><div class="cal-day"><div class="dn">2</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">3</div></div><div class="cal-day"><div class="dn">4</div></div><div class="cal-day"><div class="dn">5</div></div><div class="cal-day"><div class="dn">6</div></div><div class="cal-day"><div class="dn">7</div></div><div class="cal-day"><div class="dn">8</div></div><div class="cal-day"><div class="dn">9</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">10</div></div><div class="cal-day"><div class="dn">11</div></div><div class="cal-day"><div class="dn">12</div></div><div class="cal-day"><div class="dn">13</div></div><div class="cal-day"><div class="dn">14</div></div><div class="cal-day"><div class="dn">15</div></div><div class="cal-day"><div class="dn">16</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">17</div></div><div class="cal-day"><div class="dn">18</div></div><div class="cal-day"><div class="dn">19</div></div><div class="cal-day"><div class="dn">20</div></div><div class="cal-day"><div class="dn">21</div></div><div class="cal-day"><div class="dn">22</div></div><div class="cal-day"><div class="dn">23</div></div></div><div class="cal-grid"><div class="cal-day has"><div class="dn">24</div><a class="cl" href="#w1">W1·L1</a><div class="ct">课程导论 · English and You</div></div><div class="cal-day"><div class="dn">25</div></div><div class="cal-day has"><div class="dn">26</div><a class="cl" href="#w1">W1·L2</a><div class="ct">摘要写作入门</div></div><div class="cal-day"><div class="dn">27</div></div><div class="cal-day"><div class="dn">28</div></div><div class="cal-day"><div class="dn">29</div></div><div class="cal-day"><div class="dn">30</div></div></div><div class="cal-grid"><div class="cal-day has"><div class="dn">31</div><a class="cl" href="#w2">W2·L3</a><div class="ct">语言叙事 · 摘要技巧</div></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div></div></div><div class="cal-month"><div class="cal-mt">2026 月 9</div><div class="cal-grid cal-head"><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div></div><div class="cal-grid"><div class="cal-day empty"></div><div class="cal-day"><div class="dn">1</div></div><div class="cal-day has"><div class="dn">2</div><a class="cl" href="#w2">W2·L4</a><div class="ct">文体规范 · 学术诚信 · 反馈</div></div><div class="cal-day"><div class="dn">3</div></div><div class="cal-day"><div class="dn">4</div></div><div class="cal-day"><div class="dn">5</div></div><div class="cal-day"><div class="dn">6</div></div></div><div class="cal-grid"><div class="cal-day has due"><div class="dn">7</div><a class="cl" href="#w3">W3·L5</a><div class="ct">转向 EMI · APA · 论点句</div><div class="badge">📌 SW1 截止</div></div><div class="cal-day"><div class="dn">8</div></div><div class="cal-day has"><div class="dn">9</div><a class="cl" href="#w3">W3·L6</a><div class="ct">OA1 口语讨论</div></div><div class="cal-day"><div class="dn">10</div></div><div class="cal-day"><div class="dn">11</div></div><div class="cal-day"><div class="dn">12</div></div><div class="cal-day"><div class="dn">13</div></div></div><div class="cal-grid"><div class="cal-day has"><div class="dn">14</div><a class="cl" href="#w4">W4·L7</a><div class="ct">EMI 挑战 · Heng(2018)</div></div><div class="cal-day"><div class="dn">15</div></div><div class="cal-day has"><div class="dn">16</div><a class="cl" href="#w4">W4·L8</a><div class="ct">EMI 策略 · 阅读策略 · Ou&Gu</div></div><div class="cal-day"><div class="dn">17</div></div><div class="cal-day"><div class="dn">18</div></div><div class="cal-day"><div class="dn">19</div></div><div class="cal-day"><div class="dn">20</div></div></div><div class="cal-grid"><div class="cal-day has due"><div class="dn">21</div><a class="cl" href="#w5">W5·L9</a><div class="ct">写作过程 · 论文规划</div><div class="badge">📌 SW2 截止</div></div><div class="cal-day"><div class="dn">22</div></div><div class="cal-day has"><div class="dn">23</div><a class="cl" href="#w5">W5·L10</a><div class="ct">论点句 · 段落结构</div></div><div class="cal-day"><div class="dn">24</div></div><div class="cal-day"><div class="dn">25</div></div><div class="cal-day"><div class="dn">26</div></div><div class="cal-day"><div class="dn">27</div></div></div><div class="cal-grid"><div class="cal-day has"><div class="dn">28</div><a class="cl" href="#w6">W6·L11</a><div class="ct">学术写作流畅度 · 开头与论点</div></div><div class="cal-day"><div class="dn">29</div></div><div class="cal-day has"><div class="dn">30</div><a class="cl" href="#w6">W6·L12</a><div class="ct">OA2 Fishbowl 课堂展示</div></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div></div></div><div class="cal-month"><div class="cal-mt">2026 月 10</div><div class="cal-grid cal-head"><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div></div><div class="cal-grid"><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day holiday"><div class="dn">1</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">2</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">3</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">4</div><div class="ct">国庆·停课</div></div></div><div class="cal-grid"><div class="cal-day due holiday"><div class="dn">5</div><div class="badge">📌 论文草稿截止</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">6</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">7</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">8</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">9</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">10</div><div class="ct">国庆·停课</div></div><div class="cal-day holiday"><div class="dn">11</div><div class="ct">国庆·停课</div></div></div><div class="cal-grid"><div class="cal-day has"><div class="dn">12</div><a class="cl" href="#w7">W7·L13</a><div class="ct">论文修订 · 同伴反馈</div></div><div class="cal-day"><div class="dn">13</div></div><div class="cal-day has"><div class="dn">14</div><a class="cl" href="#w7">W7·L14</a><div class="ct">论文整合 · 收尾过渡</div></div><div class="cal-day"><div class="dn">15</div></div><div class="cal-day"><div class="dn">16</div></div><div class="cal-day"><div class="dn">17</div></div><div class="cal-day"><div class="dn">18</div></div></div><div class="cal-grid"><div class="cal-day due"><div class="dn">19</div><div class="badge">📌 论文终稿截止</div></div><div class="cal-day"><div class="dn">20</div></div><div class="cal-day"><div class="dn">21</div></div><div class="cal-day"><div class="dn">22</div></div><div class="cal-day"><div class="dn">23</div></div><div class="cal-day"><div class="dn">24</div></div><div class="cal-day"><div class="dn">25</div></div></div><div class="cal-grid"><div class="cal-day"><div class="dn">26</div></div><div class="cal-day"><div class="dn">27</div></div><div class="cal-day"><div class="dn">28</div></div><div class="cal-day"><div class="dn">29</div></div><div class="cal-day"><div class="dn">30</div></div><div class="cal-day"><div class="dn">31</div></div><div class="cal-day empty"></div></div></div></div>
+<div class="cal-note"><b>⚠ 002 班次特别提示：</b>受国庆影响，原周四 10/1、10/8 落在停课区间；大纲仅安排 <b>9/18 一次补课</b>。因此 W6 第 2 节（OA2 Fishbowl 课堂展示，原定 Thu 10/1）与国庆后部分周四的具体补课/上课安排，<b>以开学第一堂课或 Canvas 公布为准</b>——日历中该格子标注为“国庆·停课”，不臆造日期。<br>📌 <b>计数说明：</b>上方“每周 2 节·共 14 节”是<b>大纲课程总数</b>（Lesson 1–14，覆盖 7 周逻辑进度）；但 002 班受<b>国庆停课 3 次、仅补课 1 次</b>影响，日历中实际可排的上课日为 <b>13 天</b>，故有一节（W6 第 2 节 OA2）的归并以开学/Canvas 为准。<b>14 节＝大纲课程数，13 天＝002 实际排课日</b>，二者口径不同、并不矛盾。</div>
+<script>
+function showSec(s){
+  document.getElementById('sec002').style.display = s==='002'?'grid':'none';
+  document.getElementById('sec001').style.display = s==='001'?'grid':'none';
+  document.getElementById('btn002').classList.toggle('active', s==='002');
+  document.getElementById('btn001').classList.toggle('active', s==='001');
+}
+</script>
+<h2>三、第 1–7 周逐周安排</h2>
+<div class="note">每周含 2 节（Lesson）。<b>所需材料</b>与<b>参考资源</b>均为可点击链接，点击即在本地打开对应文件（需在本机打开此 HTML）。课堂具体日期依你的班次（001 周一/三、002 周二/四、003 周一/三）而定；<b>国庆 10/1–10/11 停课</b>，第 6–7 周日期以校历为准。</div>
+<div class="card" id="w1">
+<div class="weekhead"><span class="num">第 1 周</span><span class="wt">课程导入与语言自我认知 · 摘要写作起步</span><span class="dr">开课首周（8/24 起，按班次 2 节）</span></div>
+<div class="goal">本周目标：建立课程框架，反思个人语言经历，迈出学术摘要写作第一步（SW1 布置）。</div>
+<div class="lesson">
+<div class="lh">Lesson 1　<span class="ext">（第 1 节）</span></div>
+<div class="lf">课程导论：English and You——分享语言学习经历、对英语/其他语言/方言的态度。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%201/Week%2B1%252C%2BLesson%2B1.pdf" target="_blank" rel="noopener">Week+1%2C+Lesson+1.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Week%2B1%2BLesson%2B1%2BClass%2BHandout.docx" target="_blank" rel="noopener">Week+1+Lesson+1+Class+Handout.docx</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/Lin%2B%25282010%2529%2BEnglish%2Band%2BMe.pdf" target="_blank" rel="noopener">Lin (2010) English and Me</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/Reading%2BGuide%2B-%2BLin%2B%25282010%2529.docx" target="_blank" rel="noopener">Lin (2010) 阅读指南</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/They%2BSay%2B%2BI%2BSay%2B%2B6th%2BEdition%2B%255B1-69%255D.pdf" target="_blank" rel="noopener">They Say / I Say 第 1–69 页（导言）</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/They%20Say_I%20Say/TSIS%2BMoves%2Band%2BTemplates.docx" target="_blank" rel="noopener">TSIS 核心招式与模板</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>完成 Lin (2010) 阅读与阅读指南中的问题。</li>
+<li>准备课堂发言：用英语简述自己的“语言故事”与对英语的态度。</li>
+<li>课外观看 Jay Walker TED Talk《English mania》（Canvas 内，外部视频）。</li>
+</ul></div></div>
+</div>
+<div class="lesson">
+<div class="lh">Lesson 2　<span class="ext">（第 2 节）</span></div>
+<div class="lf">摘要写作入门 + 何为高质量的课堂讨论；SW1（摘要）布置。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%201/Week%2B1%252C%2BLesson%2B2.pdf" target="_blank" rel="noopener">Week+1%2C+Lesson+2.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Week%2B1%2BLesson%2B2%2BClass%2BHandout.docx" target="_blank" rel="noopener">Week+1+Lesson+2+Class+Handout.docx</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/So%2B%25282004%2529%2BRocio%2BStory%2BStudent%2BCopy.pdf" target="_blank" rel="noopener">So (2004) Rocio's Story</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/Reading%2BGuide%2B-%2BSo%2B%25282004%2529.docx" target="_blank" rel="noopener">So (2004) 阅读指南</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Summary%20Writing/Summary%2BWriting%2BTips.docx" target="_blank" rel="noopener">摘要写作技巧</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Summary%20Writing/Sample%2Bsummary%2B%2528TSIS%2BIntro%2529.docx" target="_blank" rel="noopener">摘要范例（TSIS 导言）</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>课堂当堂完成一次摘要写作小练习。</li>
+<li>SW1 已布置（8/24）：撰写一篇文本摘要，9/7 截止（见下）。</li>
+</ul></div></div>
+</div>
+<div class="mile">📌 本周作业节点：<b>SW1 布置（8/24）</b></div>
+</div>
+<div class="card" id="w2">
+<div class="weekhead"><span class="num">第 2 周</span><span class="wt">语言叙事 · 摘要技能深化 · 学术规范与反馈</span><span class="dr">第 2 周</span></div>
+<div class="goal">本周目标：通过语言叙事深化摘要能力，建立学术诚信意识，学会解读与使用反馈。</div>
+<div class="lesson">
+<div class="lh">Lesson 3　<span class="ext">（第 3 节）</span></div>
+<div class="lf">Language Narratives：我们与语言的关系；提升摘要写作技能（TSIS Ch.2）。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%202/Week%2B2%252C%2BLesson%2B3.pdf" target="_blank" rel="noopener">Week+2%2C+Lesson+3.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Week%2B2%2BLesson%2B3%2BSummary%2BWriting%2Bhandout%2B%2528F25%2529.docx" target="_blank" rel="noopener">Week+2+Lesson+3+Summary+Writing+handout+%28F25%29.docx</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/They%2BSay%2BI%2BSay%2B%255BChapter%2B2%255D.pdf" target="_blank" rel="noopener">They Say / I Say 第 2 章</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Summary%20Writing/Summary%2BWriting%2BPersonal%2BReflective%2BChecklist.docx" target="_blank" rel="noopener">摘要写作自评清单</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Summary%20Writing/Format%2BTemplate.docx" target="_blank" rel="noopener">摘要格式模板</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/SW1/EAP%2B101A_%2BHow%2Bto%2BWrite%2Ba%2BSummary%2B_Brainstorming%2BTable%2B%2528PW%2BF26%2529.docx" target="_blank" rel="noopener">如何写摘要·头脑风暴表</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>完成“TSIS 与 So(2004) 摘要”分析活动。</li>
+<li>打磨 SW1 摘要，9/7 前提交。</li>
+</ul></div></div>
+</div>
+<div class="lesson">
+<div class="lh">Lesson 4　<span class="ext">（第 4 节）</span></div>
+<div class="lf">文体 conventions 入门；学术诚信；如何理解与运用反馈（Keys pp.3–5）。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%202/Week%2B2%252C%2BLesson%2B4.pdf" target="_blank" rel="noopener">Week+2%2C+Lesson+4.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/EAP101A%2BWeek%2B2%2BLesson%2B4%2BClass%2BHandout.docx" target="_blank" rel="noopener">EAP101A+Week+2+Lesson+4+Class+Handout.docx</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Understanding%2Band%2BUsing%2BFeedback_Intro.docx" target="_blank" rel="noopener">理解与使用反馈（导言）</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/EAP101%2BAcademic%2BHonesty%2BCode%2BAI%2BPolicy%2B%2528F26%2529.docx" target="_blank" rel="noopener">EAP101+Academic+Honesty+Code+AI+Policy+%28F26%29.docx</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/Lin%2B%25282010%2529%2BEnglish%2Band%2BMe.pdf" target="_blank" rel="noopener">Lin (2010) 课堂讨论</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>研读学术诚信与 AI 政策（红线！课程论文严格禁 AI）。</li>
+<li>SW1 截止（9/7）。</li>
+</ul></div></div>
+</div>
+<div class="mile">📌 本周作业节点：<b>SW1 截止（9/7）</b></div>
+</div>
+<div class="card" id="w3">
+<div class="weekhead"><span class="num">第 3 周</span><span class="wt">转向 EMI 环境 · APA 引用 · 口语任务 1 启动</span><span class="dr">第 3 周</span></div>
+<div class="goal">本周目标：理解 EMI（英语授课）环境，掌握 APA 引用与论点句基础，启动口语作业 OA1。</div>
+<div class="lesson">
+<div class="lh">Lesson 5　<span class="ext">（第 5 节）</span></div>
+<div class="lf">Transition to EMI：理解并回应作者观点；APA 引用与论证论点句入门；OA1 布置。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%203/Week%2B3%252C%2BLesson%2B5.pdf" target="_blank" rel="noopener">Week+3%2C+Lesson+5.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Week%2B3%252C%2BLesson%2B5%2BClass%2BHandout.docx" target="_blank" rel="noopener">Week+3%2C+Lesson+5+Class+Handout.docx</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/Galloway%2B%25282017%2529%2BHow%2BEffective%2Bis%2BEMI.pdf" target="_blank" rel="noopener">Galloway (2017) EMI 有效性</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/APA%20Style/Student%2BHandout%2B-%2BAPA%2B7th%2BEdition.pdf" target="_blank" rel="noopener">APA 第 7 版学生手册</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/APA%20Style/A%2BGuide%2Bto%2BUsing%2Band%2BReferencing%2BAI%2Btools%2Bin%2BAPA%2BStyle.pdf" target="_blank" rel="noopener">APA 引用 AI 工具指南</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Instructions%2Bfor%253A%2BCiting%2Band%2BReferencing%2BGenAI.docx" target="_blank" rel="noopener">引用与标注 GenAI 说明</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Oral%20Assessment/Oral%20Assessment%201%20%28Recording%29/EAP101A%2BAssignment%2BInstructions%2BOA1%2B-%2BGroup%2BRecorded%2BDiscussion%2B%2528PWF26%2529.docx" target="_blank" rel="noopener">OA1 小组录音讨论·任务说明</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>阅读 Galloway (2017)，准备课堂回应。</li>
+<li>OA1 已布置（小组录音讨论），按说明组队并规划录制。</li>
+</ul></div></div>
+</div>
+<div class="lesson">
+<div class="lh">Lesson 6　<span class="ext">（第 6 节）</span></div>
+<div class="lf">OA1 讨论：如何进行有效的学术讨论；SW2 布置（9/7）。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%203/Week%2B3%252C%2BLesson%2B6.pdf" target="_blank" rel="noopener">Week+3%2C+Lesson+6.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Week%2B3%252C%2BLesson%2B6%2BClass%2BHandout.docx" target="_blank" rel="noopener">Week+3%2C+Lesson+6+Class+Handout.docx</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/They%20Say_I%20Say/They%20Say/I%2BSay%2BSentence%2BTemplates.docx" target="_blank" rel="noopener">TSIS 口头/书面句型模板</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Discussion%20Phrases/Discussion%2BPhrases%2B%2528TSIS%2529.docx" target="_blank" rel="noopener">学术讨论短语（TSIS）</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/SW2/EAP101A%2BSW2%2BAssignment%2BInstructions%2B%2528PW%2BF26%2529.docx" target="_blank" rel="noopener">SW2 任务说明（回应型写作）</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/SW2/Writing%2Ba%2Bthesis%2Bfor%2Ba%2Bstrong%2BResponse%2BEssay.pptx" target="_blank" rel="noopener">强论点回应文·论点句讲解</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>课堂讨论 OA1 流程；课外观看 Marianna Pascal TED（2017，外部视频）。</li>
+<li>SW2 布置（9/7）：写回应/反应文，9/21 截止。</li>
+</ul></div></div>
+</div>
+<div class="mile">📌 本周作业节点：<b>SW2 布置（9/7）</b> &nbsp;·&nbsp; <b>OA1 布置</b></div>
+</div>
+<div class="card" id="w4">
+<div class="weekhead"><span class="num">第 4 周</span><span class="wt">EMI 挑战与策略 · 回应文(Response Paper) 文体 · 阅读策略</span><span class="dr">第 4 周</span></div>
+<div class="goal">本周目标：剖析 EMI 学习挑战，掌握回应文文体要素与引用/转述语言，提升学术阅读策略。</div>
+<div class="lesson">
+<div class="lh">Lesson 7　<span class="ext">（第 7 节）</span></div>
+<div class="lf">EMI 成功挑战与策略；Galloway/Pascal 讨论；回应文文体（结构、引用、AI）；同伴互评。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%204/Week%2B4%252C%2BLesson%2B7.pdf" target="_blank" rel="noopener">Week+4%2C+Lesson+7.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%204/Week%2B4%252C%2BLesson%2B7%2B%2528Answers%2BVisible%2529.pdf" target="_blank" rel="noopener">同节·含答案版</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Week%2B4%2BLesson%2B7%2Bresponse-paper.original%2BDukeWS.pdf" target="_blank" rel="noopener">Duke 写作中心·回应文讲义</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/Heng%2B%25282018%2529%2BChinese%2BInternational%2BStudents%2527%2BAdvice%2Bto%2BIncoming%2BFirst-Year%2BChinese%2BStudents.pdf" target="_blank" rel="noopener">Heng (2018) 给新生建议</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/Reading%2BGuide%2Bfor%2BHeng%2B%25282018%2529.docx" target="_blank" rel="noopener">Heng (2018) 阅读指南</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Summary%20Response/Response%2BPaper.original%2BDuke%2BWS.pdf" target="_blank" rel="noopener">回应文·Duke 写作中心</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Summary%20Response/Writing%2Ba%2BResponse%2Bor%2BReaction%2BPaper.pdf" target="_blank" rel="noopener">如何写回应/反应文</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Reporting%20Verbs/Reporting%2BVerbs%2B-%2BAEUK.docx" target="_blank" rel="noopener">转述动词</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Hedging/Hedging%2BExplained.pdf" target="_blank" rel="noopener">学术模糊语（Hedging）</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Source%20Use%20in%20Academic%20Writiing-Summarizing%2C%20Paraphrasing%2C%20and%20Quoting/Acknowledging%2BParaphrasing%2Band%2BQuoting%2BSources.Pdf" target="_blank" rel="noopener">承认·转述·引用来源</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>阅读 Heng (2018)，结合 Galloway/Pascal 准备课堂发言。</li>
+<li>研习回应文文体与引用语言（为 SW2 打基础）。</li>
+</ul></div></div>
+</div>
+<div class="lesson">
+<div class="lh">Lesson 8　<span class="ext">（第 8 节）</span></div>
+<div class="lf">EMI 策略延续；文体差异；不同学术文本的阅读策略；OA2 布置。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%204/Week%2B4%252C%2BLesson%2B8.pdf" target="_blank" rel="noopener">Week+4%2C+Lesson+8.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Week%2B4%2BLesson%2B8%2B-%2BLahiri%2B%25282015%2529%2BTeach%2BYourself%2BItalian.pdf" target="_blank" rel="noopener">Lahiri (2015) 课堂讲义</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/Ou%2B%2526%2BGu%2B%25282021%2529%2BLanguage%2Bsocialization%2Band%2Bidentity%2Bin%2Bintercultural%2Bcommunication.pdf" target="_blank" rel="noopener">Ou &amp; Gu (2021) 语言社会化与身份</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Readings%20for%20Session%201/Reading%2Bguide%2B-%2BOu%2B%2526%2BGu%2B%25282021%2529.docx" target="_blank" rel="noopener">Ou &amp; Gu (2021) 阅读指南</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Reading%20Strategy%20Handouts/Active%2BReading%2BStrategies.pdf" target="_blank" rel="noopener">主动阅读策略</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Reading%20Strategy%20Handouts/How%2Bto%2Bread%2Ban%2Barticle%2Bfrom%2Ban%2BAcademic%2BJournal.docx" target="_blank" rel="noopener">如何读期刊论文</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Reading/Cornell%2Bnote-taking%2Bmethod%2B%2528Duke%2BTWS%2529.pdf" target="_blank" rel="noopener">康奈尔笔记法</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>阅读 Ou &amp; Gu (2021)，比较不同文体。</li>
+<li>OA2（Fishbowl 讨论）已布置，开始选题与准备。</li>
+</ul></div></div>
+</div>
+<div class="mile">📌 本周作业节点：<b>OA2 布置</b></div>
+</div>
+<div class="card" id="w5">
+<div class="weekhead"><span class="num">第 5 周</span><span class="wt">写作过程 · 课程论文规划 · 论点句与段落结构</span><span class="dr">第 5 周</span></div>
+<div class="goal">本周目标：进入课程论文写作流程，明确论点句与段落结构，规划论文并推进 SW2。</div>
+<div class="lesson">
+<div class="lh">Lesson 9　<span class="ext">（第 9 节）</span></div>
+<div class="lf">写作过程；多语 DKU（技能与身份）；讨论 Ou &amp; Gu；课程论文规划布置（9/21）。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%205/Week%2B5%252C%2BLesson%2B9.pdf" target="_blank" rel="noopener">Week+5%2C+Lesson+9.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Week%2B5%2BLesson%2B9%2BClass%2BHandout.docx" target="_blank" rel="noopener">Week+5+Lesson+9+Class+Handout.docx</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Course%20Paper/EAP%2B101A%2BCourse%2BPaper%2BPlanning%2BWorksheet%2B%2528F25%2529.docx" target="_blank" rel="noopener">课程论文规划工作表</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Course%20Paper/Course%2BPaper%2BAssignment%2BInstructions%2B%2528F25%2529.docx" target="_blank" rel="noopener">课程论文任务说明</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Course%20Paper/EAP101A%2BCourse%2BPaper%2BGrading%2BRubric%2B%2528F25%2529.docx" target="_blank" rel="noopener">课程论文评分量规</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Course%20Paper/Course%20Paper%20Resources/CP%2BIndividual%2BReflective%2BChecklist.docx" target="_blank" rel="noopener">课程论文·个人反思清单</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>填写课程论文规划工作表，9/21 前提交规划。</li>
+<li>继续推进 SW2（9/21 截止）。</li>
+</ul></div></div>
+</div>
+<div class="lesson">
+<div class="lh">Lesson 10　<span class="ext">（第 10 节）</span></div>
+<div class="lf">写作过程；论点句与段落结构；论点句 pair/share 活动；OA2 截止；Body Paragraph 结构。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%205/Week%2B5%252C%2BLesson%2B10.pdf" target="_blank" rel="noopener">Week+5%2C+Lesson+10.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Week%2B5%252C%2BLesson%2B10%2BClass%2BHandout.docx" target="_blank" rel="noopener">Week+5%2C+Lesson+10+Class+Handout.docx</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Thesis%20Statement/Developing%2Ba%2BThesis%2BStatement.docx" target="_blank" rel="noopener">如何发展论点句</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Thesis%20Statement/Thesis%2BStatements%2B-%2BPlanning%2BWorksheet.docx" target="_blank" rel="noopener">论点句规划工作表</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Thesis%20Statement/Thesis%2BShare%2Band%2BCheck%2BChart.docx" target="_blank" rel="noopener">论点句互查表</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Paragraphs/Paragraphs%2Band%2BFlow.docx" target="_blank" rel="noopener">段落与行文流畅</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Topic%20Sentence/Topic%2BSentence%2BParagraph.pdf" target="_blank" rel="noopener">主题句与段落</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>完成论点句 pair/share 互查活动。</li>
+<li>OA2 材料截止（本周内提交供课堂 Fishbowl 使用）。</li>
+<li>SW2 截止（9/21）。</li>
+</ul></div></div>
+</div>
+<div class="mile">📌 本周作业节点：<b>课程论文规划布置（9/21）</b> &nbsp;·&nbsp; <b>OA2 材料截止</b> &nbsp;·&nbsp; <b>SW2 截止（9/21）</b></div>
+</div>
+<div class="card" id="w6">
+<div class="weekhead"><span class="num">第 6 周</span><span class="wt">口语展示(OA2 Fishbowl) · 学术写作流畅度 · 论文草稿</span><span class="dr">第 6 周（注意：国庆 10/1–10/11 停课，此周前后日期以校历为准）</span></div>
+<div class="goal">本周目标：完成 OA2 课堂 Fishbowl 讨论，掌握学术写作的连贯流畅，产出课程论文草稿（10/5）。</div>
+<div class="lesson">
+<div class="lh">Lesson 11　<span class="ext">（第 11 节）</span></div>
+<div class="lf">OA2 课堂进行——Fishbowl 讨论日；学术写作（当堂）。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%206/Week%2B6%252C%2BLesson%2B11.pdf" target="_blank" rel="noopener">Week+6%2C+Lesson+11.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Week%2B6%252C%2BLesson%2B11%2BClass%2BHandout.docx" target="_blank" rel="noopener">Week+6%2C+Lesson+11+Class+Handout.docx</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Oral%20Assessment/Oral%20Assessment%202%20%28Fishbowl%29/EAP101A%2BOA2%2BAssignment%2BInstructions%2B%2528PW%2BF26%2529.docx" target="_blank" rel="noopener">OA2 任务说明</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Oral%20Assessment/Oral%20Assessment%202%20%28Fishbowl%29/EAP%2B101A%2BOA2%2BFishbowl%2BRubric%2BF26%2B%2528updated%2529.docx" target="_blank" rel="noopener">OA2 Fishbowl 量规</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Oral%20Assessment/Oral%20Assessment%202%20%28Fishbowl%29/EAP101A%2BOA2%2BGroup%2BEvaluation%2B%2528PW%2BF26%2529.docx" target="_blank" rel="noopener">OA2 小组互评表</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Oral%20Assessment/Oral%20Assessment%202%20%28Fishbowl%29/EAP101A%2BOA2%2BStudent%2BSelf%2BReflection%2B%2528PW%2BF26%2529.docx" target="_blank" rel="noopener">OA2 学生自我反思</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Oral%20Assessment/Oral%20Assessment%202%20%28Fishbowl%29/assorted%2Bfishbowl%2Bdiscussion%2Bslides.pptx" target="_blank" rel="noopener">Fishbowl 讨论示例幻灯片</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Presentation%20Skills/Presentation%2BSignposting.docx" target="_blank" rel="noopener">演讲指示语</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Speaking%20and%20Listening/Oral%2BPresentations%2B%2528TWP%2529.pdf" target="_blank" rel="noopener">口头展示技巧</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>参加 OA2 Fishbowl 课堂讨论（按量规评估）。</li>
+<li>填写 OA2 小组互评与自我反思。</li>
+</ul></div></div>
+</div>
+<div class="lesson">
+<div class="lh">Lesson 12　<span class="ext">（第 12 节）</span></div>
+<div class="lf">学术写作流畅度（Flow）；引言与结论段；课程论文草稿截止（10/5）。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Slides/Week%206/Week%2B6%252C%2BLesson%2B12.pdf" target="_blank" rel="noopener">Week+6%2C+Lesson+12.pdf</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Weekly%20Class%20Handouts/Week%2B6%2BLesson%2B12%2BClass%2BHandout.docx" target="_blank" rel="noopener">Week+6+Lesson+12+Class+Handout.docx</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Course%20Paper/Course%20Paper%20Resources/Introduction%2Band%2BConclusion%2BHandout.pdf" target="_blank" rel="noopener">引言与结论讲义</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Course%20Paper/Course%20Paper%20Resources/PIE%2BParagraphs.pdf" target="_blank" rel="noopener">PIE 段落法</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Course%20Paper/Coherence/Cohesion%2BExplained.docx" target="_blank" rel="noopener">连贯与衔接</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Flow/Flow%2B-%2BTransition%2BWebsites.docx" target="_blank" rel="noopener">过渡词资源</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>完成课程论文草稿并提交（10/5 截止）。</li>
+<li>运用 PIE 段落与 Flow 技巧打磨草稿。</li>
+</ul></div></div>
+</div>
+<div class="mile">📌 本周作业节点：<b>OA2 课堂进行（Fishbowl）</b> &nbsp;·&nbsp; <b>课程论文草稿截止（10/5）</b></div>
+</div>
+<div class="card" id="w7">
+<div class="weekhead"><span class="num">第 7 周</span><span class="wt">修订·同伴反馈·整合收尾（过渡至 Session 2）</span><span class="dr">第 7 周（10/12 起，国庆后）</span></div>
+<div class="goal">本周目标：基于同伴与教师反馈修订论文，完成终稿与反思，整合本阶段所学，过渡到 EAP 101B。</div>
+<div class="lesson">
+<div class="lh">Lesson 13　<span class="ext">（第 13 节）</span></div>
+<div class="lf">课程论文修订与编辑；同伴反馈工作坊。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Revising%20and%20Editing/Revising%2Band%2BEditing%2BWorksheet.docx" target="_blank" rel="noopener">修订与编辑指南</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Providing%20Feedback/Providing%2BFeedback%2BTo%2BWriters.pdf" target="_blank" rel="noopener">如何给同伴写作反馈</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Course%20Paper/Course%20Paper%20Resources/CP%2BPeer%2BReflective%2BChecklist%2B-%2BFinal.docx" target="_blank" rel="noopener">课程论文·同伴反思清单（终稿）</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Wordiness/Techniques%2Bfor%2BReducing%2BWordiness.docx" target="_blank" rel="noopener">减少啰嗦技巧</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Nuance/What%2BMakes%2BNuanced%2BWriting.docx" target="_blank" rel="noopener">如何让写作更有层次</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>参与同伴互评，给出并接收修订反馈。</li>
+<li>据反馈修订论文，准备终稿。</li>
+</ul></div></div>
+</div>
+<div class="lesson">
+<div class="lh">Lesson 14　<span class="ext">（第 14 节）</span></div>
+<div class="lf">运用反馈整合论文；课程总复习；过渡到 Session 2；课程论文终稿截止（10/19）。</div>
+<div class="secrow"><div class="k">所需材料</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Course%20Paper/Final%2BReflection.docx" target="_blank" rel="noopener">课程终稿反思</a>　
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/Assignments/Course%20Paper/Course%2BPaper%2BAssignment%2BInstructions%2B%2528F25%2529.docx" target="_blank" rel="noopener">课程论文任务说明（回顾）</a>　
+</div></div>
+<div class="secrow"><div class="k">参考阅读/资源</div><div class="v">
+<a class="lnk" href="file:///D:/dku/EAP/Writing-about-Language-Learning---A-EAP-101A-001-2026-Fall-2026-Aug-23_04-24-43-247/media/assignment%20Templates/Course%2BPaper%2BFormatting%2BTEMPLATE.docx" target="_blank" rel="noopener">课程论文格式模板</a>　
+</div></div>
+<div class="secrow"><div class="k">实践任务</div><div class="v"><ul class="t">
+<li>提交课程论文终稿（10/19 截止）。</li>
+<li>完成 Final Reflection 反思表。</li>
+<li>总复习：摘要、回应、论点、引用、口语全技能整合。</li>
+</ul></div></div>
+</div>
+<div class="mile">📌 本周作业节点：<b>课程论文终稿截止（10/19）</b></div>
+</div>
+<h2>四、相关交付物（本地）</h2>
+<div class="card">
+<div class="secrow"><div class="k">评分因素总结</div><div class="v"><a class="lnk" href="file:///D:%5Cdku%5CEAP%5C%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86%5CEAP101A_%E8%AF%84%E5%88%86%E5%9B%A0%E7%B4%A0%E6%80%BB%E7%BB%93.html">EAP101A_评分因素总结.html</a></div></div>
+<div class="secrow"><div class="k">课前准备方案</div><div class="v"><a class="lnk" href="file:///D:%5Cdku%5CEAP%5C%E8%AF%BE%E5%89%8D%E5%87%86%E5%A4%87%E6%96%B9%E6%A1%88.html">课前准备方案.html</a></div></div>
+<div class="secrow"><div class="k">课程资料索引</div><div class="v"><a class="lnk" href="file:///D:%5Cdku%5CEAP%5C%E8%AF%BE%E7%A8%8B%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95.html">课程资料索引.html</a>（234 份文件功能分类检索）</div></div>
+<div class="secrow"><div class="k">课程安排总表</div><div class="v"><a class="lnk" href="file:///D:%5Cdku%5CEAP%5C%E8%AF%BE%E7%A8%8B%E5%AE%89%E6%8E%92%E6%80%BB%E8%A1%A8.html">课程安排总表.html</a></div></div>
+</div>
+<footer>
+<p>说明：① 材料链接指向本机 <code>D:\dku\EAP\...</code> 下的真实文件，需在本机用浏览器打开本页方可点击；手机/iPad 通过在线版访问时本地链接不可用（可改用“课程资料索引”检索文件名后在 Canvas 打开）。② 标注“（大纲提及，导出包未含）”的文件，开学以 Canvas 实际发布为准。③ 评分权重与截止日依据 Syllabus 与 Due Dates（F26），若教师调整以开学公布为准。</p>
+</footer></div></body></html>
