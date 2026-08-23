@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>EAP 101A 课程资料索引 · 信息汇总入口</title>
+<style>
+:root{--bg:#0f1419;--card:#1a212b;--card2:#222b38;--line:#2d3744;--txt:#e6edf3;--mut:#9aa7b4;--acc:#5fb3ff;--acc2:#7ee0a8;--warn:#ffcf6b;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55;padding:calc(env(safe-area-inset-top) + 18px) 14px calc(env(safe-area-inset-bottom) + 40px);}
+.wrap{max-width:1200px;margin:0 auto;}
+h1{font-size:23px;margin:0 0 4px;}
+h2{font-size:17px;margin:26px 0 10px;color:var(--acc);border-left:4px solid var(--acc);padding-left:10px;}
+.sub{color:var(--mut);font-size:13px;margin-bottom:14px;}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.chip{background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:5px 12px;font-size:12.5px;color:var(--mut);}
+.chip b{color:var(--acc2);}
+.ctrl{position:sticky;top:0;background:var(--bg);padding:10px 0 12px;z-index:5;border-bottom:1px solid var(--line);margin-bottom:6px;}
+.ctrl input,.ctrl select{background:var(--card);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px;}
+.ctrl input{width:min(360px,60vw);}
+.ctrl select{margin-left:8px;}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:10px;padding:12px 14px;font-size:13.5px;margin:10px 0;}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0;}
+.cat h3{margin:0 0 4px;font-size:15.5px;color:var(--acc2);}
+.cat .d{color:var(--mut);font-size:13px;margin-bottom:10px;}
+table{width:100%;border-collapse:collapse;font-size:12.8px;}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top;}
+th{background:var(--card2);color:var(--acc);font-weight:600;position:sticky;top:64px;}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02);}
+.tname{color:var(--txt);word-break:break-all;}
+.role{display:inline-block;background:#2b3543;color:var(--mut);border-radius:6px;padding:1px 6px;font-size:11px;margin-right:4px;}
+.ext{color:var(--warn);font-size:11px;text-transform:uppercase;}
+.sz{color:var(--mut);font-size:11px;white-space:nowrap;}
+.hide{display:none;}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+a{color:var(--acc);}
+img.banner{max-width:100%;border-radius:10px;margin:8px 0;}
+</style></head><body><div class="wrap">
+<h1>EAP 101A 课程资料索引 · 信息汇总入口</h1>
+<div class="sub">来源：Canvas 课程导出包（media/ 文件区 + .epub 站点）｜ 课程：Writing about Language: Learning, New Environments &amp; Learner Identities (EAP 101A, Session 1, F26) ｜ 生成 2026-08-23</div>
+
+<div class="note">
+<b>结构说明：</b>Canvas 导出的 <code>media/</code> 文件夹即课程"文件(File)"区，本身就按主题建了文件夹。本索引在 Canvas 主题文件夹之上，归并出 <b>10 个功能域</b>，并为每个文件推断「角色」与核心用途；文件说明基于 Canvas 自带分类 + 文件名语义推断，若需某文件的<b>全文内容</b>，可用 PDF/图片文字提取 或 docx 格式提取 技能单独抽取。
+<b>提示：</b>存在重复文件——同一份材料被 Canvas 复制到多个主题文件夹，且同名再上传会带 <code>-1</code> 后缀；索引已保留原始路径便于定位，但功能上属同一份。
+</div>
+
+<div class="bar">
+<span class="chip">总文件数 <b>234</b></span>
+<span class="chip">功能域 <b>10</b></span>
+<span class="chip">学术写作核心技能 <b>60</b></span><span class="chip">未分类 / 零散 <b>51</b></span><span class="chip">作业与考核 <b>35</b></span><span class="chip">外部写作中心参考资源 <b>30</b></span><span class="chip">每周课堂讲义 <b>15</b></span><span class="chip">每周课堂幻灯片 <b>13</b></span><span class="chip">课程指定阅读文献 <b>12</b></span><span class="chip">引用规范与AI政策 <b>11</b></span><span class="chip">教材与章节 <b>4</b></span><span class="chip">学习策略与元认知 <b>3</b></span>
+</div>
+
+<div class="ctrl">
+  <input id="q" placeholder="搜索文件名 / 用途 / 角色…" oninput="filter()">
+  <select id="dom" onchange="filter()">
+    <option value="">全部功能域</option>
+    <option value="课程指定阅读文献">课程指定阅读文献</option><option value="作业与考核">作业与考核</option><option value="每周课堂讲义">每周课堂讲义</option><option value="每周课堂幻灯片">每周课堂幻灯片</option><option value="学术写作核心技能">学术写作核心技能</option><option value="引用规范与AI政策">引用规范与AI政策</option><option value="教材与章节">教材与章节</option><option value="外部写作中心参考资源">外部写作中心参考资源</option><option value="学习策略与元认知">学习策略与元认知</option><option value="未分类 / 零散">未分类 / 零散</option>
+  </select>
+  <span class="chip" style="margin-left:8px">匹配 <b id="cnt">0</b> 个文件</span>
+</div>
+
+<h2>课程站点结构（来自 .epub 离线包）</h2>
+<div class="cat"><h3>Writing about Language Learning - A | EAP 101A.001.2026 Fall</h3><div class="d">Canvas 离线 epub 内的站点导航：首页/大纲/公告 + 课程模块（含每周、阅读与作业、写作工具箱）。模块名中的彩色标签已清理。</div>
+<div style="padding-left:4px">
+<div style="padding:3px 0">🔹 教学大纲</div>
+<div style="padding:3px 0">🔹 公告</div>
+<div style="padding:3px 0">🔹 Getting Started</div>
+<div style="padding:3px 0">🔹 Week 1 - August 24 - 27</div>
+<div style="padding:3px 0">🔹 Readings &amp;amp; Assignments</div>
+<div style="padding:3px 0">🔹 Assignments</div>
+<div style="padding:3px 0">🔹 Writer&#x27;s Toolbox</div>
+<div style="padding:3px 0">🔹 Assignments</div>
+<div style="padding:6px 0 2px"><b style="color:var(--acc2)">📁 Getting Started</b></div>
+<div style="padding:2px 0 2px 22px;color:var(--mut)">└ Syllabus</div>
+<div style="padding:2px 0 2px 22px;color:var(--mut)">└ Assessment Guidelines</div>
+<div style="padding:2px 0 2px 22px;color:var(--mut)">└ Learning Goals &amp;amp; Outcomes - Session 1</div>
+<div style="padding:2px 0 2px 22px;color:var(--mut)">└ Learning Community Guidelines</div>
+<div style="padding:2px 0 2px 22px;color:var(--mut)">└ AI Writing Tools - Class Policy</div>
+<div style="padding:2px 0 2px 22px;color:var(--mut)">└ DKU 2026 Academic Calendar</div>
+<div style="padding:2px 0 2px 22px;color:var(--mut)">└ To Do: Before Class 1</div>
+<div style="padding:6px 0 2px"><b style="color:var(--acc2)">📁 Week 1 - August 24 - 27</b></div>
+<div style="padding:2px 0 2px 22px;color:var(--mut)">└ Class 1: Monday [24] / Tuesday [25]</div>
+<div style="padding:2px 0 2px 22px;color:var(--mut)">└ Class 2: Wednesday [26] / Thursday [27]</div>
+<div style="padding:6px 0 2px"><b style="color:var(--acc2)">📁 Readings &amp;amp; Assignments</b></div>
+<div style="padding:2px 0 2px 22px;color:var(--mut)">└ Resources-📘Readings,📖Reading Guides</div>
+<div style="padding:6px 0 2px"><b style="color:var(--acc2)">📁 Writer&#x27;s Toolbox</b></div>
+<div style="padding:2px 0 2px 22px;color:var(--mut)">└ Index</div>
+<div style="padding:8px 0 2px"><b style="color:var(--acc2)">🖼 课程图片（仅存于 epub 内 OEBPS/media）</b></div>
+<div class="scroll"><table><thead><tr><th>图片文件</th></tr></thead><tbody>
+<tr><td class="tname">Canvas Pics Session 1/Calendar+Pic.png</td></tr>
+<tr><td class="tname">Canvas Pics Session 1/EAP+101A+003-004+WeChat+QR+Code.png</td></tr>
+<tr><td class="tname">Canvas Pics Session 1/Welcome.png</td></tr>
+<tr><td class="tname">EAP+101A+-+001%2C002%2C003+%28F26%29.png</td></tr>
+<tr><td class="tname">Uploaded Media/Assignments+2.png</td></tr>
+<tr><td class="tname">Uploaded Media/Calendar+Image-2.png</td></tr>
+<tr><td class="tname">Uploaded Media/Course+Information+2-2.png</td></tr>
+<tr><td class="tname">Uploaded Media/DiDi+%232+in+Circle+resized-1.png</td></tr>
+<tr><td class="tname">Uploaded Media/Getting+Started+Final.png</td></tr>
+<tr><td class="tname">Uploaded Media/Hailey%27s+note-1.jpg</td></tr>
+<tr><td class="tname">Uploaded Media/Important+Class+Information+2.png</td></tr>
+<tr><td class="tname">Uploaded Media/Jasmine%27s+note.jpg</td></tr>
+<tr><td class="tname">Uploaded Media/Micheal+W%27s+note.jpg</td></tr>
+<tr><td class="tname">Uploaded Media/Modules+3.png</td></tr>
+<tr><td class="tname">Uploaded Media/Readings+2.png</td></tr>
+<tr><td class="tname">Uploaded Media/Readings+Image+4.png</td></tr>
+<tr><td class="tname">Uploaded Media/SH2.jpg</td></tr>
+<tr><td class="tname">Uploaded Media/Syllabus+Image+3.png</td></tr>
+<tr><td class="tname">Uploaded Media/Tristan%27s+note.jpg</td></tr>
+<tr><td class="tname">Uploaded Media/Week+1+Final.png</td></tr>
+<tr><td class="tname">Uploaded Media/Week+2+Final.png</td></tr>
+<tr><td class="tname">Uploaded Media/Week+3+Final.png</td></tr>
+<tr><td class="tname">Uploaded Media/Week+4+Final.png</td></tr>
+<tr><td class="tname">Uploaded Media/Week+5+Final.png</td></tr>
+<tr><td class="tname">Uploaded Media/Week+6+Final.png</td></tr>
+<tr><td class="tname">Uploaded Media/Week+7+Final.png</td></tr>
+<tr><td class="tname">Uploaded Media/Welcome+Banner-1.png</td></tr>
+<tr><td class="tname">Uploaded Media/Writer%27s+Toolbox+2.png</td></tr>
+<tr><td class="tname">Uploaded Media/image-3.png</td></tr>
+<tr><td class="tname">course_image/Calendar.png</td></tr>
+<tr><td class="tname">course_image/EAP+%2101A+-015016+Session+1+-+2024-1.png</td></tr>
+<tr><td class="tname">course_image/EAP+%2101A+-015016+Session+1+-+2024.png</td></tr>
+<tr><td class="tname">course_image/EAP+Session+1a+Image.png</td></tr>
+<tr><td class="tname">course_image/English-for-academic-purposes.png</td></tr>
+<tr><td class="tname">course_image/Picture+1.png</td></tr>
+<tr><td class="tname">course_image/Picture1.png</td></tr>
+<tr><td class="tname">course_image/Picture2.png</td></tr>
+<tr><td class="tname">course_image/Picture3.png</td></tr>
+<tr><td class="tname">course_image/Picture4.png</td></tr>
+<tr><td class="tname">course_image/Picture5.png</td></tr>
+<tr><td class="tname">course_image/Syllabus.png</td></tr>
+<tr><td class="tname">unfiled/Hailey%27s+note.jpg</td></tr>
+</tbody></table></div>
+</div></div>
+<div class="cat" data-dom="课程指定阅读文献"><h3>课程指定阅读文献 <span style="color:var(--mut);font-size:12px">（12 个文件）</span></h3>
+<div class="d">Session 1 全部指定阅读文献（学术文章 + 教材章节 + 配套 Reading Guide），是每周讨论与 SW/论文的素材来源。</div>
+<div class="scroll"><table><thead><tr><th>文件名</th><th>类型</th><th>大小</th><th>角色</th><th>核心用途</th><th>原始路径</th></tr></thead><tbody>
+<tr data-dom="课程指定阅读文献"><td class="tname">Galloway+%282017%29+How+Effective+is+EMI.pdf</td><td class="ext">pdf</td><td class="sz">74 KB</td><td>—</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\Galloway+%282017%29+How+Effective+is+EMI.pdf</td></tr>
+<tr data-dom="课程指定阅读文献"><td class="tname">Heng+%282018%29+Chinese+International+Students%27+Advice+to+Incoming+First-Year+Chinese+Students.pdf</td><td class="ext">pdf</td><td class="sz">534 KB</td><td>—</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\Heng+%282018%29+Chinese+International+Students%27+Advice+to+Incoming+First-Year+Chinese+Students.pdf</td></tr>
+<tr data-dom="课程指定阅读文献"><td class="tname">Lin+%282010%29+English+and+Me.pdf</td><td class="ext">pdf</td><td class="sz">1.0 MB</td><td>—</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\Lin+%282010%29+English+and+Me.pdf</td></tr>
+<tr data-dom="课程指定阅读文献"><td class="tname">Ou+%26+Gu+%282021%29+Language+socialization+and+identity+in+intercultural+communication.pdf</td><td class="ext">pdf</td><td class="sz">1.5 MB</td><td>—</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\Ou+%26+Gu+%282021%29+Language+socialization+and+identity+in+intercultural+communication.pdf</td></tr>
+<tr data-dom="课程指定阅读文献"><td class="tname"><span class="role">讲义/指南</span>Reading+Guide+-+Lin+%282010%29.docx</td><td class="ext">docx</td><td class="sz">43 KB</td><td>讲义/指南</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\Reading+Guide+-+Lin+%282010%29.docx</td></tr>
+<tr data-dom="课程指定阅读文献"><td class="tname"><span class="role">讲义/指南</span>Reading+Guide+-+So+%282004%29.docx</td><td class="ext">docx</td><td class="sz">44 KB</td><td>讲义/指南</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\Reading+Guide+-+So+%282004%29.docx</td></tr>
+<tr data-dom="课程指定阅读文献"><td class="tname"><span class="role">讲义/指南</span>Reading+Guide+for+Heng+%282018%29.docx</td><td class="ext">docx</td><td class="sz">41 KB</td><td>讲义/指南</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\Reading+Guide+for+Heng+%282018%29.docx</td></tr>
+<tr data-dom="课程指定阅读文献"><td class="tname"><span class="role">讲义/指南</span>Reading+guide+-+Ou+%26+Gu+%282021%29.docx</td><td class="ext">docx</td><td class="sz">38 KB</td><td>讲义/指南</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\Reading+guide+-+Ou+%26+Gu+%282021%29.docx</td></tr>
+<tr data-dom="课程指定阅读文献"><td class="tname">Ryan+%282010%29+Don%27t+insist+on+English+%28Transcript%29.docx</td><td class="ext">docx</td><td class="sz">27 KB</td><td>—</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\Ryan+%282010%29+Don%27t+insist+on+English+%28Transcript%29.docx</td></tr>
+<tr data-dom="课程指定阅读文献"><td class="tname">So+%282004%29+Rocio+Story+Student+Copy.pdf</td><td class="ext">pdf</td><td class="sz">4.6 MB</td><td>—</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\So+%282004%29+Rocio+Story+Student+Copy.pdf</td></tr>
+<tr data-dom="课程指定阅读文献"><td class="tname">They+Say++I+Say++6th+Edition+%5B1-69%5D.pdf</td><td class="ext">pdf</td><td class="sz">1.1 MB</td><td>—</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\They+Say++I+Say++6th+Edition+%5B1-69%5D.pdf</td></tr>
+<tr data-dom="课程指定阅读文献"><td class="tname">They+Say+I+Say+%5BChapter+2%5D.pdf</td><td class="ext">pdf</td><td class="sz">2.7 MB</td><td>—</td><td>指定阅读文献。</td><td class="sz">Readings for Session 1\They+Say+I+Say+%5BChapter+2%5D.pdf</td></tr>
+</tbody></table></div></div>
+<div class="cat" data-dom="作业与考核"><h3>作业与考核 <span style="color:var(--mut);font-size:12px">（35 个文件）</span></h3>
+<div class="d">评分相关全部文件：SW1/SW2、课程论文、口语评估、作业模板、评分说明与截止日期表。</div>
+<div class="scroll"><table><thead><tr><th>文件名</th><th>类型</th><th>大小</th><th>角色</th><th>核心用途</th><th>原始路径</th></tr></thead><tbody>
+<tr data-dom="作业与考核"><td class="tname">Cohesion+Explained.docx</td><td class="ext">docx</td><td class="sz">63 KB</td><td>—</td><td>作业/考核相关（材料）。</td><td class="sz">Assignments\Course Paper\Coherence\Cohesion+Explained.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">检查表</span>CP+Individual+Reflective+Checklist.docx</td><td class="ext">docx</td><td class="sz">67 KB</td><td>检查表</td><td>作业/考核相关（检查表）。</td><td class="sz">Assignments\Course Paper\Course Paper Resources\CP+Individual+Reflective+Checklist.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">检查表</span>CP+Peer+Reflective+Checklist+-+Final.docx</td><td class="ext">docx</td><td class="sz">64 KB</td><td>检查表</td><td>作业/考核相关（检查表）。</td><td class="sz">Assignments\Course Paper\Course Paper Resources\CP+Peer+Reflective+Checklist+-+Final.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">讲义/指南</span>Introduction+and+Conclusion+Handout.pdf</td><td class="ext">pdf</td><td class="sz">318 KB</td><td>讲义/指南</td><td>作业/考核相关（讲义/指南）。</td><td class="sz">Assignments\Course Paper\Course Paper Resources\Introduction+and+Conclusion+Handout.pdf</td></tr>
+<tr data-dom="作业与考核"><td class="tname">PIE+Paragraphs.pdf</td><td class="ext">pdf</td><td class="sz">278 KB</td><td>—</td><td>作业/考核相关（材料）。</td><td class="sz">Assignments\Course Paper\Course Paper Resources\PIE+Paragraphs.pdf</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">作业说明</span>Course+Paper+Assignment+Instructions+%28F25%29.docx</td><td class="ext">docx</td><td class="sz">52 KB</td><td>作业说明</td><td>作业/考核相关（作业说明）。</td><td class="sz">Assignments\Course Paper\Course+Paper+Assignment+Instructions+%28F25%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">练习单</span>EAP+101A+Course+Paper+Planning+Worksheet+%28F25%29.docx</td><td class="ext">docx</td><td class="sz">60 KB</td><td>练习单</td><td>作业/考核相关（练习单）。</td><td class="sz">Assignments\Course Paper\EAP+101A+Course+Paper+Planning+Worksheet+%28F25%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">评分量规</span>EAP101A+Course+Paper+Grading+Rubric+%28F25%29.docx</td><td class="ext">docx</td><td class="sz">65 KB</td><td>评分量规</td><td>作业/考核相关（评分量规）。</td><td class="sz">Assignments\Course Paper\EAP101A+Course+Paper+Grading+Rubric+%28F25%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname">Final+Reflection.docx</td><td class="ext">docx</td><td class="sz">16 KB</td><td>—</td><td>作业/考核相关（材料）。</td><td class="sz">Assignments\Course Paper\Final+Reflection.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">作业说明</span>Instructions+for%3A+Citing+and+Referencing+GenAI.docx</td><td class="ext">docx</td><td class="sz">182 KB</td><td>作业说明</td><td>引用与披露生成式 AI 的说明。</td><td class="sz">Assignments\Instructions+for%3A+Citing+and+Referencing+GenAI.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">作业说明</span>EAP101A+Assignment+Instructions+OA1+-+Group+Recorded+Discussion+%28PWF26%29.docx</td><td class="ext">docx</td><td class="sz">44 KB</td><td>作业说明</td><td>作业/考核相关（作业说明）。</td><td class="sz">Assignments\Oral Assessment\Oral Assessment 1 (Recording)\EAP101A+Assignment+Instructions+OA1+-+Group+Recorded+Discussion+%28PWF26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">评分量规</span>EAP101A+OA1+Recorded+Discussion+Rubric+F26+%28updated%29.docx</td><td class="ext">docx</td><td class="sz">40 KB</td><td>评分量规</td><td>作业/考核相关（评分量规）。</td><td class="sz">Assignments\Oral Assessment\Oral Assessment 1 (Recording)\EAP101A+OA1+Recorded+Discussion+Rubric+F26+%28updated%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname">EAP101A+OA1+Self+Reflection+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">46 KB</td><td>—</td><td>作业/考核相关（材料）。</td><td class="sz">Assignments\Oral Assessment\Oral Assessment 1 (Recording)\EAP101A+OA1+Self+Reflection+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname">EAP101A+OA1_FA26+%28Index+Card+Notes%29.docx</td><td class="ext">docx</td><td class="sz">39 KB</td><td>—</td><td>作业/考核相关（材料）。</td><td class="sz">Assignments\Oral Assessment\Oral Assessment 1 (Recording)\EAP101A+OA1_FA26+%28Index+Card+Notes%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">讲义/指南</span>Handout+-+Using+Warpwire+to+Add+Student+Videos+to+Canvas.docx</td><td class="ext">docx</td><td class="sz">713 KB</td><td>讲义/指南</td><td>作业/考核相关（讲义/指南）。</td><td class="sz">Assignments\Oral Assessment\Oral Assessment 1 (Recording)\Handout+-+Using+Warpwire+to+Add+Student+Videos+to+Canvas.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">评分量规</span>EAP+101A+OA2+Fishbowl+Rubric+F26+%28updated%29.docx</td><td class="ext">docx</td><td class="sz">38 KB</td><td>评分量规</td><td>作业/考核相关（评分量规）。</td><td class="sz">Assignments\Oral Assessment\Oral Assessment 2 (Fishbowl)\EAP+101A+OA2+Fishbowl+Rubric+F26+%28updated%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">作业说明</span>EAP101A+OA2+Assignment+Instructions+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">44 KB</td><td>作业说明</td><td>作业/考核相关（作业说明）。</td><td class="sz">Assignments\Oral Assessment\Oral Assessment 2 (Fishbowl)\EAP101A+OA2+Assignment+Instructions+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname">EAP101A+OA2+Group+Evaluation+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">45 KB</td><td>—</td><td>作业/考核相关（材料）。</td><td class="sz">Assignments\Oral Assessment\Oral Assessment 2 (Fishbowl)\EAP101A+OA2+Group+Evaluation+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname">EAP101A+OA2+Student+Self+Reflection+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">46 KB</td><td>—</td><td>作业/考核相关（材料）。</td><td class="sz">Assignments\Oral Assessment\Oral Assessment 2 (Fishbowl)\EAP101A+OA2+Student+Self+Reflection+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname">assorted+fishbowl+discussion+slides.pptx</td><td class="ext">pptx</td><td class="sz">2.0 MB</td><td>—</td><td>作业/考核相关（材料）。</td><td class="sz">Assignments\Oral Assessment\Oral Assessment 2 (Fishbowl)\assorted+fishbowl+discussion+slides.pptx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">作业说明</span>EAP+101A+SW+Assignment+Guidelines+%5BFormat+Template+%2BCoversheet%5D+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">59 KB</td><td>作业说明</td><td>作业/考核相关（作业说明）。</td><td class="sz">Assignments\SW1\EAP+101A+SW+Assignment+Guidelines+%5BFormat+Template+%2BCoversheet%5D+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">作业说明</span>EAP+101A+SW1+Assignment+Guidelines+%5BFormat+Template+%2BCoversheet%5D+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">38 KB</td><td>作业说明</td><td>短写作作业文件（作业说明）。</td><td class="sz">Assignments\SW1\EAP+101A+SW1+Assignment+Guidelines+%5BFormat+Template+%2BCoversheet%5D+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">评分量规</span>EAP+101A+SW1+Grading+Rubric+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">70 KB</td><td>评分量规</td><td>短写作作业文件（评分量规）。</td><td class="sz">Assignments\SW1\EAP+101A+SW1+Grading+Rubric+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname">EAP+101A_+How+to+Write+a+Summary+_Brainstorming+Table+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">56 KB</td><td>—</td><td>作业/考核相关（材料）。</td><td class="sz">Assignments\SW1\EAP+101A_+How+to+Write+a+Summary+_Brainstorming+Table+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">作业说明</span>EAP101A+SW1+Assignment+Instructions+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">64 KB</td><td>作业说明</td><td>短写作作业文件（作业说明）。</td><td class="sz">Assignments\SW1\EAP101A+SW1+Assignment+Instructions+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">作业说明</span>EAP+101A+SW2+Assignment+Format+Template+%2BCoversheet+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">36 KB</td><td>作业说明</td><td>短写作作业文件（作业说明）。</td><td class="sz">Assignments\SW2\EAP+101A+SW2+Assignment+Format+Template+%2BCoversheet+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">评分量规</span>EAP+101A+SW2+Grading+Rubric+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">66 KB</td><td>评分量规</td><td>短写作作业文件（评分量规）。</td><td class="sz">Assignments\SW2\EAP+101A+SW2+Grading+Rubric+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">检查表</span>EAP+101A+SW2+Peer+Reflective+Checklist+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">67 KB</td><td>检查表</td><td>短写作作业文件（检查表）。</td><td class="sz">Assignments\SW2\EAP+101A+SW2+Peer+Reflective+Checklist+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">作业说明</span>EAP101A+SW2+Assignment+Instructions+%28PW+F26%29.docx</td><td class="ext">docx</td><td class="sz">59 KB</td><td>作业说明</td><td>短写作作业文件（作业说明）。</td><td class="sz">Assignments\SW2\EAP101A+SW2+Assignment+Instructions+%28PW+F26%29.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname">Writing+a+thesis+for+a+strong+Response+Essay.pptx</td><td class="ext">pptx</td><td class="sz">622 KB</td><td>—</td><td>作业/考核相关（材料）。</td><td class="sz">Assignments\SW2\Writing+a+thesis+for+a+strong+Response+Essay.pptx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">作业说明</span>Tentative+Assignment+Due+Dates+%28Session+1%29+F26.docx</td><td class="ext">docx</td><td class="sz">34 KB</td><td>作业说明</td><td>作业/考核相关（作业说明）。</td><td class="sz">Assignments\Tentative+Assignment+Due+Dates+%28Session+1%29+F26.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">可填写模板</span>Course+Paper+Formatting+TEMPLATE.docx</td><td class="ext">docx</td><td class="sz">27 KB</td><td>可填写模板</td><td>作业排版/格式模板（可填写模板）。</td><td class="sz">assignment Templates\Course+Paper+Formatting+TEMPLATE.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">可填写模板</span>SW+Formatting+Template-1.docx</td><td class="ext">docx</td><td class="sz">32 KB</td><td>可填写模板</td><td>作业排版/格式模板（可填写模板）。</td><td class="sz">assignment Templates\SW+Formatting+Template-1.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname"><span class="role">可填写模板</span>SW+Formatting+Template.docx</td><td class="ext">docx</td><td class="sz">32 KB</td><td>可填写模板</td><td>作业排版/格式模板（可填写模板）。</td><td class="sz">assignment Templates\SW+Formatting+Template.docx</td></tr>
+<tr data-dom="作业与考核"><td class="tname">The+Basic+Outline+of+a+Paper-1.docx</td><td class="ext">docx</td><td class="sz">57 KB</td><td>—</td><td>作业排版/格式模板（）。</td><td class="sz">assignment Templates\The+Basic+Outline+of+a+Paper-1.docx</td></tr>
+</tbody></table></div></div>
+<div class="cat" data-dom="每周课堂讲义"><h3>每周课堂讲义 <span style="color:var(--mut);font-size:12px">（15 个文件）</span></h3>
+<div class="d">按 Week+Lesson 编号的课堂讲义（docx），对应大纲 14 节课的当堂材料。</div>
+<div class="scroll"><table><thead><tr><th>文件名</th><th>类型</th><th>大小</th><th>角色</th><th>核心用途</th><th>原始路径</th></tr></thead><tbody>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>EAP101A+Week+2+Lesson+4+Class+Handout.docx</td><td class="ext">docx</td><td class="sz">58 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\EAP101A+Week+2+Lesson+4+Class+Handout.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>Handout+-+Using+Warpwire+to+Add+Student+Videos+to+Canvas.docx</td><td class="ext">docx</td><td class="sz">713 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Handout+-+Using+Warpwire+to+Add+Student+Videos+to+Canvas.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>Reading+for+Main+Ideas+vs+details+handout.docx</td><td class="ext">docx</td><td class="sz">49 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Reading+for+Main+Ideas+vs+details+handout.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname">Understanding+and+Using+Feedback_Intro.docx</td><td class="ext">docx</td><td class="sz">81 KB</td><td>—</td><td>当堂讲义（材料），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Understanding+and+Using+Feedback_Intro.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>Week+1+Lesson+1+Class+Handout.docx</td><td class="ext">docx</td><td class="sz">53 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Week+1+Lesson+1+Class+Handout.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>Week+1+Lesson+2+Class+Handout.docx</td><td class="ext">docx</td><td class="sz">55 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Week+1+Lesson+2+Class+Handout.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>Week+2+Lesson+3+Summary+Writing+handout+%28F25%29.docx</td><td class="ext">docx</td><td class="sz">58 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Week+2+Lesson+3+Summary+Writing+handout+%28F25%29.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>Week+3%2C+Lesson+5+Class+Handout.docx</td><td class="ext">docx</td><td class="sz">276 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Week+3%2C+Lesson+5+Class+Handout.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>Week+3%2C+Lesson+6+Class+Handout.docx</td><td class="ext">docx</td><td class="sz">53 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Week+3%2C+Lesson+6+Class+Handout.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname">Week+4+Lesson+7+response-paper.original+DukeWS.pdf</td><td class="ext">pdf</td><td class="sz">200 KB</td><td>—</td><td>当堂讲义（材料），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Week+4+Lesson+7+response-paper.original+DukeWS.pdf</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname">Week+4+Lesson+8+-+Lahiri+%282015%29+Teach+Yourself+Italian.pdf</td><td class="ext">pdf</td><td class="sz">167 KB</td><td>—</td><td>当堂讲义（材料），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Week+4+Lesson+8+-+Lahiri+%282015%29+Teach+Yourself+Italian.pdf</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>Week+5%2C+Lesson+10+Class+Handout.docx</td><td class="ext">docx</td><td class="sz">227 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Week+5%2C+Lesson+10+Class+Handout.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>Week+5+Lesson+9+Class+Handout.docx</td><td class="ext">docx</td><td class="sz">99 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Week+5+Lesson+9+Class+Handout.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>Week+6%2C+Lesson+11+Class+Handout.docx</td><td class="ext">docx</td><td class="sz">609 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Week+6%2C+Lesson+11+Class+Handout.docx</td></tr>
+<tr data-dom="每周课堂讲义"><td class="tname"><span class="role">讲义/指南</span>Week+6+Lesson+12+Class+Handout.docx</td><td class="ext">docx</td><td class="sz">54 KB</td><td>讲义/指南</td><td>当堂讲义（讲义/指南），对应大纲某周某节。</td><td class="sz">Weekly Class Handouts\Week+6+Lesson+12+Class+Handout.docx</td></tr>
+</tbody></table></div></div>
+<div class="cat" data-dom="每周课堂幻灯片"><h3>每周课堂幻灯片 <span style="color:var(--mut);font-size:12px">（13 个文件）</span></h3>
+<div class="d">按 Week 1–6 组织的幻灯片（pptx / 图片），课堂演示用。</div>
+<div class="scroll"><table><thead><tr><th>文件名</th><th>类型</th><th>大小</th><th>角色</th><th>核心用途</th><th>原始路径</th></tr></thead><tbody>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+1%2C+Lesson+1.pdf</td><td class="ext">pdf</td><td class="sz">2.9 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 1\Week+1%2C+Lesson+1.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+1%2C+Lesson+2.pdf</td><td class="ext">pdf</td><td class="sz">1.3 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 1\Week+1%2C+Lesson+2.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+2%2C+Lesson+3.pdf</td><td class="ext">pdf</td><td class="sz">2.0 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 2\Week+2%2C+Lesson+3.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+2%2C+Lesson+4.pdf</td><td class="ext">pdf</td><td class="sz">3.4 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 2\Week+2%2C+Lesson+4.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+3%2C+Lesson+5.pdf</td><td class="ext">pdf</td><td class="sz">1.5 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 3\Week+3%2C+Lesson+5.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+3%2C+Lesson+6.pdf</td><td class="ext">pdf</td><td class="sz">1.4 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 3\Week+3%2C+Lesson+6.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+4%2C+Lesson+7+%28Answers+Visible%29.pdf</td><td class="ext">pdf</td><td class="sz">2.6 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 4\Week+4%2C+Lesson+7+%28Answers+Visible%29.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+4%2C+Lesson+7.pdf</td><td class="ext">pdf</td><td class="sz">2.8 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 4\Week+4%2C+Lesson+7.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+4%2C+Lesson+8.pdf</td><td class="ext">pdf</td><td class="sz">2.4 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 4\Week+4%2C+Lesson+8.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+5%2C+Lesson+10.pdf</td><td class="ext">pdf</td><td class="sz">1.2 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 5\Week+5%2C+Lesson+10.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+5%2C+Lesson+9.pdf</td><td class="ext">pdf</td><td class="sz">2.5 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 5\Week+5%2C+Lesson+9.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+6%2C+Lesson+11.pdf</td><td class="ext">pdf</td><td class="sz">1.8 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 6\Week+6%2C+Lesson+11.pdf</td></tr>
+<tr data-dom="每周课堂幻灯片"><td class="tname">Week+6%2C+Lesson+12.pdf</td><td class="ext">pdf</td><td class="sz">2.1 MB</td><td>—</td><td>课堂演示幻灯片。</td><td class="sz">Weekly Slides\Week 6\Week+6%2C+Lesson+12.pdf</td></tr>
+</tbody></table></div></div>
+<div class="cat" data-dom="学术写作核心技能"><h3>学术写作核心技能 <span style="color:var(--mut);font-size:12px">（60 个文件）</span></h3>
+<div class="d">围绕摘要、论点句、主题句、过渡、引用、改写、修订、精简等单项写作技能的讲义/模板/检查表。</div>
+<div class="scroll"><table><thead><tr><th>文件名</th><th>类型</th><th>大小</th><th>角色</th><th>核心用途</th><th>原始路径</th></tr></thead><tbody>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">可填写模板</span>Argument+-+Counter-Argument+Templates-1.docx</td><td class="ext">docx</td><td class="sz">88 KB</td><td>可填写模板</td><td>写作技能材料：可填写模板。</td><td class="sz">Argument\Argument+-+Counter-Argument+Templates-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">可填写模板</span>Argument+-+Counter-Argument+Templates.docx</td><td class="ext">docx</td><td class="sz">88 KB</td><td>可填写模板</td><td>写作技能材料：可填写模板。</td><td class="sz">Argument\Argument+-+Counter-Argument+Templates.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">讲义/指南</span>Learning+Guide+-+Verbs+for+Reporting-1.pdf</td><td class="ext">pdf</td><td class="sz">204 KB</td><td>讲义/指南</td><td>写作技能材料：讲义/指南。</td><td class="sz">Reporting Verbs\Learning+Guide+-+Verbs+for+Reporting-1.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">讲义/指南</span>Learning+Guide+-+Verbs+for+Reporting.pdf</td><td class="ext">pdf</td><td class="sz">204 KB</td><td>讲义/指南</td><td>写作技能材料：讲义/指南。</td><td class="sz">Reporting Verbs\Learning+Guide+-+Verbs+for+Reporting.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Reporting+Verbs+-+AEUK-1.docx</td><td class="ext">docx</td><td class="sz">55 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Reporting Verbs\Reporting+Verbs+-+AEUK-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Reporting+Verbs+-+AEUK.docx</td><td class="ext">docx</td><td class="sz">55 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Reporting Verbs\Reporting+Verbs+-+AEUK.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Reporting+Verbs+General+Meaning-1.docx</td><td class="ext">docx</td><td class="sz">92 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Reporting Verbs\Reporting+Verbs+General+Meaning-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Reporting+Verbs+General+Meaning.docx</td><td class="ext">docx</td><td class="sz">92 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Reporting Verbs\Reporting+Verbs+General+Meaning.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Reporting+Verbs-1.docx</td><td class="ext">docx</td><td class="sz">76 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Reporting Verbs\Reporting+Verbs-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Reporting+Verbs.docx</td><td class="ext">docx</td><td class="sz">76 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Reporting Verbs\Reporting+Verbs.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">练习单</span>Revising+and+Editing+Worksheet-1.docx</td><td class="ext">docx</td><td class="sz">65 KB</td><td>练习单</td><td>写作技能材料：练习单。</td><td class="sz">Revising and Editing\Revising+and+Editing+Worksheet-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">练习单</span>Revising+and+Editing+Worksheet.docx</td><td class="ext">docx</td><td class="sz">65 KB</td><td>练习单</td><td>写作技能材料：练习单。</td><td class="sz">Revising and Editing\Revising+and+Editing+Worksheet.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Acknowledging+Paraphrasing+and+Quoting+Sources.Pdf</td><td class="ext">pdf</td><td class="sz">143 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Source Use in Academic Writiing-Summarizing, Paraphrasing, and Quoting\Acknowledging+Paraphrasing+and+Quoting+Sources.Pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">How+to+Write+a+Summary+%28Swales+%26+Feak%29.pdf</td><td class="ext">pdf</td><td class="sz">149 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Source Use in Academic Writiing-Summarizing, Paraphrasing, and Quoting\How+to+Write+a+Summary+%28Swales+%26+Feak%29.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Paraphrasing+and+Quoting+%28Flinders%29.pdf</td><td class="ext">pdf</td><td class="sz">184 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Source Use in Academic Writiing-Summarizing, Paraphrasing, and Quoting\Paraphrasing+and+Quoting+%28Flinders%29.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Patchwriting+vs+Effective+Summary.Pdf</td><td class="ext">pdf</td><td class="sz">571 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Source Use in Academic Writiing-Summarizing, Paraphrasing, and Quoting\Patchwriting+vs+Effective+Summary.Pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">讲义/指南</span>Reporting+Verbs+handout.docx</td><td class="ext">docx</td><td class="sz">79 KB</td><td>讲义/指南</td><td>写作技能材料：讲义/指南。</td><td class="sz">Source Use in Academic Writiing-Summarizing, Paraphrasing, and Quoting\Reporting+Verbs+handout.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">To+Paraphrase+or+to+Quote%3F.Pdf</td><td class="ext">pdf</td><td class="sz">453 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Source Use in Academic Writiing-Summarizing, Paraphrasing, and Quoting\To+Paraphrase+or+to+Quote%3F.Pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Writing+a+Formal+Summary+%28MPC%29.pdf</td><td class="ext">pdf</td><td class="sz">1.1 MB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Source Use in Academic Writiing-Summarizing, Paraphrasing, and Quoting\Writing+a+Formal+Summary+%28MPC%29.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Outline+2+for+a+Summary+Response+Reaction-1.docx</td><td class="ext">docx</td><td class="sz">57 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Summary Response\Outline+2+for+a+Summary+Response+Reaction-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Outline+2+for+a+Summary+Response+Reaction.docx</td><td class="ext">docx</td><td class="sz">57 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Summary Response\Outline+2+for+a+Summary+Response+Reaction.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">练习单</span>Response+Essay+Outline+Worksheet-1.docx</td><td class="ext">docx</td><td class="sz">58 KB</td><td>练习单</td><td>写作技能材料：练习单。</td><td class="sz">Summary Response\Response+Essay+Outline+Worksheet-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">练习单</span>Response+Essay+Outline+Worksheet.docx</td><td class="ext">docx</td><td class="sz">58 KB</td><td>练习单</td><td>写作技能材料：练习单。</td><td class="sz">Summary Response\Response+Essay+Outline+Worksheet.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Response+Paper.original+Duke+WS-1.pdf</td><td class="ext">pdf</td><td class="sz">200 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Summary Response\Response+Paper.original+Duke+WS-1.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Response+Paper.original+Duke+WS.pdf</td><td class="ext">pdf</td><td class="sz">200 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Summary Response\Response+Paper.original+Duke+WS.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">检查表</span>Summary+Response+Individual+Checklist-1.docx</td><td class="ext">docx</td><td class="sz">54 KB</td><td>检查表</td><td>写作技能材料：检查表。</td><td class="sz">Summary Response\Summary+Response+Individual+Checklist-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">检查表</span>Summary+Response+Individual+Checklist.docx</td><td class="ext">docx</td><td class="sz">54 KB</td><td>检查表</td><td>写作技能材料：检查表。</td><td class="sz">Summary Response\Summary+Response+Individual+Checklist.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Writing+a+Response+or+Reaction+Paper-1.pdf</td><td class="ext">pdf</td><td class="sz">53 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Summary Response\Writing+a+Response+or+Reaction+Paper-1.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Writing+a+Response+or+Reaction+Paper.pdf</td><td class="ext">pdf</td><td class="sz">53 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Summary Response\Writing+a+Response+or+Reaction+Paper.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">可填写模板</span>Format+Template-1.docx</td><td class="ext">docx</td><td class="sz">32 KB</td><td>可填写模板</td><td>写作技能材料：可填写模板。</td><td class="sz">Summary Writing\Format+Template-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">可填写模板</span>Format+Template.docx</td><td class="ext">docx</td><td class="sz">32 KB</td><td>可填写模板</td><td>写作技能材料：可填写模板。</td><td class="sz">Summary Writing\Format+Template.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">写作范例</span>Sample+summary+%28TSIS+Intro%29-1.docx</td><td class="ext">docx</td><td class="sz">50 KB</td><td>写作范例</td><td>写作技能材料：写作范例。</td><td class="sz">Summary Writing\Sample+summary+%28TSIS+Intro%29-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">写作范例</span>Sample+summary+%28TSIS+Intro%29.docx</td><td class="ext">docx</td><td class="sz">50 KB</td><td>写作范例</td><td>写作技能材料：写作范例。</td><td class="sz">Summary Writing\Sample+summary+%28TSIS+Intro%29.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">检查表</span>Summary+Writing+Personal+Reflective+Checklist-1.docx</td><td class="ext">docx</td><td class="sz">62 KB</td><td>检查表</td><td>写作技能材料：检查表。</td><td class="sz">Summary Writing\Summary+Writing+Personal+Reflective+Checklist-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">检查表</span>Summary+Writing+Personal+Reflective+Checklist.docx</td><td class="ext">docx</td><td class="sz">62 KB</td><td>检查表</td><td>写作技能材料：检查表。</td><td class="sz">Summary Writing\Summary+Writing+Personal+Reflective+Checklist.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">技巧提示</span>Summary+Writing+Tips-1.docx</td><td class="ext">docx</td><td class="sz">73 KB</td><td>技巧提示</td><td>写作技能材料：技巧提示。</td><td class="sz">Summary Writing\Summary+Writing+Tips-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">技巧提示</span>Summary+Writing+Tips.docx</td><td class="ext">docx</td><td class="sz">73 KB</td><td>技巧提示</td><td>写作技能材料：技巧提示。</td><td class="sz">Summary Writing\Summary+Writing+Tips.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Bad+-+Better+Thesis+Statements-1.docx</td><td class="ext">docx</td><td class="sz">71 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Thesis Statement\Bad+-+Better+Thesis+Statements-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Bad+-+Better+Thesis+Statements.docx</td><td class="ext">docx</td><td class="sz">71 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Thesis Statement\Bad+-+Better+Thesis+Statements.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Developing+a+Thesis+Statement-1.docx</td><td class="ext">docx</td><td class="sz">70 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Thesis Statement\Developing+a+Thesis+Statement-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Developing+a+Thesis+Statement.docx</td><td class="ext">docx</td><td class="sz">70 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Thesis Statement\Developing+a+Thesis+Statement.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">检查表</span>Evaluating+Thesis+Statements+-+Checklist-1.docx</td><td class="ext">docx</td><td class="sz">36 KB</td><td>检查表</td><td>写作技能材料：检查表。</td><td class="sz">Thesis Statement\Evaluating+Thesis+Statements+-+Checklist-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">检查表</span>Evaluating+Thesis+Statements+-+Checklist.docx</td><td class="ext">docx</td><td class="sz">36 KB</td><td>检查表</td><td>写作技能材料：检查表。</td><td class="sz">Thesis Statement\Evaluating+Thesis+Statements+-+Checklist.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">How+to+Write+A+Thesis+Statement-1.docx</td><td class="ext">docx</td><td class="sz">50 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Thesis Statement\How+to+Write+A+Thesis+Statement-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">How+to+Write+A+Thesis+Statement.docx</td><td class="ext">docx</td><td class="sz">50 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Thesis Statement\How+to+Write+A+Thesis+Statement.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">互评/配对表</span>Thesis+Share+and+Check+Chart-1.docx</td><td class="ext">docx</td><td class="sz">63 KB</td><td>互评/配对表</td><td>写作技能材料：互评/配对表。</td><td class="sz">Thesis Statement\Thesis+Share+and+Check+Chart-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">互评/配对表</span>Thesis+Share+and+Check+Chart.docx</td><td class="ext">docx</td><td class="sz">63 KB</td><td>互评/配对表</td><td>写作技能材料：互评/配对表。</td><td class="sz">Thesis Statement\Thesis+Share+and+Check+Chart.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">练习单</span>Thesis+Statements+-+Planning+Worksheet-1.docx</td><td class="ext">docx</td><td class="sz">272 KB</td><td>练习单</td><td>写作技能材料：练习单。</td><td class="sz">Thesis Statement\Thesis+Statements+-+Planning+Worksheet-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname"><span class="role">练习单</span>Thesis+Statements+-+Planning+Worksheet.docx</td><td class="ext">docx</td><td class="sz">272 KB</td><td>练习单</td><td>写作技能材料：练习单。</td><td class="sz">Thesis Statement\Thesis+Statements+-+Planning+Worksheet.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Thesis+Statements+-+Your+%E2%80%9CRoad+Map%E2%80%9D+to+Success+in+EAP+Writing-1.docx</td><td class="ext">docx</td><td class="sz">111 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Thesis Statement\Thesis+Statements+-+Your+%E2%80%9CRoad+Map%E2%80%9D+to+Success+in+EAP+Writing-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Thesis+Statements+-+Your+%E2%80%9CRoad+Map%E2%80%9D+to+Success+in+EAP+Writing.docx</td><td class="ext">docx</td><td class="sz">111 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Thesis Statement\Thesis+Statements+-+Your+%E2%80%9CRoad+Map%E2%80%9D+to+Success+in+EAP+Writing.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Write+a+Strong+Thesis+Statement-1.pdf</td><td class="ext">pdf</td><td class="sz">266 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Thesis Statement\Write+a+Strong+Thesis+Statement-1.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Write+a+Strong+Thesis+Statement.pdf</td><td class="ext">pdf</td><td class="sz">266 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Thesis Statement\Write+a+Strong+Thesis+Statement.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Topic+Sentence+Paragraph-1.pdf</td><td class="ext">pdf</td><td class="sz">68 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Topic Sentence\Topic+Sentence+Paragraph-1.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Topic+Sentence+Paragraph.pdf</td><td class="ext">pdf</td><td class="sz">68 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Topic Sentence\Topic+Sentence+Paragraph.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Topic+Sentence+Review-1.docx</td><td class="ext">docx</td><td class="sz">61 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Topic Sentence\Topic+Sentence+Review-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Topic+Sentence+Review.docx</td><td class="ext">docx</td><td class="sz">61 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Topic Sentence\Topic+Sentence+Review.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Transitions+%28ESL%29+%E2%80%93+UNC+Writing+Center.pdf</td><td class="ext">pdf</td><td class="sz">75 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Transitions\Transitions+%28ESL%29+%E2%80%93+UNC+Writing+Center.pdf</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Techniques+for+Reducing+Wordiness-1.docx</td><td class="ext">docx</td><td class="sz">80 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Wordiness\Techniques+for+Reducing+Wordiness-1.docx</td></tr>
+<tr data-dom="学术写作核心技能"><td class="tname">Techniques+for+Reducing+Wordiness.docx</td><td class="ext">docx</td><td class="sz">80 KB</td><td>—</td><td>写作技能材料：讲义。</td><td class="sz">Wordiness\Techniques+for+Reducing+Wordiness.docx</td></tr>
+</tbody></table></div></div>
+<div class="cat" data-dom="引用规范与AI政策"><h3>引用规范与AI政策 <span style="color:var(--mut);font-size:12px">（11 个文件）</span></h3>
+<div class="d">APA 第7版引用指南、AI 使用与披露规范、范文与样例。</div>
+<div class="scroll"><table><thead><tr><th>文件名</th><th>类型</th><th>大小</th><th>角色</th><th>核心用途</th><th>原始路径</th></tr></thead><tbody>
+<tr data-dom="引用规范与AI政策"><td class="tname"><span class="role">讲义/指南</span>A+Guide+to+Using+and+Referencing+AI+tools+in+APA+Style.pdf</td><td class="ext">pdf</td><td class="sz">512 KB</td><td>讲义/指南</td><td>APA 框架下 AI 使用与披露规范。</td><td class="sz">APA Style\A+Guide+to+Using+and+Referencing+AI+tools+in+APA+Style.pdf</td></tr>
+<tr data-dom="引用规范与AI政策"><td class="tname"><span class="role">讲义/指南</span>APA+Citation+Guide+%287th+ed.%29+AI-Generated+Content.pdf</td><td class="ext">pdf</td><td class="sz">451 KB</td><td>讲义/指南</td><td>APA 框架下 AI 使用与披露规范。</td><td class="sz">APA Style\APA+Citation+Guide+%287th+ed.%29+AI-Generated+Content.pdf</td></tr>
+<tr data-dom="引用规范与AI政策"><td class="tname">APA+style+Chapter+Titles+%28PW+F23%29-1.docx</td><td class="ext">docx</td><td class="sz">89 KB</td><td>—</td><td>APA 第7版引用材料（指南）。</td><td class="sz">APA Style\APA+style+Chapter+Titles+%28PW+F23%29-1.docx</td></tr>
+<tr data-dom="引用规范与AI政策"><td class="tname">APA+style+Chapter+Titles+%28PW+F23%29.docx</td><td class="ext">docx</td><td class="sz">89 KB</td><td>—</td><td>APA 第7版引用材料（指南）。</td><td class="sz">APA Style\APA+style+Chapter+Titles+%28PW+F23%29.docx</td></tr>
+<tr data-dom="引用规范与AI政策"><td class="tname">Are+You+a+Student+Thinking+About+Using+Generated+AI.pdf</td><td class="ext">pdf</td><td class="sz">472 KB</td><td>—</td><td>APA 框架下 AI 使用与披露规范。</td><td class="sz">APA Style\Are+You+a+Student+Thinking+About+Using+Generated+AI.pdf</td></tr>
+<tr data-dom="引用规范与AI政策"><td class="tname">Methods+of+Introducing+Quotations</td><td class="ext">docx</td><td class="sz">73 KB</td><td>—</td><td>APA 第7版引用材料（指南）。</td><td class="sz">APA Style\Methods+of+Introducing+Quotations</td></tr>
+<tr data-dom="引用规范与AI政策"><td class="tname"><span class="role">写作范例</span>Sample+-+AI+Use+for+Reference+%26+Appendixes+Page.pdf</td><td class="ext">pdf</td><td class="sz">3.0 MB</td><td>写作范例</td><td>APA 框架下 AI 使用与披露规范。</td><td class="sz">APA Style\Sample+-+AI+Use+for+Reference+%26+Appendixes+Page.pdf</td></tr>
+<tr data-dom="引用规范与AI政策"><td class="tname"><span class="role">讲义/指南</span>Student+Handout+-+APA+7th+Edition.pdf</td><td class="ext">pdf</td><td class="sz">596 KB</td><td>讲义/指南</td><td>APA 第7版引用材料（讲义/指南）。</td><td class="sz">APA Style\Student+Handout+-+APA+7th+Edition.pdf</td></tr>
+<tr data-dom="引用规范与AI政策"><td class="tname"><span class="role">写作范例</span>apa-sample-sources-7thed.pdf</td><td class="ext">pdf</td><td class="sz">250 KB</td><td>写作范例</td><td>APA 第7版引用材料（写作范例）。</td><td class="sz">APA Style\apa-sample-sources-7thed.pdf</td></tr>
+<tr data-dom="引用规范与AI政策"><td class="tname"><span class="role">讲义/指南</span>A+Guide+to+Using+and+Referencing+AI+tools+in+APA+Style.pdf</td><td class="ext">pdf</td><td class="sz">521 KB</td><td>讲义/指南</td><td>APA 框架下 AI 使用与披露规范。</td><td class="sz">Uploaded Media\A+Guide+to+Using+and+Referencing+AI+tools+in+APA+Style.pdf</td></tr>
+<tr data-dom="引用规范与AI政策"><td class="tname"><span class="role">讲义/指南</span>APA+citation+guide+%287th+ed.%29+AI-Generated+Content+conv.pdf</td><td class="ext">pdf</td><td class="sz">493 KB</td><td>讲义/指南</td><td>APA 框架下 AI 使用与披露规范。</td><td class="sz">Uploaded Media\APA+citation+guide+%287th+ed.%29+AI-Generated+Content+conv.pdf</td></tr>
+</tbody></table></div></div>
+<div class="cat" data-dom="教材与章节"><h3>教材与章节 <span style="color:var(--mut);font-size:12px">（4 个文件）</span></h3>
+<div class="d">指定教材 They Say / I Say 的章节 PDF 与模板速查。</div>
+<div class="scroll"><table><thead><tr><th>文件名</th><th>类型</th><th>大小</th><th>角色</th><th>核心用途</th><th>原始路径</th></tr></thead><tbody>
+<tr data-dom="教材与章节"><td class="tname"><span class="role">可填写模板</span>TSIS+Moves+and+Templates-1.docx</td><td class="ext">docx</td><td class="sz">68 KB</td><td>可填写模板</td><td>They Say/I Say 教材章节或模板速查。</td><td class="sz">They Say_I Say\TSIS+Moves+and+Templates-1.docx</td></tr>
+<tr data-dom="教材与章节"><td class="tname"><span class="role">可填写模板</span>TSIS+Moves+and+Templates.docx</td><td class="ext">docx</td><td class="sz">68 KB</td><td>可填写模板</td><td>They Say/I Say 教材章节或模板速查。</td><td class="sz">They Say_I Say\TSIS+Moves+and+Templates.docx</td></tr>
+<tr data-dom="教材与章节"><td class="tname"><span class="role">可填写模板</span>I+Say+Sentence+Templates-1.docx</td><td class="ext">docx</td><td class="sz">59 KB</td><td>可填写模板</td><td>They Say/I Say 教材章节或模板速查。</td><td class="sz">They Say_I Say\They Say\I+Say+Sentence+Templates-1.docx</td></tr>
+<tr data-dom="教材与章节"><td class="tname"><span class="role">可填写模板</span>I+Say+Sentence+Templates.docx</td><td class="ext">docx</td><td class="sz">59 KB</td><td>可填写模板</td><td>They Say/I Say 教材章节或模板速查。</td><td class="sz">They Say_I Say\They Say\I+Say+Sentence+Templates.docx</td></tr>
+</tbody></table></div></div>
+<div class="cat" data-dom="外部写作中心参考资源"><h3>外部写作中心参考资源 <span style="color:var(--mut);font-size:12px">（30 个文件）</span></h3>
+<div class="d">来自 UNC / Yale / Duke / Flinders 等大学写作中心的通用写作指导（体裁、提示分析、阅读策略、口语等）。</div>
+<div class="scroll"><table><thead><tr><th>文件名</th><th>类型</th><th>大小</th><th>角色</th><th>核心用途</th><th>原始路径</th></tr></thead><tbody>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Academic+genres.pdf</td><td class="ext">pdf</td><td class="sz">210 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Academic Writing\Academic+genres.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Comparing+and+Contrasting+%E2%80%93+UNC+Writing+Center.pdf</td><td class="ext">pdf</td><td class="sz">117 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Academic Writing\Comparing+and+Contrasting+%E2%80%93+UNC+Writing+Center.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname"><span class="role">作业说明</span>Understanding+Assignments+%28UNC+Writing+Center%29+%281%29.pdf</td><td class="ext">pdf</td><td class="sz">98 KB</td><td>作业说明</td><td>外部大学写作中心通用指导（作业说明）。</td><td class="sz">Academic Writing\Understanding+Assignments+%28UNC+Writing+Center%29+%281%29.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname"><span class="role">作业说明</span>Understanding_Your_Assignment_Web.pdf</td><td class="ext">pdf</td><td class="sz">121 KB</td><td>作业说明</td><td>外部大学写作中心通用指导（作业说明）。</td><td class="sz">Academic Writing\Understanding_Your_Assignment_Web.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">What+Good+Writers+Know+%28Yale%29.pdf</td><td class="ext">pdf</td><td class="sz">47 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Academic Writing\What+Good+Writers+Know+%28Yale%29.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Writing+Forum+Posts+and+Replies.pdf</td><td class="ext">pdf</td><td class="sz">391 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Academic Writing\Writing+Forum+Posts+and+Replies.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">breaking-down-a-writing-prompt-3.pdf</td><td class="ext">pdf</td><td class="sz">127 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Academic Writing\breaking-down-a-writing-prompt-3.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">breaking-down-a-writing-prompt-3.pdf</td><td class="ext">pdf</td><td class="sz">127 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Analyzing Prompts\breaking-down-a-writing-prompt-3.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Blooms-Taxonomy+for+Critical+Thinking-1.docx</td><td class="ext">docx</td><td class="sz">105 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Bloom&#x27;s Taxonomy\Blooms-Taxonomy+for+Critical+Thinking-1.docx</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Blooms-Taxonomy+for+Critical+Thinking.docx</td><td class="ext">docx</td><td class="sz">105 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Bloom&#x27;s Taxonomy\Blooms-Taxonomy+for+Critical+Thinking.docx</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Common+Genres+of+Academic+Writing</td><td class="ext">pdf</td><td class="sz">210 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Genres\Common+Genres+of+Academic+Writing</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Writing+and+Genres+-+Chapter1-1.pdf</td><td class="ext">pdf</td><td class="sz">639 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Genres\Writing+and+Genres+-+Chapter1-1.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Writing+and+Genres+-+Chapter1.pdf</td><td class="ext">pdf</td><td class="sz">639 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Genres\Writing+and+Genres+-+Chapter1.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">6+Critical+Reading+Habits+to+Develop+in+Your+First+Year+%28annotated%29.pdf</td><td class="ext">pdf</td><td class="sz">2.9 MB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading\6+Critical+Reading+Habits+to+Develop+in+Your+First+Year+%28annotated%29.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Cornell+note-taking+method+%28Duke+TWS%29.pdf</td><td class="ext">pdf</td><td class="sz">34 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading\Cornell+note-taking+method+%28Duke+TWS%29.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Language+Use+and+Proofreading.docx</td><td class="ext">docx</td><td class="sz">14 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading\Language+Use+and+Proofreading.docx</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Note-taking+systems+%28Cal+Poly%29.pdf</td><td class="ext">pdf</td><td class="sz">120 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading\Note-taking+systems+%28Cal+Poly%29.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">WLS+-+Reading+strategy+-+Scanning.pdf</td><td class="ext">pdf</td><td class="sz">206 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading\WLS+-+Reading+strategy+-+Scanning.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">WLS+-+Reading+strategy+-+Skimming.pdf</td><td class="ext">pdf</td><td class="sz">213 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading\WLS+-+Reading+strategy+-+Skimming.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Active+Reading+Strategies-1.pdf</td><td class="ext">pdf</td><td class="sz">491 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading Strategy Handouts\Active+Reading+Strategies-1.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Active+Reading+Strategies.pdf</td><td class="ext">pdf</td><td class="sz">491 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading Strategy Handouts\Active+Reading+Strategies.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Active+Reading+of+Textbooks-1.pdf</td><td class="ext">pdf</td><td class="sz">366 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading Strategy Handouts\Active+Reading+of+Textbooks-1.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Active+Reading+of+Textbooks.pdf</td><td class="ext">pdf</td><td class="sz">366 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading Strategy Handouts\Active+Reading+of+Textbooks.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">How+to+read+an+article+from+an+Academic+Journal-1.docx</td><td class="ext">docx</td><td class="sz">719 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading Strategy Handouts\How+to+read+an+article+from+an+Academic+Journal-1.docx</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">How+to+read+an+article+from+an+Academic+Journal.docx</td><td class="ext">docx</td><td class="sz">719 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading Strategy Handouts\How+to+read+an+article+from+an+Academic+Journal.docx</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Reading+Strategies-1.docx</td><td class="ext">docx</td><td class="sz">60 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading Strategy Handouts\Reading+Strategies-1.docx</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Reading+Strategies.docx</td><td class="ext">docx</td><td class="sz">60 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Reading Strategy Handouts\Reading+Strategies.docx</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Class+Discussion+Strategies+%E2%80%93+UNC+Learning+Center.pdf</td><td class="ext">pdf</td><td class="sz">71 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Speaking and Listening\Class+Discussion+Strategies+%E2%80%93+UNC+Learning+Center.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Group+Presentations+%28Agnes+Scott+College+CWS%29.pdf</td><td class="ext">pdf</td><td class="sz">230 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Speaking and Listening\Group+Presentations+%28Agnes+Scott+College+CWS%29.pdf</td></tr>
+<tr data-dom="外部写作中心参考资源"><td class="tname">Oral+Presentations+%28TWP%29.pdf</td><td class="ext">pdf</td><td class="sz">420 KB</td><td>—</td><td>外部大学写作中心通用指导（参考）。</td><td class="sz">Speaking and Listening\Oral+Presentations+%28TWP%29.pdf</td></tr>
+</tbody></table></div></div>
+<div class="cat" data-dom="学习策略与元认知"><h3>学习策略与元认知 <span style="color:var(--mut);font-size:12px">（3 个文件）</span></h3>
+<div class="d">WOOP 目标法、Word 排版技巧等跨学科技能。</div>
+<div class="scroll"><table><thead><tr><th>文件名</th><th>类型</th><th>大小</th><th>角色</th><th>核心用途</th><th>原始路径</th></tr></thead><tbody>
+<tr data-dom="学习策略与元认知"><td class="tname">WOOP+%E2%80%93+Tool+For+Habit+Change+and+Goal+Achievement-1.docx</td><td class="ext">docx</td><td class="sz">681 KB</td><td>—</td><td>学习/元认知工具（材料）。</td><td class="sz">WOOP\WOOP+%E2%80%93+Tool+For+Habit+Change+and+Goal+Achievement-1.docx</td></tr>
+<tr data-dom="学习策略与元认知"><td class="tname">WOOP+%E2%80%93+Tool+For+Habit+Change+and+Goal+Achievement.docx</td><td class="ext">docx</td><td class="sz">681 KB</td><td>—</td><td>学习/元认知工具（材料）。</td><td class="sz">WOOP\WOOP+%E2%80%93+Tool+For+Habit+Change+and+Goal+Achievement.docx</td></tr>
+<tr data-dom="学习策略与元认知"><td class="tname"><span class="role">可填写模板</span>Word+Document+Formatting+Tips.docx</td><td class="ext">docx</td><td class="sz">996 KB</td><td>可填写模板</td><td>学习/元认知工具（可填写模板）。</td><td class="sz">Word Document Formatting Tips\Word+Document+Formatting+Tips.docx</td></tr>
+</tbody></table></div></div>
+<div class="cat" data-dom="未分类 / 零散"><h3>未分类 / 零散 <span style="color:var(--mut);font-size:12px">（51 个文件）</span></h3>
+<div class="d">未归入主题文件夹的零散文件（多为往届 SW 通用批语）。</div>
+<div class="scroll"><table><thead><tr><th>文件名</th><th>类型</th><th>大小</th><th>角色</th><th>核心用途</th><th>原始路径</th></tr></thead><tbody>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">检查表</span>APA+Style+In-Text+Citation+Checklist+-+7th+Ed.pdf</td><td class="ext">pdf</td><td class="sz">284 KB</td><td>检查表</td><td>零散文件（检查表）。</td><td class="sz">Citations and Reference Lists\APA+Style+In-Text+Citation+Checklist+-+7th+Ed.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">可填写模板</span>APA+concise-guide-formatting-checklist.pdf</td><td class="ext">pdf</td><td class="sz">510 KB</td><td>可填写模板</td><td>零散文件（可填写模板）。</td><td class="sz">Citations and Reference Lists\APA+concise-guide-formatting-checklist.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Book+chapters_+What+to+cite+%28APA%29.pdf</td><td class="ext">pdf</td><td class="sz">317 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Citations and Reference Lists\Book+chapters_+What+to+cite+%28APA%29.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Finding+and+Using+Creative+Commons+Images+in+MS+PowerPoint+and+Word.pdf</td><td class="ext">pdf</td><td class="sz">946 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Citations and Reference Lists\Finding+and+Using+Creative+Commons+Images+in+MS+PowerPoint+and+Word.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">互评/配对表</span>Should+I+Cite+This+-+Chart+%28Purdue+OWL%29.pdf</td><td class="ext">pdf</td><td class="sz">1.4 MB</td><td>互评/配对表</td><td>零散文件（互评/配对表）。</td><td class="sz">Citations and Reference Lists\Should+I+Cite+This+-+Chart+%28Purdue+OWL%29.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Coherence+-+Cohesion+Explained-1.docx</td><td class="ext">docx</td><td class="sz">65 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Coherence and Cohesion\Coherence+-+Cohesion+Explained-1.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Coherence+-+Cohesion+Explained.docx</td><td class="ext">docx</td><td class="sz">65 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Coherence and Cohesion\Coherence+-+Cohesion+Explained.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">The+Basic+Outline+of+a+Paper-1.docx</td><td class="ext">docx</td><td class="sz">57 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Course Paper Outline\The+Basic+Outline+of+a+Paper-1.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">The+Basic+Outline+of+a+Paper.docx</td><td class="ext">docx</td><td class="sz">57 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Course Paper Outline\The+Basic+Outline+of+a+Paper.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Discussion+Phrases+%28TSIS%29-1.docx</td><td class="ext">docx</td><td class="sz">54 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Discussion Phrases\Discussion+Phrases+%28TSIS%29-1.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Discussion+Phrases+%28TSIS%29.docx</td><td class="ext">docx</td><td class="sz">54 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Discussion Phrases\Discussion+Phrases+%28TSIS%29.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Discussion+Phrases+%28The+Moves+That+Matter%29-1.docx</td><td class="ext">docx</td><td class="sz">54 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Discussion Phrases\Discussion+Phrases+%28The+Moves+That+Matter%29-1.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Discussion+Phrases+%28The+Moves+That+Matter%29.docx</td><td class="ext">docx</td><td class="sz">54 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Discussion Phrases\Discussion+Phrases+%28The+Moves+That+Matter%29.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">EAP+101A+001-002-003+Syllabus+%28PW+F26%29.pdf</td><td class="ext">pdf</td><td class="sz">543 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">EAP+101A+001-002-003+Syllabus+%28PW+F26%29.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">EAP101+Academic+Honesty+Code+AI+Policy+%28F26%29.docx</td><td class="ext">docx</td><td class="sz">42 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">EAP101+Academic+Honesty+Code+AI+Policy+%28F26%29.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">可填写模板</span>Expository+Essay+Outline+Template-1.docx</td><td class="ext">docx</td><td class="sz">47 KB</td><td>可填写模板</td><td>零散文件（可填写模板）。</td><td class="sz">Expository Essay\Expository+Essay+Outline+Template-1.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">可填写模板</span>Expository+Essay+Outline+Template.docx</td><td class="ext">docx</td><td class="sz">47 KB</td><td>可填写模板</td><td>零散文件（可填写模板）。</td><td class="sz">Expository Essay\Expository+Essay+Outline+Template.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Flow+-+Transition+Websites-1.docx</td><td class="ext">docx</td><td class="sz">84 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Flow\Flow+-+Transition+Websites-1.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Flow+-+Transition+Websites.docx</td><td class="ext">docx</td><td class="sz">84 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Flow\Flow+-+Transition+Websites.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Hedging+Explained-1.pdf</td><td class="ext">pdf</td><td class="sz">187 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Hedging\Hedging+Explained-1.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Hedging+Explained.pdf</td><td class="ext">pdf</td><td class="sz">187 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Hedging\Hedging+Explained.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Hedging+Graphic-1.pdf</td><td class="ext">pdf</td><td class="sz">74 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Hedging\Hedging+Graphic-1.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Hedging+Graphic.pdf</td><td class="ext">pdf</td><td class="sz">74 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Hedging\Hedging+Graphic.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Hedging+Websites-1.docx</td><td class="ext">docx</td><td class="sz">83 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Hedging\Hedging+Websites-1.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Hedging+Websites.docx</td><td class="ext">docx</td><td class="sz">83 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Hedging\Hedging+Websites.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Hedging+and+Boosting+Writing+Process-1.docx</td><td class="ext">docx</td><td class="sz">185 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Hedging\Hedging+and+Boosting+Writing+Process-1.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Hedging+and+Boosting+Writing+Process.docx</td><td class="ext">docx</td><td class="sz">185 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Hedging\Hedging+and+Boosting+Writing+Process.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">What+Makes+Nuanced+Writing-1.docx</td><td class="ext">docx</td><td class="sz">63 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Nuance\What+Makes+Nuanced+Writing-1.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">What+Makes+Nuanced+Writing.docx</td><td class="ext">docx</td><td class="sz">63 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Nuance\What+Makes+Nuanced+Writing.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Paragraphs+and+Flow-1.docx</td><td class="ext">docx</td><td class="sz">59 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Paragraphs\Paragraphs+and+Flow-1.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Paragraphs+and+Flow.docx</td><td class="ext">docx</td><td class="sz">59 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Paragraphs\Paragraphs+and+Flow.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">练习单</span>Paraphrasing+Worksheet.docx</td><td class="ext">docx</td><td class="sz">136 KB</td><td>练习单</td><td>零散文件（练习单）。</td><td class="sz">Paraphrasing\Paraphrasing+Worksheet.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Paraphrasing.docx</td><td class="ext">docx</td><td class="sz">135 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Paraphrasing\Paraphrasing.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Language+for+Participating+in+Discussions.docx</td><td class="ext">docx</td><td class="sz">58 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Participation\Language+for+Participating+in+Discussions.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Listen+Actively+and+Take+Great+Notes-1.pdf</td><td class="ext">pdf</td><td class="sz">134 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Participation\Listen+Actively+and+Take+Great+Notes-1.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Listen+Actively+and+Take+Great+Notes.pdf</td><td class="ext">pdf</td><td class="sz">134 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Participation\Listen+Actively+and+Take+Great+Notes.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Participating-in-class-1.pdf</td><td class="ext">pdf</td><td class="sz">288 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Participation\Participating-in-class-1.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Participating-in-class.pdf</td><td class="ext">pdf</td><td class="sz">288 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Participation\Participating-in-class.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">讲义/指南</span>Oral+Pesentation+Handout+-Duke+University.pdf</td><td class="ext">pdf</td><td class="sz">413 KB</td><td>讲义/指南</td><td>零散文件（讲义/指南）。</td><td class="sz">Presentation Skills\Oral+Pesentation+Handout+-Duke+University.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Practical+Presentation+and+Conversation+Skills.docx</td><td class="ext">docx</td><td class="sz">41 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Presentation Skills\Practical+Presentation+and+Conversation+Skills.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Presentation+Signposting.docx</td><td class="ext">docx</td><td class="sz">62 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Presentation Skills\Presentation+Signposting.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">How+to+Write+a+Problem+Soution+Essay-1.docx</td><td class="ext">docx</td><td class="sz">264 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Problem-Solution Essay\How+to+Write+a+Problem+Soution+Essay-1.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">How+to+Write+a+Problem+Soution+Essay.docx</td><td class="ext">docx</td><td class="sz">264 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Problem-Solution Essay\How+to+Write+a+Problem+Soution+Essay.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">技巧提示</span>Tips+on+How+to+Interact+with+Your+Professors.docx</td><td class="ext">docx</td><td class="sz">61 KB</td><td>技巧提示</td><td>零散文件（技巧提示）。</td><td class="sz">Professor Interaction\Tips+on+How+to+Interact+with+Your+Professors.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Providing+Feedback+To+Writers-1.pdf</td><td class="ext">pdf</td><td class="sz">96 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Providing Feedback\Providing+Feedback+To+Writers-1.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">Providing+Feedback+To+Writers.pdf</td><td class="ext">pdf</td><td class="sz">96 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">Providing Feedback\Providing+Feedback+To+Writers.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname">breaking-down-a-writing-prompt-3.pdf</td><td class="ext">pdf</td><td class="sz">127 KB</td><td>—</td><td>零散文件（材料）。</td><td class="sz">breaking-down-a-writing-prompt-3.pdf</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">批语/反馈样例</span>General+Comments+on+SW1+%28F24%29.docx</td><td class="ext">docx</td><td class="sz">23 KB</td><td>批语/反馈样例</td><td>零散文件（批语/反馈样例）。</td><td class="sz">unfiled\General+Comments+on+SW1+%28F24%29.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">批语/反馈样例</span>General+Comments+on+SW1+%28F25%29.docx</td><td class="ext">docx</td><td class="sz">23 KB</td><td>批语/反馈样例</td><td>零散文件（批语/反馈样例）。</td><td class="sz">unfiled\General+Comments+on+SW1+%28F25%29.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">批语/反馈样例</span>General+Comments.docx</td><td class="ext">docx</td><td class="sz">20 KB</td><td>批语/反馈样例</td><td>零散文件（批语/反馈样例）。</td><td class="sz">unfiled\General+Comments.docx</td></tr>
+<tr data-dom="未分类 / 零散"><td class="tname"><span class="role">批语/反馈样例</span>Peter+Wergin+%28General+Comments%29.docx</td><td class="ext">docx</td><td class="sz">18 KB</td><td>批语/反馈样例</td><td>零散文件（批语/反馈样例）。</td><td class="sz">unfiled\Peter+Wergin+%28General+Comments%29.docx</td></tr>
+</tbody></table></div></div>
+
+<script>
+function filter(){
+  var q=document.getElementById('q').value.toLowerCase().trim();
+  var dom=document.getElementById('dom').value;
+  var rows=document.querySelectorAll('tbody tr[data-dom]');
+  var n=0;
+  rows.forEach(function(tr){
+    var domv=tr.getAttribute('data-dom');
+    var txt=tr.textContent.toLowerCase();
+    var ok=(!dom||dom===domv)&&(!q||txt.indexOf(q)>=0);
+    tr.classList.toggle('hide',!ok);
+    if(ok)n++;
+  });
+  // hide empty category blocks
+  document.querySelectorAll('.cat[data-dom]').forEach(function(c){
+    var domv=c.getAttribute('data-dom');
+    var any=false;
+    c.querySelectorAll('tbody tr[data-dom]').forEach(function(tr){
+      if(!tr.classList.contains('hide'))any=true;
+    });
+    c.style.display=((!dom||dom===domv)&&any)?'':'none';
+  });
+  document.getElementById('cnt').textContent=n;
+}
+filter();
+</script>
+</div></body></html>
