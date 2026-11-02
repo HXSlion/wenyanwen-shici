@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>文言文实词 · 367高频</title>
+<script>
+/* Theme bootstrap — must run before the stylesheet paints, otherwise the page
+   shows the light theme for a frame and then flips to dark (visible white flash
+   every time the app opens in dark mode). */
+(function () {
+  try {
+    if (localStorage.getItem('gkyw_theme_v1') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 // ===== SUPABASE SYNC =====
@@ -188,6 +200,20 @@ function syncDownload() {
   --header-bg: rgba(247,246,243,.88);
   --example-bg: #f8f6f2;
   --example-color: #555;
+  /* status colors — must exist in both themes, otherwise light chips glow in dark mode */
+  --ok: #1b7a42;
+  --ok-border: #27ae60;
+  --ok-bg: #eafaf1;
+  --ok-bg-soft: #f0faf4;
+  --err: #c0392b;
+  --err-bg: #fdedec;
+  --err-bg-soft: #fef0ef;
+  --heat-1: #c8e6c9;
+  --heat-2: #81c784;
+  --heat-3: #31803a;
+  --heat-1-text: #1f1f1f;
+  --heat-2-text: #14361a;
+  --heat-3-text: #ffffff;
 }
 [data-theme="dark"] {
   --bg: #1a1a1a;
@@ -204,10 +230,47 @@ function syncDownload() {
   --header-bg: rgba(26,26,26,.9);
   --example-bg: #2a2825;
   --example-color: #b8b0a0;
+  --ok: #6fca92;
+  --ok-border: #3f9f6a;
+  --ok-bg: #17301f;
+  --ok-bg-soft: #152a1c;
+  --err: #e58e80;
+  --err-bg: #33201d;
+  --err-bg-soft: #2c1c19;
+  --heat-1: #23402c;
+  --heat-2: #37774a;
+  --heat-3: #5aa86b;
+  --heat-1-text: #e8e4dd;
+  --heat-2-text: #eef6f0;
+  --heat-3-text: #0f2417;
 }
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 *:focus { outline:none; }
 *:active { -webkit-tap-highlight-color:transparent; }
+/* ── Theme switch ──
+   Elements that declare `transition:var(--t)` fade over 200ms while everything
+   else snapped instantly, so a theme toggle looked like the page changed in
+   pieces. During the toggle this class forces the same colour transition on
+   every node, so the whole surface fades as one. */
+html.theme-fade,
+html.theme-fade *,
+html.theme-fade *::before,
+html.theme-fade *::after {
+  transition-property: background-color, color, border-color, box-shadow,
+                       fill, stroke, outline-color, text-decoration-color !important;
+  transition-duration: .26s !important;
+  transition-timing-function: ease !important;
+  transition-delay: 0s !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.theme-fade,
+  html.theme-fade *,
+  html.theme-fade *::before,
+  html.theme-fade *::after { transition-duration: 0s !important; }
+}
+/* answer feedback — used from JS where an inline colour would not follow the theme */
+.fb-ok { color: var(--ok) !important; }
+.fb-err { color: var(--err) !important; }
 button, a { -webkit-tap-highlight-color:transparent !important; -webkit-touch-callout:none; -webkit-user-select:none; user-select:none; }body {
   font-family:var(--sans); background:var(--bg); color:var(--text);
   min-height:100vh; display:flex; flex-direction:column;
@@ -453,8 +516,8 @@ header {
   text-align:left; font-family:var(--sans); color:var(--text);
 }
 .qopt:hover { border-color:var(--accent); background:var(--warm-bg); }
-.qopt.c { border-color:#27ae60; background:#eafaf1; color:#1e8449; }
-.qopt.w { border-color:var(--accent); background:#fdedec; color:var(--hover); }
+.qopt.c { border-color:var(--ok-border); background:var(--ok-bg); color:var(--ok); }
+.qopt.w { border-color:var(--err); background:var(--err-bg); color:var(--err); }
 .qopt.d { pointer-events:none; opacity:.7; }
 .qf { margin-top:12px; text-align:center; font-size:.85rem; min-height:22px; }
 .qnext {
@@ -583,7 +646,11 @@ header {
 .pt-exam-card {
   display:flex; align-items:center; gap:14px; padding:16px 20px;
   border-radius:var(--radius); border:2px solid var(--accent);
-  background:linear-gradient(135deg, var(--warm-bg) 0%, var(--card) 100%);
+  /* Gradient + colour stops can't be transitioned, so the old two-stop
+     gradient snapped while everything else faded. Solid background-color plus a
+     fixed low-alpha overlay keeps the warm tint and fades with the rest. */
+  background-color:var(--card);
+  background-image:linear-gradient(135deg, rgba(196,81,58,.07) 0%, rgba(196,81,58,0) 70%);
   cursor:pointer; transition:var(--t); text-align:left;
 }
 .pt-exam-card:hover { transform:translateY(-2px); box-shadow:0 4px 16px rgba(196,81,58,.15); }
@@ -640,8 +707,8 @@ header {
 .pex-choice { padding:10px; border-radius:8px; border:1.5px solid var(--border); background:var(--card); cursor:pointer; font-size:.85rem; font-family:var(--serif); transition:var(--t); text-align:center; }
 .pex-choice:hover { border-color:var(--accent); }
 .pex-choice.selected { border-color:var(--accent); background:var(--warm-bg); }
-.pex-choice.correct { border-color:#27ae60; background:#f0faf4; }
-.pex-choice.wrong { border-color:var(--accent); background:#fef0ef; }
+.pex-choice.correct { border-color:var(--ok-border); background:var(--ok-bg-soft); }
+.pex-choice.wrong { border-color:var(--err); background:var(--err-bg-soft); }
 @media(max-width:480px) {
   .pex-choices { grid-template-columns:1fr 1fr; gap:6px; }
   .pex-choice { padding:8px; font-size:.8rem; }
@@ -726,10 +793,10 @@ header {
   transition:var(--t); font-size:1.05rem; position:relative;
 }
 .ptq-blank.filled { border-color:transparent; color:var(--text); font-family:var(--serif); }
-.ptq-blank.correct { border-color:transparent; color:#27ae60; font-family:var(--serif); }
+.ptq-blank.correct { border-color:transparent; color:var(--ok); font-family:var(--serif); }
 .ptq-blank.wrong { border-color:transparent; color:var(--accent); font-family:var(--serif); }
 .ptq-answered { font-size:1.05rem; font-family:var(--serif); display:inline; }
-.ptq-answered.correct { color:#27ae60; }
+.ptq-answered.correct { color:var(--ok); }
 .ptq-answered.wrong { color:var(--accent); }
 .ptq-blank.cur { border-color:var(--accent); background:var(--warm-bg); }
 .ptq-choice-bar {
@@ -777,13 +844,13 @@ header {
   background:transparent; color:var(--text); font-size:1.05rem;
 }
 .ptd-blank:focus { border-color:var(--accent); }
-.ptd-blank.correct { border-color:transparent; color:#27ae60; }
+.ptd-blank.correct { border-color:transparent; color:var(--ok); }
 .ptd-blank.wrong { border-color:transparent; color:var(--accent); }
 .ptd-done.wrong { position:relative; }
 .ptd-done.wrong::before {
   content: attr(data-ptd-correct);
   position:absolute; bottom:100%; left:0; right:0; text-align:center;
-  font-size:.82rem; color:#27ae60; line-height:1; pointer-events:none;
+  font-size:.82rem; color:var(--ok); line-height:1; pointer-events:none;
   transform:translateY(3px);
 }
 
@@ -807,11 +874,11 @@ header {
   outline:none; transition:var(--t); resize:none; min-height:42px;
 }
 .ptu-input:focus { border-color:var(--accent); }
-.ptu-input.correct { border-color:#27ae60; background:#f0faf4; }
-.ptu-input.wrong { border-color:var(--accent); background:#fef0ef; }
+.ptu-input.correct { border-color:var(--ok-border); background:var(--ok-bg-soft); }
+.ptu-input.wrong { border-color:var(--err); background:var(--err-bg-soft); }
 .ptu-feedback { text-align:center; padding:8px; border-radius:var(--rs); font-size:.85rem; margin-bottom:8px; }
-.ptu-feedback.correct { background:#f0faf4; color:#27ae60; }
-.ptu-feedback.wrong { background:#fef0ef; color:var(--accent); }
+.ptu-feedback.correct { background:var(--ok-bg-soft); color:var(--ok); }
+.ptu-feedback.wrong { background:var(--err-bg-soft); color:var(--err); }
 .ptu-answer { font-family:var(--serif); font-size:1rem; color:var(--accent); padding:10px 16px;
   background:var(--warm-bg); border-radius:var(--rs); margin-bottom:8px; }
 .ptu-nav { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:8px; }
@@ -863,7 +930,7 @@ header {
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
       <div class="ch-badge" id="ch-badge"></div>
       <span class="ch-badge" id="sr-mode" onclick="toggleSr()" style="cursor:pointer;background:var(--card);color:var(--accent);border:1px solid var(--border)">🧠 间隔</span>
-      <span class="ch-badge" id="wrong-info" style="background:#fdedec;color:var(--accent);display:none"></span>
+      <span class="ch-badge" id="wrong-info" style="background:var(--err-bg);color:var(--err);display:none"></span>
     </div>
     <div class="prog">
       <div class="prog-bar"><div class="prog-fill" id="pf" style="width:0%"></div></div>
@@ -898,7 +965,7 @@ header {
   <!-- Wrong Answer Review mode -->
   <div id="wm" style="display:none;flex:1;flex-direction:column;align-items:center;padding:20px">
     <div style="text-align:center;margin-bottom:12px">
-      <span class="ch-badge" style="background:#fdedec;color:var(--accent)">📕 错题本</span>
+      <span class="ch-badge" style="background:var(--err-bg);color:var(--err)">📕 错题本</span>
     </div>
     <div id="wrong-stats" style="font-size:.85rem;color:var(--soft);margin-bottom:12px"></div>
     <div id="wrong-grid" style="width:100%;max-width:620px;display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:6px"></div>
@@ -1601,8 +1668,8 @@ function aq(el, si) {
   // Track wrong answer
   trackWrong(q.gi, ok);
   const fb = document.getElementById('qf');
-  if (ok) { qs++; fb.innerHTML = '✅ 正确！'; fb.style.color='#27ae60'; }
-  else { fb.innerHTML = '❌ 错误。正确答案：'+q.ca; fb.style.color='#c0392b'; }
+  if (ok) { qs++; fb.innerHTML = '✅ 正确！'; fb.classList.remove('fb-err'); fb.classList.add('fb-ok'); }
+  else { fb.innerHTML = '❌ 错误。正确答案：'+q.ca; fb.classList.remove('fb-ok'); fb.classList.add('fb-err'); }
   document.getElementById('qn').classList.add('s');
 }
 
@@ -1670,9 +1737,13 @@ function showWrongCards() {
 }
 
 // ===== THEME TOGGLE =====
+var _themeFadeTimer = null;
 function toggleTheme() {
   const html = document.documentElement;
   const isDark = html.getAttribute('data-theme') === 'dark';
+  // Force one shared colour transition for the duration of the swap, so panels
+  // fade together instead of some snapping while others ease over 200ms.
+  html.classList.add('theme-fade');
   if (isDark) {
     html.removeAttribute('data-theme');
     localStorage.setItem('gkyw_theme_v1', 'light');
@@ -1682,12 +1753,19 @@ function toggleTheme() {
     localStorage.setItem('gkyw_theme_v1', 'dark');
     document.getElementById('theme-btn').textContent = '🌙';
   }
+  clearTimeout(_themeFadeTimer);
+  _themeFadeTimer = setTimeout(function () { html.classList.remove('theme-fade'); }, 320);
 }
 (function() {
   const saved = localStorage.getItem('gkyw_theme_v1');
   if (saved === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
-    if (document.getElementById('theme-btn')) document.getElementById('theme-btn').textContent = '🌙';
+  }
+  // derive the glyph from the attribute actually in effect, so the button can
+  // never show a stale theme after a reload or a cleared storage
+  const btn = document.getElementById('theme-btn');
+  if (btn) {
+    btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '🌙' : '☀️';
   }
 })();
 
@@ -1740,13 +1818,13 @@ function buildCalendar() {
     const count = dayCount[ds] || 0;
     const isToday = ds === today.toISOString().slice(0,10);
     let bg = 'var(--bg)';
+    let tc = 'var(--soft)';
     if (count > 0) {
-      if (count <= 3) bg = '#c8e6c9';
-      else if (count <= 9) bg = '#81c784';
-      else bg = '#388e3c';
+      if (count <= 3) { bg = 'var(--heat-1)'; tc = 'var(--heat-1-text)'; }
+      else if (count <= 9) { bg = 'var(--heat-2)'; tc = 'var(--heat-2-text)'; }
+      else { bg = 'var(--heat-3)'; tc = 'var(--heat-3-text)'; }
     }
     if (ds > today.toISOString().slice(0,10)) bg = 'transparent';
-    const tc = count > 3 ? '#fff' : 'var(--soft)';
     html += '<div class="cal-cell' + (isToday?' today':'') + '" style="background:' + bg + ';color:' + tc + '">' + d.getDate() + '</div>';
   }
   html += '</div>';
@@ -1863,7 +1941,7 @@ function showStats() {
 
     // Understanding dictation progress
     '<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:2px"><span>🧠 理解性默写 <strong>' + totalUDAnswered + '</strong>/' + totalUDAvailable + '</span><span>' + udAccuracy + '%</span></div>' +
-    '<div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:' + (totalUDAvailable > 0 ? Math.round(totalUDAnswered/totalUDAvailable*100) : 0) + '%;background:#388e3c;border-radius:3px;transition:width .3s"></div></div></div>' +
+    '<div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:' + (totalUDAvailable > 0 ? Math.round(totalUDAnswered/totalUDAvailable*100) : 0) + '%;background:var(--heat-3);border-radius:3px;transition:width .3s"></div></div></div>' +
 
     // Per-poem detail
     '<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">' +
@@ -1887,7 +1965,7 @@ function showStats() {
   // ── Calendar / Shared ──
   html += '<div style="margin-bottom:12px;padding:16px;border-radius:var(--radius);border:1px solid var(--border);background:var(--card)">' +
     '<div style="font-size:.85rem;font-weight:600;margin-bottom:4px">📅 学习日历（近30天）</div>' +
-    '<div style="display:flex;gap:4px;margin-bottom:6px;font-size:.7rem;color:var(--soft);align-items:center"><span>少</span><div style="width:14px;height:14px;border-radius:3px;background:var(--bg)"></div><div style="width:14px;height:14px;border-radius:3px;background:#c8e6c9"></div><div style="width:14px;height:14px;border-radius:3px;background:#81c784"></div><div style="width:14px;height:14px;border-radius:3px;background:#388e3c"></div><span>多</span></div>' +
+    '<div style="display:flex;gap:4px;margin-bottom:6px;font-size:.7rem;color:var(--soft);align-items:center"><span>少</span><div style="width:14px;height:14px;border-radius:3px;background:var(--bg)"></div><div style="width:14px;height:14px;border-radius:3px;background:var(--heat-1)"></div><div style="width:14px;height:14px;border-radius:3px;background:var(--heat-2)"></div><div style="width:14px;height:14px;border-radius:3px;background:var(--heat-3)"></div><span>多</span></div>' +
     calHtml +
   '</div>';
 
@@ -2836,9 +2914,9 @@ function pexSubmitSentence() {
   
   if (mainOk && authorOk) {
     pexData.correct++;
-    fb.innerHTML = '<span style="color:#27ae60">✓ 正确</span>';
+    fb.innerHTML = '<span class="fb-ok">✓ 正确</span>';
     if (inp) inp.classList.add('correct');
-    if (authorInput) authorInput.style.color = '#27ae60';
+    if (authorInput) { authorInput.classList.remove('fb-err'); authorInput.classList.add('fb-ok'); }
   } else {
     pexData.wrong++;
     fb.innerHTML = '<span style="color:var(--accent)">✗ ' + msgs.join(' · ') + '</span>';
@@ -2930,7 +3008,7 @@ function pexSubmitInput() {
   
   if (isCorrect) {
     pexData.correct++;
-    fb.innerHTML = '<span style="color:#27ae60">✓ 正确</span>';
+    fb.innerHTML = '<span class="fb-ok">✓ 正确</span>';
     input.classList.add('correct');
   } else {
     pexData.wrong++;
