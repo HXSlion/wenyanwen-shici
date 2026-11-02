@@ -889,6 +889,13 @@ header {
   background:var(--card); color:var(--text); cursor:pointer; transition:var(--t); font-size:.78rem; }
 .ptu-nav button:disabled { opacity:.3; cursor:default; }
 .ptu-nav button:not(:disabled):hover { border-color:var(--accent); }
+
+/* 移动端微调：默写页文字区收紧一行的高度，把选项栏压回一屏之内。
+   注意必须放在所有基样式之后——前面那个 @media 块在 .ptq-text 定义之前，
+   同特殊性下会被后面的基样式盖掉。 */
+@media (max-width: 640px) {
+  .ptq-text { line-height:2.1; padding:14px 16px; min-height:150px; }
+}
 </style>
 </head>
 <body>
@@ -1163,6 +1170,16 @@ function goHome() {
   document.getElementById('ptv').style.display = 'none';
   document.getElementById('ptv-body').innerHTML = '';
   curCh = null;
+  // 从古诗文那边点左上角标题回来时，顶栏还停在古诗文的子导航（只有一个「首页」），
+  // 这里必须把主 tab 和子导航一起拨回实词，否则页面上栏还是古诗文的按钮。
+  mainMode = 'c';
+  mode = 'f';
+  document.querySelectorAll('.main-tab').forEach(b => b.classList.toggle('act', b.dataset.main === 'c'));
+  document.querySelectorAll('[data-m]').forEach(b => b.classList.toggle('active', b.dataset.m === 'f'));
+  document.querySelectorAll('[data-w]').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('[data-p]').forEach(b => b.classList.remove('active'));
+  document.getElementById('sub-nav-c').style.display = 'flex';
+  document.getElementById('sub-nav-p').style.display = 'none';
 }
 
 function enterChapter(letter, sortMode) {
@@ -2092,7 +2109,7 @@ document.addEventListener('keydown', e => {
 
 // ===== POETRY MODULE =====
 /* Poetry Module - injected separately to avoid f-string escaping issues */
-var curPoem = null, curPtTab = 'r', ptSegI = 0, ptqMode = 'c', ptdMode = 'i';
+var curPoem = null, curPtTab = 'r', ptSegI = 0, ptReadI = 0, ptqMode = 'c', ptdMode = 'i';
 var ptDiff = 40;
 var ptqData = null;
 
@@ -2126,6 +2143,7 @@ function buildPoetryHome() {
 function enterPoem(mi, pi) {
   curPoem = POETRY.modules[mi].poems[pi];
   ptSegI = 0;
+  ptReadI = 0;
   // Track poem read
   var read = JSON.parse(localStorage.getItem('_poetryRead') || '[]');
   if (read.indexOf(curPoem.title) < 0) { read.push(curPoem.title); localStorage.setItem('_poetryRead', JSON.stringify(read)); }
@@ -2187,6 +2205,49 @@ function poemSegments() {
   return out;
 }
 
+/* ── 阅读页专用：粗分段 ────────────────────────────────────────────
+   按原文句读累积，凑够约 50 字、且这一节落在句末标点上才断开。
+   读起来是一整句一整句往下走，不会把半句话切到下一屏。
+   默写页 / 全篇默写才用上面 poemSegments() 的细分段——那里每屏都要
+   放得下选项栏，断得太粗会把选项顶到屏外。 */
+function readSegments() {
+  var segs = [], cur = [], len = 0;
+  curPoem.body.forEach(function (line) {
+    line.forEach(function (seg) {
+      cur.push(seg);
+      len += seg.t.length;
+      if (len >= 50 && /[\u3002\uff01\uff1f\uff1b\n\u201d]/.test(seg.t.slice(-1))) {
+        segs.push(cur);
+        cur = [];
+        len = 0;
+      }
+    });
+  });
+  if (cur.length) segs.push(cur);
+  return segs;
+}
+
+/* 按数据里的原文节（seg）渲染，不是逐字——阅读页沿用这一套。 */
+function renderSegText(segs, opts) {
+  opts = opts || {};
+  var html = '';
+  var errSet = (opts.showErrors && curPoem && curPoem.errorChars) ? new Set(curPoem.errorChars) : null;
+  segs.forEach(function (seg) {
+    if (seg.h) { html += '<span class="pt-seg-label">' + seg.t + '</span>'; return; }
+    var t = seg.t;
+    if (seg.u && !opts.showSkip) return;
+    if (seg.b && opts.showBold) t = '<span class="bold-char">' + t + '</span>';
+    if (seg.u && opts.showSkip) t = '<span class="skip-char">' + t + '</span>';
+    if (errSet) {
+      t = t.split('').map(function (ch) {
+        return errSet.has(ch) ? '<span class="err-char">' + ch + '</span>' : ch;
+      }).join('');
+    }
+    html += t;
+  });
+  return html;
+}
+
 function renderChars(chars, opts) {
   opts = opts || {};
   var html = '';
@@ -2211,16 +2272,16 @@ function renderChars(chars, opts) {
 }
 
 function showPtRead(body) {
-  const segs = poemSegments();
+  const segs = readSegments();
   if (!segs.length) { body.innerHTML = '<div class="pt-empty">\u6682\u65e0\u5185\u5bb9</div>'; return; }
-  if (ptSegI >= segs.length) ptSegI = segs.length - 1;
-  if (ptSegI < 0) ptSegI = 0;
+  if (ptReadI >= segs.length) ptReadI = segs.length - 1;
+  if (ptReadI < 0) ptReadI = 0;
   body.innerHTML =
-    '<div class="ptv-seg">' + renderChars(segs[ptSegI], {showBold:true, showSkip:true, showErrors:true}) + '</div>' +
+    '<div class="ptv-seg">' + renderSegText(segs[ptReadI], {showBold:true, showSkip:true, showErrors:true}) + '</div>' +
     '<div class="ptv-nav">' +
-      '<button onclick="ptNavSeg(-1)"' + (ptSegI===0?' disabled':'') + '>\u25c0 \u4e0a\u4e00\u6bb5</button>' +
-      '<span>' + (ptSegI+1) + ' / ' + segs.length + '</span>' +
-      '<button onclick="ptNavSeg(1)"' + (ptSegI>=segs.length-1?' disabled':'') + '>\u4e0b\u4e00\u6bb5 \u25b6</button>' +
+      '<button onclick="ptNavSeg(-1)"' + (ptReadI===0?' disabled':'') + '>\u25c0 \u4e0a\u4e00\u6bb5</button>' +
+      '<span>' + (ptReadI+1) + ' / ' + segs.length + '</span>' +
+      '<button onclick="ptNavSeg(1)"' + (ptReadI>=segs.length-1?' disabled':'') + '>\u4e0b\u4e00\u6bb5 \u25b6</button>' +
     '</div>';
 }
 
@@ -2257,10 +2318,14 @@ function ptqNextBlank() {
 }
 
 function ptNavSeg(d) {
-  ptSegI += d;
-  // Go back to quiz tab if in quiz mode
-  if (curPtTab === 'q') showPtQuiz(document.getElementById('ptv-body'));
-  else showPtRead(document.getElementById('ptv-body'));
+  // 阅读页用粗分段、默写页用细分段，两者段数不同，索引必须各走各的
+  if (curPtTab === 'q') {
+    ptSegI += d;
+    showPtQuiz(document.getElementById('ptv-body'));
+  } else {
+    ptReadI += d;
+    showPtRead(document.getElementById('ptv-body'));
+  }
   document.querySelectorAll('.ptv-tab').forEach(function(b) { return b.classList.toggle('act', b.dataset.pt === curPtTab); });
 }
 
