@@ -14,6 +14,41 @@
       document.documentElement.setAttribute('data-theme', 'dark');
     }
   } catch (e) {}
+  /* 触屏没有真正的悬停。不加这个类的话，手指点一下按钮，浏览器会把 :hover
+     一起触发并一直保留，直到点页面别处才消——看起来就是「按钮一直亮着」。
+     样式表里所有 hover 规则都以 html:not(.touch) 打头，这里给它加上 .touch
+     即可让那些规则在触摸设备上整体失效。 */
+  try {
+    var noHover = !!(window.matchMedia && window.matchMedia('(hover: none)').matches);
+    if (!noHover && 'ontouchstart' in window && window.matchMedia &&
+        !window.matchMedia('(hover: hover)').matches) noHover = true;
+    if (noHover) document.documentElement.classList.add('touch');
+  } catch (e) {}
+  /* 兜底：个别 WebView 对 (hover:none) 判断不准。只要有真实触摸发生，
+     就一定按触屏处理，避免 hover 高亮黏在按钮上。 */
+  try {
+    document.addEventListener('touchstart', function () {
+      document.documentElement.classList.add('touch');
+    }, { once: true, passive: true });
+  } catch (e) {}
+  /* hover 关掉以后，触屏上还想要「按下去有反应」。:active 在部分 WebView 里
+     不一定触发，所以用 touchstart/touchend 自己加一个 .tap 类托底。 */
+  try {
+    var TAP = 'button,.btn,.cbtn,.nb,.mc,.qopt,.qrst,.qnext,.csel-trigger,.csel-opt,' +
+              '.ch-grid-item,.qch-item,.pt-mod-hdr,.pt-poem-item,.ptv-tab,.ptq-choice-btn,' +
+              '.ptq-choice,.pex-choice,.pt-exam-card,.ncm-btn,.pex-btn,.pt-exam-btn';
+    var tapEl = null;
+    var clearTap = function () { if (tapEl) { tapEl.classList.remove('tap'); tapEl = null; } };
+    document.addEventListener('touchstart', function (e) {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      var el = t.closest(TAP);
+      if (!el) return;
+      clearTap(); tapEl = el; el.classList.add('tap');
+    }, { passive: true, capture: true });
+    document.addEventListener('touchend', clearTap, true);
+    document.addEventListener('touchcancel', clearTap, true);
+  } catch (e) {}
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -317,7 +352,7 @@ header {
   transition:var(--t); white-space:nowrap;
   display:flex; align-items:center; gap:6px;
 }
-.csel-trigger:hover { border-color:var(--accent); }
+html:not(.touch) .csel-trigger:hover{ border-color:var(--accent); }
 .csel-trigger::after {
   content:''; position:absolute; right:12px; top:50%; transform:translateY(-50%);
   width:0; height:0; border-left:5px solid transparent; border-right:5px solid transparent;
@@ -336,7 +371,7 @@ header {
   font-family:var(--sans); font-size:.82rem; color:var(--text);
   transition:var(--t); white-space:nowrap;
 }
-.csel-opt:hover { background:var(--warm-bg); }
+html:not(.touch) .csel-opt:hover{ background:var(--warm-bg); }
 .csel-opt.active { background:var(--accent); color:#fff; }
 
 .btn {
@@ -345,7 +380,7 @@ header {
   color:var(--soft); cursor:pointer; font-size:.8rem; transition:var(--t);
   font-weight:500; white-space:nowrap;
 }
-.btn:hover { background:var(--border-light); color:var(--text); }
+html:not(.touch) .btn:hover{ background:var(--border-light); color:var(--text); }
 .btn.active { background:var(--accent-subtle); color:var(--accent); }
 
 /* ── Chapter Home ── */
@@ -367,7 +402,7 @@ header {
   gap:4px; min-height:84px; position:relative; z-index:1;
   box-shadow:0 1px 2px rgba(0,0,0,.04);
 }
-.ch-grid-item:hover { transform:translateY(-2px); border-color:var(--accent); box-shadow:0 2px 8px rgba(0,0,0,.08); }
+html:not(.touch) .ch-grid-item:hover{ transform:translateY(-2px); border-color:var(--accent); box-shadow:0 2px 8px rgba(0,0,0,.08); }
 .ch-grid-item .ch-letter {
   font-family:var(--serif); font-size:1.4rem; font-weight:700; line-height:1.1;
 }
@@ -416,7 +451,7 @@ header {
   background:var(--card); color:var(--soft); font-size:.95rem; cursor:pointer;
   transition:var(--t); display:flex; align-items:center; justify-content:center;
 }
-.cbtn:hover { background:var(--accent); color:#fff; border-color:var(--accent); }
+html:not(.touch) .cbtn:hover{ background:var(--accent); color:#fff; border-color:var(--accent); }
 .cnt { font-size:.75rem; font-weight:600; color:var(--accent); min-width:16px; text-align:center; }
 .nav { display:flex; gap:12px; margin-bottom:8px; }
 .nb {
@@ -424,7 +459,7 @@ header {
   background:var(--card); cursor:pointer; font-size:1rem; transition:var(--t);
   display:flex; align-items:center; justify-content:center; color:var(--text);
 }
-.nb:hover { border-color:var(--accent); color:var(--accent); }
+html:not(.touch) .nb:hover{ border-color:var(--accent); color:var(--accent); }
 .nb:disabled { opacity:.3; cursor:not-allowed; }
 
 .kbd { text-align:center; font-size:.7rem; color:var(--soft); margin-top:10px; }
@@ -444,7 +479,7 @@ header {
 }
 .mod h2 { font-family:var(--serif); font-size:1.1rem; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; }
 .mc { width:26px; height:26px; border-radius:50%; border:none; background:var(--border); cursor:pointer; font-size:.85rem; }
-.mc:hover { background:var(--accent); color:#fff; }
+html:not(.touch) .mc:hover{ background:var(--accent); color:#fff; }
 .srch {
   width:100%; padding:7px 10px; border-radius:var(--rs); border:1.5px solid var(--border);
   font-family:var(--sans); font-size:.82rem; margin-bottom:10px; outline:none; transition:var(--t);
@@ -457,7 +492,7 @@ header {
   padding:10px 14px; cursor:pointer; display:flex; align-items:center; gap:8px;
   background:var(--card); font-size:.85rem; font-weight:600; transition:var(--t); user-select:none;
 }
-.ov-sec-hdr:hover { background:var(--warm-bg); }
+html:not(.touch) .ov-sec-hdr:hover{ background:var(--warm-bg); }
 .ov-sec-hdr .arrow { transition:transform .2s; display:inline-block; }
 .ov-sec-hdr .arrow.o { transform:rotate(90deg); }
 .ov-sec-body { display:none; }
@@ -469,7 +504,7 @@ header {
   padding:6px 8px; border-radius:6px; cursor:pointer; transition:var(--t);
   font-size:.82rem; display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 8px;
 }
-.ov-word:hover { background:var(--warm-bg); }
+html:not(.touch) .ov-word:hover{ background:var(--warm-bg); }
 .ov-word .ww { font-family:var(--serif); font-weight:700; font-size:.95rem; }
 .ov-word .wp { font-size:.7rem; color:var(--soft); }
 .ov-def {
@@ -496,7 +531,7 @@ header {
   text-align:center; cursor:pointer; transition:var(--t); position:relative; z-index:1;
   box-shadow:0 1px 2px rgba(0,0,0,.04);
 }
-.qch-item:hover { transform:translateY(-2px); border-color:var(--accent); box-shadow:0 2px 8px rgba(0,0,0,.08); }
+html:not(.touch) .qch-item:hover{ transform:translateY(-2px); border-color:var(--accent); box-shadow:0 2px 8px rgba(0,0,0,.08); }
 .qch-item .qch-l { font-family:var(--serif); font-size:1.3rem; font-weight:700; }
 .qch-item .qch-n { font-size:.7rem; color:var(--soft); margin-top:2px; }
 
@@ -515,7 +550,7 @@ header {
   background:var(--card); cursor:pointer; font-size:.9rem; transition:var(--t);
   text-align:left; font-family:var(--sans); color:var(--text);
 }
-.qopt:hover { border-color:var(--accent); background:var(--warm-bg); }
+html:not(.touch) .qopt:hover{ border-color:var(--accent); background:var(--warm-bg); }
 .qopt.c { border-color:var(--ok-border); background:var(--ok-bg); color:var(--ok); }
 .qopt.w { border-color:var(--err); background:var(--err-bg); color:var(--err); }
 .qopt.d { pointer-events:none; opacity:.7; }
@@ -525,7 +560,7 @@ header {
   background:var(--accent); color:#fff; font-size:.9rem; cursor:pointer;
   transition:var(--t); font-family:var(--sans); font-weight:500; display:none; width:100%;
 }
-.qnext:hover { background:var(--hover); }
+html:not(.touch) .qnext:hover{ background:var(--hover); }
 .qnext.s { display:block; }
 .qres { text-align:center; padding:24px 20px; }
 .qres h2 { font-family:var(--serif); font-size:1.3rem; margin-bottom:6px; }
@@ -536,7 +571,7 @@ header {
   background:transparent; color:var(--accent); font-size:.9rem; cursor:pointer;
   transition:var(--t); font-family:var(--sans); font-weight:500; margin:4px;
 }
-.qrst:hover { background:var(--accent); color:#fff; }
+html:not(.touch) .qrst:hover{ background:var(--accent); color:#fff; }
 
 /* Modal auto-next */
 #next-ch-modal {
@@ -557,9 +592,9 @@ header {
   font-family:var(--sans); font-size:.85rem; font-weight:500; transition:var(--t);
 }
 .ncm-btn.primary { background:var(--accent); color:#fff; border:none; }
-.ncm-btn.primary:hover { background:var(--hover); }
+html:not(.touch) .ncm-btn.primary:hover{ background:var(--hover); }
 .ncm-btn.ghost { background:transparent; border:1.5px solid var(--border); color:var(--text); }
-.ncm-btn.ghost:hover { border-color:var(--accent); color:var(--accent); }
+html:not(.touch) .ncm-btn.ghost:hover{ border-color:var(--accent); color:var(--accent); }
 
 /* Calendar & celebration */
 .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; margin:8px 0; }
@@ -653,7 +688,7 @@ header {
   background-image:linear-gradient(135deg, rgba(196,81,58,.07) 0%, rgba(196,81,58,0) 70%);
   cursor:pointer; transition:var(--t); text-align:left;
 }
-.pt-exam-card:hover { transform:translateY(-2px); box-shadow:0 4px 16px rgba(196,81,58,.15); }
+html:not(.touch) .pt-exam-card:hover{ transform:translateY(-2px); box-shadow:0 4px 16px rgba(196,81,58,.15); }
 .pt-exam-icon { font-size:1.6rem; flex-shrink:0; }
 .pt-exam-info { flex:1; min-width:0; }
 .pt-exam-title { font-family:var(--serif); font-size:1.05rem; font-weight:700; color:var(--accent); }
@@ -668,7 +703,7 @@ header {
 .pt-exam-input { width:100%; padding:12px 16px; border-radius:8px; border:1.5px solid var(--border); font-size:.95rem; background:var(--bg); color:var(--text); font-family:var(--serif); resize:none; min-height:60px; }
 .pt-exam-input:focus { border-color:var(--accent); outline:none; }
 .pt-exam-btn { padding:8px 24px; border-radius:20px; border:none; font-size:.85rem; cursor:pointer; background:var(--accent); color:#fff; transition:var(--t); }
-.pt-exam-btn:hover { opacity:.9; }
+html:not(.touch) .pt-exam-btn:hover{ opacity:.9; }
 .pt-exam-btn:disabled { opacity:.4; cursor:default; }
 .pt-exam-feedback { font-size:.82rem; margin-top:8px; min-height:1.2em; }
 .pt-exam-result { max-width:520px; width:100%; text-align:center; }
@@ -693,7 +728,7 @@ header {
 .pex-input:focus { border-color:var(--accent); outline:none; }
 .pex-btns { display:flex; gap:8px; margin-top:12px; }
 .pex-btn { flex:1; padding:10px; border-radius:20px; border:none; font-size:.85rem; cursor:pointer; background:var(--accent); color:#fff; transition:var(--t); }
-.pex-btn:hover { opacity:.9; }
+html:not(.touch) .pex-btn:hover{ opacity:.9; }
 .pex-btn:disabled { opacity:.4; cursor:default; }
 .pex-btn.secondary { background:transparent; border:1.5px solid var(--border); color:var(--text); }
 .pex-feedback { font-size:.82rem; margin-top:8px; min-height:1.2em; text-align:center; }
@@ -705,7 +740,7 @@ header {
 /* Exam choices */
 .pex-choices { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
 .pex-choice { padding:10px; border-radius:8px; border:1.5px solid var(--border); background:var(--card); cursor:pointer; font-size:.85rem; font-family:var(--serif); transition:var(--t); text-align:center; }
-.pex-choice:hover { border-color:var(--accent); }
+html:not(.touch) .pex-choice:hover{ border-color:var(--accent); }
 .pex-choice.selected { border-color:var(--accent); background:var(--warm-bg); }
 .pex-choice.correct { border-color:var(--ok-border); background:var(--ok-bg-soft); }
 .pex-choice.wrong { border-color:var(--err); background:var(--err-bg-soft); }
@@ -718,7 +753,7 @@ header {
   padding:12px 16px; cursor:pointer; display:flex; align-items:center; gap:8px;
   background:var(--bg); font-size:.9rem; font-weight:600; transition:var(--t); user-select:none;
 }
-.pt-mod-hdr:hover { background:var(--border-light); }
+html:not(.touch) .pt-mod-hdr:hover{ background:var(--border-light); }
 .pt-mod-hdr .arrow { transition:transform .2s; display:inline-block; font-size:.7rem; color:var(--soft); }
 .pt-mod-hdr .arrow.o { transform:rotate(90deg); }
 .pt-mod-body { display:none; }
@@ -727,7 +762,7 @@ header {
   padding:10px 16px; border-top:1px solid var(--border-light);
   display:flex; align-items:center; gap:12px; cursor:pointer; transition:var(--t); font-size:.85rem;
 }
-.pt-poem-item:hover { background:var(--border-light); }
+html:not(.touch) .pt-poem-item:hover{ background:var(--border-light); }
 .pt-poem-item .pt-icon {
   width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center;
   font-size:.82rem; font-weight:600; flex-shrink:0;
@@ -762,7 +797,7 @@ header {
   border:1.5px solid var(--border); background:transparent; color:var(--soft); font-weight:500;
 }
 .ptv-tab.act { background:var(--accent); color:#fff; border-color:var(--accent); }
-.ptv-tab:hover:not(.act) { border-color:var(--accent); color:var(--accent); }
+html:not(.touch) .ptv-tab:hover:not(.act){ border-color:var(--accent); color:var(--accent); }
 
 .ptv-body { width:100%; max-width:680px; flex:1; }
 .ptv-seg {
@@ -779,7 +814,7 @@ header {
 .ptv-nav { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:12px; font-size:.82rem; color:var(--soft); }
 .ptv-nav button { padding:6px 16px; border-radius:20px; border:1.5px solid var(--border); background:var(--card); color:var(--text); cursor:pointer; transition:var(--t); font-size:.78rem; }
 .ptv-nav button:disabled { opacity:.3; cursor:default; }
-.ptv-nav button:not(:disabled):hover { border-color:var(--accent); }
+html:not(.touch) .ptv-nav button:not(:disabled):hover{ border-color:var(--accent); }
 
 /* Quiz modes */
 .ptq-toolbar { display:flex; align-items:center; gap:6px; margin-bottom:12px; flex-wrap:wrap; }
@@ -810,7 +845,7 @@ header {
   background:var(--card); color:var(--text); font-family:var(--serif); font-size:1rem;
   cursor:pointer; transition:var(--t);
 }
-.ptq-choice-btn:hover { border-color:var(--accent); background:var(--warm-bg); }
+html:not(.touch) .ptq-choice-btn:hover{ border-color:var(--accent); background:var(--warm-bg); }
 .ptq-keybar {
   text-align:center; margin-top:8px; font-size:.7rem; color:var(--soft);
 }
@@ -831,7 +866,7 @@ header {
   padding:4px 10px; border-radius:6px; cursor:pointer; font-family:var(--serif);
   font-size:.95rem; transition:var(--t); border:1.5px solid transparent;
 }
-.ptq-choice:hover { background:var(--warm-bg); }
+html:not(.touch) .ptq-choice:hover{ background:var(--warm-bg); }
 .ptq-choice.c { background:var(--accent); color:#fff; }
 
 /* Full dictation */
@@ -888,13 +923,42 @@ header {
 .ptu-nav button { padding:6px 16px; border-radius:20px; border:1.5px solid var(--border);
   background:var(--card); color:var(--text); cursor:pointer; transition:var(--t); font-size:.78rem; }
 .ptu-nav button:disabled { opacity:.3; cursor:default; }
-.ptu-nav button:not(:disabled):hover { border-color:var(--accent); }
+html:not(.touch) .ptu-nav button:not(:disabled):hover{ border-color:var(--accent); }
 
 /* 移动端微调：默写页文字区收紧一行的高度，把选项栏压回一屏之内。
    注意必须放在所有基样式之后——前面那个 @media 块在 .ptq-text 定义之前，
    同特殊性下会被后面的基样式盖掉。 */
 @media (max-width: 640px) {
   .ptq-text { line-height:2.1; padding:14px 16px; min-height:150px; }
+}
+
+/* 触屏上把「悬停高亮」换成「按下反馈」：只有手指按住的那一下变暗缩小，
+   松手立刻恢复，不会残留。上面那批 hover 规则在 .touch 下已经全部失效。 */
+html.touch .btn:active,
+html.touch .cbtn:active,
+html.touch .nb:active,
+html.touch .mc:active,
+html.touch .qopt:active,
+html.touch .qrst:active,
+html.touch .qnext:active,
+html.touch .csel-trigger:active,
+html.touch .csel-opt:active,
+html.touch .ch-grid-item:active,
+html.touch .qch-item:active,
+html.touch .pt-mod-hdr:active,
+html.touch .pt-poem-item:active,
+html.touch .ptv-tab:active,
+html.touch .ptv-nav button:active,
+html.touch .ptq-choice-btn:active,
+html.touch .ptq-choice:active,
+html.touch .pex-choice:active,
+html.touch .pt-exam-card:active,
+html.touch .ncm-btn:active,
+html.touch .pex-btn:active,
+html.touch .pt-exam-btn:active,
+.tap {
+  filter: brightness(.92);
+  transform: scale(.98);
 }
 </style>
 </head>
