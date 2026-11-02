@@ -1140,9 +1140,15 @@ function trackWrong(gi, correct) {
 // Spaced repetition priority
 function getPriority(card) {
   const cnt = card.c || 0;
-  if (!card.lr) return -1000 - cnt;  // never reviewed = highest priority
+  const gi = C.indexOf(card);
+  const wd = (window._wrongData && window._wrongData[gi]) || null;
+  const wrongRate = (wd && wd.t) ? wd.w / wd.t : 0;   // 0~1
+  // 从没背过：整组最优先。组内背得越少的越靠前（以前写成 -cnt，方向是反的，
+  // 结果是背过几次的反而排在从没看过的前面）。
+  if (!card.lr) return -1000 + cnt - wrongRate * 200;
   const days = Math.floor((Date.now() - new Date(card.lr).getTime()) / 86400000);
-  return cnt - (days / 2);
+  // 背过：次数越少、隔得越久、练错的越多 → 越靠前
+  return cnt - days / 2 - wrongRate * 20;
 }
 
 // ===== CHAPTER HOME =====
@@ -1186,6 +1192,7 @@ function enterChapter(letter, sortMode) {
   // sortMode: 'sr'=spaced repetition, 'seq'=sequential. Default depends on current preference
   window._srMode = sortMode || window._srMode || 'sr';
   curCh = letter; chStart = CH[letter].start; ci = 0;
+  _srList = null;   // 换章节，间隔顺序作废
 
   // Update content first, then show
   document.getElementById('ch-badge').textContent = letter + '章 · ' + CH[letter].card_count + '卡';
@@ -1206,8 +1213,31 @@ function enterChapter(letter, sortMode) {
 function toggleSr() {
   window._srMode = window._srMode === 'sr' ? 'seq' : 'sr';
   ci = 0;
+  _srList = null;   // 换模式，间隔顺序必须重排
   updateSrBadge();
   renderCard();
+  // 这一章一张卡都没背过、也没做过练习时，间隔排序没有依据可排，
+  // 结果和顺序完全一样。徽章上说明一句，免得看起来像点了没反应。
+  if (window._srMode === 'sr' && !hasReviewData()) {
+    const el = document.getElementById('sr-mode');
+    if (el) {
+      el.textContent = '🧠 无记录';
+      clearTimeout(window._srHintTimer);
+      window._srHintTimer = setTimeout(updateSrBadge, 2400);
+    }
+  }
+}
+
+/* 本章是否存在可用的复习依据：背过（有 lr）或做错过（有 wrongData） */
+function hasReviewData() {
+  const ch = CH[curCh];
+  if (!ch) return false;
+  for (let i = ch.start; i <= ch.end; i++) {
+    if (C[i] && C[i].lr) return true;
+    const wd = window._wrongData && window._wrongData[i];
+    if (wd && wd.t) return true;
+  }
+  return false;
 }
 
 function updateSrBadge() {
@@ -1277,16 +1307,25 @@ function buildChSelect() {
   });
 }
 
-// ===== FLASHCARD =====
+/* ===== FLASHCARD =====
+   间隔模式的顺序必须「进章节时排一次，之后固定」。
+   否则每背一张 inc() 就改了 c / lr，优先级立刻变、卡片当场移位，
+   nav(1) 的 ci+1 就会指向别的卡——表现为漏卡、乱跳、看起来像功能坏了。 */
+let _srList = null;
+
 function getChCards() {
   if (!curCh) return [];
   const ch = CH[curCh];
-  const cards = C.slice(ch.start, ch.end + 1);
-  // Apply spaced repetition sorting
-  if (window._srMode === 'sr') {
-    return cards.sort((a,b) => getPriority(a) - getPriority(b));
+  const n = ch.end - ch.start + 1;
+  if (window._srMode !== 'sr') { _srList = null; return C.slice(ch.start, ch.end + 1); }
+  if (!_srList || _srList.length !== n) {
+    const cards = C.slice(ch.start, ch.end + 1);
+    const prio = new Map();
+    cards.forEach(c => prio.set(c, getPriority(c)));   // 每张只算一次
+    cards.sort((a, b) => prio.get(a) - prio.get(b));
+    _srList = cards;
   }
-  return cards; // sequential order
+  return _srList;
 }
 
 function renderCard() {
@@ -2339,7 +2378,6 @@ function renderPtQuiz(body) {
     '<span class="ptq-label" style="margin-left:12px">\u6a21\u5f0f\uff1a</span>' +
     '<button class="ptv-tab' + (ptqMode==='c'?' act':'') + '" onclick="ptqMode=\'c\';renderPtQuiz(document.getElementById(\'ptv-body\'))">\u9009\u62e9</button>' +
     '<button class="ptv-tab' + (ptqMode==='i'?' act':'') + '" onclick="ptqMode=\'i\';renderPtQuiz(document.getElementById(\'ptv-body\'))">\u8f93\u5165</button>' +
-    '<span style="margin-left:auto;font-size:.75rem;color:var(--soft)">\u2705' + d.correct + ' \u274c' + d.wrong + ' / ' + d.blankCount + '</span>' +
   '</div>';
 
   html += '<div class="ptq-text" id="ptq-text">';
