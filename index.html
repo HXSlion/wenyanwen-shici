@@ -943,6 +943,31 @@ header {
     </div>
     <div id="ptv-body" class="ptv-body"></div>
   </div>
+
+  <!-- Exam Review View (inside #main so all view-switch logic covers it) -->
+  <div id="pt-exam" class="pt-exam">
+    <div id="pex-main">
+      <div class="pex-progress" id="pex-progress">
+        <div class="pex-progress-bar" id="pex-progress-bar"></div>
+      </div>
+      <div class="pex-header">
+        <button class="pex-back" onclick="closeExamReview()">← 返回</button>
+        <div class="pex-stats" id="pex-stats">0/0</div>
+      </div>
+      <div id="pex-body" class="pex-body">
+        <!-- Dynamic content -->
+      </div>
+    </div>
+    <div id="pex-result" style="display:none">
+      <div class="pex-result-card">
+        <div class="pex-result-icon">🎯</div>
+        <div class="pex-result-title">考前复习完成！</div>
+        <div class="pex-result-stats" id="pex-result-stats"></div>
+        <button class="pex-btn" onclick="restartExamReview()">再来一轮</button>
+        <button class="pex-back-btn" onclick="closeExamReview()">返回古诗文首页</button>
+      </div>
+    </div>
+  </div>
 </main>
 
 <!-- Overview -->
@@ -966,31 +991,6 @@ header {
     <div class="ncm-btns">
       <button class="ncm-btn ghost" onclick="closeNextCh()">留下复习</button>
       <button class="ncm-btn primary" id="ncm-go" onclick="goNextCh()">进入下一章 →</button>
-    </div>
-  </div>
-</div>
-
-<!-- Exam Review View -->
-<div id="pt-exam" class="pt-exam">
-  <div id="pex-main">
-    <div class="pex-progress" id="pex-progress">
-      <div class="pex-progress-bar" id="pex-progress-bar"></div>
-    </div>
-    <div class="pex-header">
-      <button class="pex-back" onclick="closeExamReview()">← 返回</button>
-      <div class="pex-stats" id="pex-stats">0/0</div>
-    </div>
-    <div id="pex-body" class="pex-body">
-      <!-- Dynamic content -->
-    </div>
-  </div>
-  <div id="pex-result" style="display:none">
-    <div class="pex-result-card">
-      <div class="pex-result-icon">🎯</div>
-      <div class="pex-result-title">考前复习完成！</div>
-      <div class="pex-result-stats" id="pex-result-stats"></div>
-      <button class="pex-btn" onclick="restartExamReview()">再来一轮</button>
-      <button class="pex-back-btn" onclick="closeExamReview()">返回古诗文首页</button>
     </div>
   </div>
 </div>
@@ -1082,6 +1082,7 @@ function buildChHome() {
 }
 
 function goHome() {
+  hideExamReview();
   document.getElementById('ch-home').style.display = 'flex';
   document.getElementById('fm').style.display = 'none';
   document.getElementById('ch-nav').style.display = 'none';
@@ -1896,8 +1897,24 @@ function showStats() {
 // ===== MODE SWITCH =====
 // ===== MAIN NAV =====
 var mainMode = 'c'; // 'c' for 实词, 'p' for 古诗文
+// Retract the exam-review panel. Must be called on every view switch, otherwise
+// the panel (a flex child of #main) keeps occupying space below the active view.
+function hideExamReview() {
+  var ex = document.getElementById('pt-exam');
+  if (ex) ex.style.display = 'none';
+  var m = document.getElementById('pex-main');
+  if (m) m.style.display = 'block';
+  var r = document.getElementById('pex-result');
+  if (r) r.style.display = 'none';
+  var b = document.getElementById('pex-body');
+  if (b) b.innerHTML = '';
+  var home = document.querySelector('.pt-home');
+  if (home) home.style.display = 'block';
+}
+
 function switchMain(md) {
   mainMode = md;
+  hideExamReview();
   document.querySelectorAll('.main-tab').forEach(b => b.classList.toggle('act', b.dataset.main === md));
   document.getElementById('sub-nav-c').style.display = md === 'c' ? 'flex' : 'none';
   document.getElementById('sub-nav-p').style.display = md === 'p' ? 'flex' : 'none';
@@ -1912,6 +1929,7 @@ function switchMain(md) {
 
 function sw(md) {
   mode = md;
+  hideExamReview();
   document.querySelectorAll('[data-m]').forEach(b => b.classList.toggle('active', b.dataset.m === md));
   document.querySelectorAll('[data-w]').forEach(b => b.classList.toggle('active', md === 'w'));
   document.querySelectorAll('[data-p]').forEach(b => b.classList.toggle('active', md === 'p'));
@@ -2625,7 +2643,12 @@ function enterExamReview() {
   var home = document.querySelector('.pt-home');
   if (home) home.style.display = 'none';
   var ex = document.getElementById('pt-exam');
+  if (!ex) return;
   ex.style.display = 'flex';
+  var pMain = document.getElementById('pex-main');
+  if (pMain) pMain.style.display = 'block';
+  var pRes = document.getElementById('pex-result');
+  if (pRes) pRes.style.display = 'none';
   
   // Load key sentences - defined in main script
   var sentences = [];
@@ -2670,18 +2693,22 @@ function enterExamReview() {
 }
 
 function closeExamReview() {
-  var ex = document.getElementById('pt-exam');
-  ex.style.display = 'none';
-  // Completely clear all exam content
-  ex.innerHTML = '';
-  document.getElementById('pth').style.display = 'flex';
-  // Switch to poetry sub-nav
+  // Retract the panel + restore the poetry home (hideExamReview also un-hides .pt-home,
+  // which enterExamReview() hides and previously never restored).
+  if (typeof hideExamReview === 'function') hideExamReview();
+  // Restore poetry mode through the normal view-switch path so every container lands
+  // in a consistent state (this is what actually clears the leftover panel).
+  sw('p');
+  var pth = document.getElementById('pth');
+  if (pth) pth.style.display = 'flex';
+  var home = document.querySelector('.pt-home');
+  if (home) home.style.display = 'block';
   document.getElementById('sub-nav-c').style.display = 'none';
   document.getElementById('sub-nav-p').style.display = 'flex';
-  // Activate poetry main tab
   document.querySelectorAll('.main-tab').forEach(function(b) {
     b.classList.toggle('act', b.dataset.main === 'p');
   });
+  if (typeof mainMode !== 'undefined') mainMode = 'p';
 }
 
 function restartExamReview() {
